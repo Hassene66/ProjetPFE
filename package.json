@@ -1,0 +1,24 @@
+{
+  "name": "my_project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "concurrently": "^5.1.0",
+    "owl.carousel": "^2.3.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "concurrently \"cd frontend && npm run start\" \"cd backend && npm run server\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hassene66/Project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hassene66/Project/issues"
+  },
+  "homepage": "https://github.com/Hassene66/Project#readme"
+}

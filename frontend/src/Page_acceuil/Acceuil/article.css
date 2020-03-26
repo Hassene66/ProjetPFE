@@ -1,0 +1,16 @@
+.posts article {
+  width: 100%;
+  float: left;
+  padding: 30px;
+}
+.posts .info h3 {
+  color: #008bc3;
+  font-family: sans-serif;
+  font-size: 28px;
+}
+.info p {
+  color: #6f7784;
+}
+article {
+  text-align: center;
+}

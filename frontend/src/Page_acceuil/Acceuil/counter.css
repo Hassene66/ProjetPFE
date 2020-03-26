@@ -1,0 +1,13 @@
+section.counters {
+  background-image: linear-gradient(-90deg, #6ed3f5, #0786e7);
+}
+
+.count {
+  text-align: center;
+  padding: 30px;
+  margin-bottom: 30px;
+  color: white;
+}
+svg.info-ecole {
+  font-size: 100px;
+}

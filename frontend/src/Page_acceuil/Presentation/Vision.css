@@ -1,0 +1,29 @@
+.text-cursive {
+  font-family: "Indie Flower", cursive !important;
+}
+.text-white {
+  color: white !important;
+}
+.package {
+  color: #777;
+  padding: 40px;
+  border-radius: 7px;
+}
+.package h3 {
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+.package h3 p {
+  height: 200px;
+}
+.package .img-wrap {
+  display: block;
+  margin: 0 auto 30px auto;
+  width: 80px;
+}
+.package .img-wrap img {
+  width: 80px;
+}
+.text-teal {
+  color: teal;
+}

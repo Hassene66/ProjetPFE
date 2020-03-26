@@ -1,0 +1,22 @@
+.footerLogin {
+  width: 100%;
+  background-color: #c5e5f8;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  border-top: 1px solid black;
+}
+.nom_ecole {
+  margin: 0;
+}
+.copyright {
+  margin-right: 5px;
+  font-size: 20px;
+}
+.Site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+.Site-content {
+  flex: 1;
+}

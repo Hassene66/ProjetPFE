@@ -1,0 +1,27 @@
+.container-fluid {
+  background-color: rgb(241, 255, 255);
+}
+
+#premierLigne h2 {
+  color: purple;
+  font-weight: 350;
+}
+#dexiemeLigne h2 {
+  color: purple;
+  font-weight: 350;
+}
+#troisiemeligne h2 {
+  color: purple;
+  font-weight: 350;
+}
+#premierParagraphe {
+  padding-left: 1.2em;
+  font-weight: 500;
+  font-size: 1em;
+}
+#dexiemeParagraphe {
+  padding-right: 1.2em;
+}
+.imgs {
+  border-radius: 5px;
+}

@@ -1,0 +1,10 @@
+.jumbotron {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("./images/marketing-office-working-business-33999.jpg");
+}
+#txt {
+  color: rgb(224, 67, 19);
+  text-shadow: 2px 2px 4px #b1abab;
+}
