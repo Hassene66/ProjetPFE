@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { Route, BrowserRouter, Switch } from "react-router-dom";
 
 import Page_gerer_les_eleves from "./Espace_Administration/Esapce_gerer_les_eleves/page_gerer_les_eleves";
-import Page_parameter_mon_ecole from "./Espace_Administration/page_parameter_mon_ecole/pageParameterMonEcole";
+import Page_parameter_mon_ecole from "./Espace_Administration/page_parameter_mon_ecole/PagePatemeterMonEcole";
 import PageAccueilAdministration from "./Espace_Administration/Page_accueil_administration/pageAccueilAdministration";
 import PageLogin from "./page_Login/PageLogin";
 import PageAcceuil from "./Page_acceuil/Acceuil/pageAcceuil";
@@ -39,19 +39,19 @@ const App = () => {
 
           <PrivateRouteAdmin
             exact
-            path="/Parameter_Mon_Ecole"
+            path="/ParameterMonEcole"
             component={Page_parameter_mon_ecole}
           />
           <Route exact path="/api/auth" component={PageLogin} />
 
           <PrivateRouteAdmin
             exact
-            path="/Gerer_les_eleves" //copier cette url pour acceder a cette page
+            path="/GererLesEleves"
             component={Page_gerer_les_eleves}
           />
           <PrivateRouteAdmin
             exact
-            path="/Accueil_administration" //copier cette url pour acceder a cette page
+            path="/AccueilAdministration"
             component={PageAccueilAdministration}
           />
         </Switch>

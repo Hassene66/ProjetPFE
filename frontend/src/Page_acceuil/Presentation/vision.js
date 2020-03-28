@@ -40,7 +40,7 @@ class Vision extends Component {
                 <span className="img-wrap">
                   <img src={image3} alt="Image" className="img-fluid" />
                 </span>
-                <h3 className="text-danger">Nos Valeur</h3>
+                <h3 className="text-danger">Nos Valeurs</h3>
                 <p>
                   Lorem ipsum dolor sit amet. Consequatur aliquam, fuga maiores
                   amet quo corporis distinctio soluta recusandae? amet quo

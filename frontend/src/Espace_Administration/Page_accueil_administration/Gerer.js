@@ -8,7 +8,7 @@ export class Gerer extends Component {
       <div>
         <div className="container mt-3 ">
           <div className="row  justify-content-between text-center   ">
-            <Link to="/Gerer_les_eleves" className="gererCart col-lg-3">
+            <Link to="/GererLesEleves" className="gererCart col-lg-3">
               Gérer les Eléves
               <br />
               <span>
@@ -32,7 +32,7 @@ export class Gerer extends Component {
         </div>
         <div className="container mt-3">
           <div className="row justify-content-center text-center   ">
-            <Link to="/Parameter_Mon_Ecole" className="gererCart col-lg-3">
+            <Link to="/ParameterMonEcole" className="gererCart col-lg-3">
               Parametrer mon ecole
               <br />
               <span>

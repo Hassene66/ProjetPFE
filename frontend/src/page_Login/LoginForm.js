@@ -23,7 +23,7 @@ const LoginForm = ({ login, isAuthenticated, Role, Loading }) => {
   //Redirect if loged in
   if (Role !== null)
     if (isAuthenticated && Role.typeUtilisateur === "admin" && !Loading) {
-      return <Redirect to="/Accueil_administration" />;
+      return <Redirect to="/AccueilAdministration" />;
     } else {
       if (isAuthenticated && Role.typeUtilisateur === "élève" && !Loading) {
         return <Redirect to="/Contact" />;
