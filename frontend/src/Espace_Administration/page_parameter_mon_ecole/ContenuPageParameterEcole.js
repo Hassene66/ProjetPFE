@@ -3,17 +3,18 @@ import React, { useState } from "react";
 const ContenuPageParameterEcole = () => {
   const [formData, setFormData] = useState({
     logo: "",
+    nom_ecole: "",
     num_tel: "",
     email: "",
     location: "",
     facebook_link: "",
     twitter_link: "",
     linkedIn_link: "",
-    valeur_Presentation: "",
-    valeur_Historique: "",
     nb_élèves: "",
     nb_ens_certifiés: "",
-    taux_de_réussite: ""
+    taux_de_réussite: "",
+    qui_somme_nous: "",
+    mot_du_directeur: ""
   });
 
   const {
