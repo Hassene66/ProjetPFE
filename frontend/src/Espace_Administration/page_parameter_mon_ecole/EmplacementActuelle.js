@@ -12,11 +12,11 @@ class EmplacementActuelle extends Component {
               Acceuil
             </Link>
             ->
-            <Link className="mb-2" to="/Accueil_administration">
+            <Link className="mb-2" to="/AccueilAdministration">
               Espace Administration
             </Link>
             ->
-            <Link className="mb-2" to="/Parameter_Mon_Ecole">
+            <Link className="mb-2" to="/ParameterMonEcole">
               Paramétrer Mon Ecole
             </Link>
           </div>

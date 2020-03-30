@@ -1,45 +1,100 @@
-import React, { useState } from "react";
-
-const ContenuPageParameterEcole = () => {
+import React, { useState, useEffect, Fragment } from "react";
+import PropTypes from "prop-types";
+import { CreateProfile, getCurrentProfile } from "../../actions/profileEcole";
+import { connect } from "react-redux";
+import Spinner from "../../Components/Spinner";
+import { Link, withRouter } from "react-router-dom";
+const ContenuPageParameterEcole = ({
+  getCurrentProfile,
+  auth,
+  profileEcole: { profile, loading },
+  CreateProfile,
+  history
+}) => {
   const [formData, setFormData] = useState({
-    logo: "",
-    nom_ecole: "",
-    num_tel: "",
-    email: "",
-    location: "",
-    facebook_link: "",
-    twitter_link: "",
-    linkedIn_link: "",
-    nb_élèves: "",
-    nb_ens_certifiés: "",
-    taux_de_réussite: "",
-    qui_somme_nous: "",
-    mot_du_directeur: ""
+    LogoEcole: "",
+    NomEcole: "",
+    NumeroDeTel: "",
+    Email: "",
+    EmplacementDeEcole: "",
+    LienFb: "",
+    LienTwitter: "",
+    LienLinkedIn: "",
+    NbEleve: "",
+    NbEnseignantCertifiés: "",
+    tauxDeRéussite: "",
+    QuiSommeNous: "",
+    MotDeDirecteur: ""
   });
 
+  //get current profile object a soon as ContenuPageParameterEcole page loades
+  useEffect(() => {
+    getCurrentProfile();
+    if (profile === null) {
+      setFormData({
+        LogoEcole: "",
+        NomEcole: "",
+        NumeroDeTel: "",
+        Email: "",
+        EmplacementDeEcole: "",
+        LienFb: "",
+        LienTwitter: "",
+        LienLinkedIn: "",
+        NbEleve: "",
+        NbEnseignantCertifiés: "",
+        tauxDeRéussite: "",
+        QuiSommeNous: "",
+        MotDeDirecteur: ""
+      });
+    } else {
+      setFormData({
+        LogoEcole: profile.LogoEcole,
+        NomEcole: profile.NomEcole,
+        NumeroDeTel: profile.NumeroDeTel,
+        Email: profile.Email,
+        EmplacementDeEcole: profile.EmplacementDeEcole,
+        LienFb: profile.LienFb,
+        LienTwitter: profile.LienTwitter,
+        LienLinkedIn: profile.LienLinkedIn,
+        NbEleve: profile.NbEleve,
+        NbEnseignantCertifiés: profile.NbEnseignantCertifiés,
+        tauxDeRéussite: profile.tauxDeRéussite,
+        QuiSommeNous: profile.QuiSommeNous,
+        MotDeDirecteur: profile.MotDeDirecteur
+      });
+    }
+  }, [loading]);
+
   const {
-    logo,
-    nom_ecole,
-    num_tel,
-    email,
-    location,
-    facebook_link,
-    twitter_link,
-    linkedIn_link,
-    qui_somme_nous,
-    mot_du_directeur,
-    nb_élèves,
-    nb_ens_certifiés,
-    taux_de_réussite
+    LogoEcole,
+    NomEcole,
+    NumeroDeTel,
+    Email,
+    EmplacementDeEcole,
+    LienFb,
+    LienTwitter,
+    LienLinkedIn,
+    QuiSommeNous,
+    MotDeDirecteur,
+    NbEleve,
+    NbEnseignantCertifiés,
+    tauxDeRéussite
   } = formData;
   const onChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  const onSubmit = async e => {
+  const onSubmit = e => {
     e.preventDefault();
+    if (profile === null) {
+      CreateProfile(formData, history);
+    } else {
+      CreateProfile(formData, history, true);
+    }
   };
-
-  return (
+  //if the profile is not loaded then show a spinner else show the ContenuPageParameterEcole
+  return loading && profile === null ? (
+    <Spinner />
+  ) : (
     <div>
       <form onSubmit={e => onSubmit(e)}>
         <div className="row">
@@ -57,8 +112,8 @@ const ContenuPageParameterEcole = () => {
                       className="form-control mr-3"
                       type="text"
                       placeholder="logo de l'école ici"
-                      value={logo}
-                      name="logo"
+                      value={LogoEcole}
+                      name="LogoEcole"
                     />
                   </div>
                 </div>
@@ -79,8 +134,8 @@ const ContenuPageParameterEcole = () => {
                       className="form-control mr-3"
                       type="text"
                       placeholder="nom de l'ecole "
-                      value={nom_ecole}
-                      name="nom_ecole"
+                      value={NomEcole}
+                      name="NomEcole"
                     />
                   </div>
                 </div>
@@ -108,8 +163,8 @@ const ContenuPageParameterEcole = () => {
                     className="form-control y"
                     type="text"
                     placeholder="Numéro de téléphone"
-                    value={num_tel}
-                    name="num_tel"
+                    value={NumeroDeTel}
+                    name="NumeroDeTel"
                   ></input>
                 </div>
               </div>
@@ -127,8 +182,8 @@ const ContenuPageParameterEcole = () => {
                     className="form-control y"
                     type="text"
                     placeholder="Email "
-                    name="email"
-                    value={email}
+                    name="Email"
+                    value={Email}
                   ></input>
                 </div>
               </div>
@@ -146,8 +201,8 @@ const ContenuPageParameterEcole = () => {
                     className="form-control y"
                     type="text"
                     placeholder="Emplacement de l'école"
-                    name="location"
-                    value={location}
+                    name="EmplacementDeEcole"
+                    value={EmplacementDeEcole}
                   ></input>
                 </div>
               </div>
@@ -171,8 +226,8 @@ const ContenuPageParameterEcole = () => {
                     id="reseauSociaux"
                     className="form-control y"
                     type="text"
-                    name="facebook_link"
-                    value={facebook_link}
+                    name="LienFb"
+                    value={LienFb}
                     onChange={e => onChange(e)}
                     placeholder="Lien vers la page Facebook"
                   ></input>
@@ -191,8 +246,8 @@ const ContenuPageParameterEcole = () => {
                     className="form-control y"
                     type="text"
                     placeholder="Lien vers la page Twitter"
-                    name="twitter_link"
-                    value={twitter_link}
+                    name="LienTwitter"
+                    value={LienTwitter}
                     onChange={e => onChange(e)}
                   ></input>
                 </div>
@@ -210,8 +265,8 @@ const ContenuPageParameterEcole = () => {
                     className="form-control y"
                     type="text"
                     placeholder="Lien vers la page LinkedIn"
-                    name="linkedIn_link"
-                    value={linkedIn_link}
+                    name="LienLinkedIn"
+                    value={LienLinkedIn}
                     onChange={e => onChange(e)}
                   ></input>
                 </div>
@@ -231,8 +286,8 @@ const ContenuPageParameterEcole = () => {
                   <textarea
                     className="form-control aa"
                     rows="6"
-                    value={qui_somme_nous}
-                    name="qui_somme_nous"
+                    value={QuiSommeNous}
+                    name="QuiSommeNous"
                     onChange={e => onChange(e)}
                   ></textarea>
                 </div>
@@ -251,8 +306,8 @@ const ContenuPageParameterEcole = () => {
                     onChange={e => onChange(e)}
                     className="form-control aa"
                     rows="6"
-                    value={mot_du_directeur}
-                    name="mot_du_directeur"
+                    value={MotDeDirecteur}
+                    name="MotDeDirecteur"
                   ></textarea>
                 </div>
               </div>
@@ -274,8 +329,8 @@ const ContenuPageParameterEcole = () => {
                       className="form-control mr-3"
                       type="text"
                       placeholder="nombre d'élèves ici"
-                      value={nb_élèves}
-                      name="nb_élèves"
+                      value={NbEleve}
+                      name="NbEleve"
                     />
                   </div>
                 </div>
@@ -296,8 +351,8 @@ const ContenuPageParameterEcole = () => {
                       className="form-control mr-3"
                       type="text"
                       placeholder="nombre d'enseignants certifiés ici"
-                      value={nb_ens_certifiés}
-                      name="nb_ens_certifiés"
+                      value={NbEnseignantCertifiés}
+                      name="NbEnseignantCertifiés"
                     />
                   </div>
                 </div>
@@ -318,8 +373,8 @@ const ContenuPageParameterEcole = () => {
                       className="form-control mr-3"
                       type="text"
                       placeholder="taux de réussite ici "
-                      value={taux_de_réussite}
-                      name="taux_de_réussite"
+                      value={tauxDeRéussite}
+                      name="tauxDeRéussite"
                     />
                   </div>
                 </div>
@@ -337,4 +392,16 @@ const ContenuPageParameterEcole = () => {
   );
 };
 
-export default ContenuPageParameterEcole;
+ContenuPageParameterEcole.propTypes = {
+  getCurrentProfile: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  profileEcole: PropTypes.object.isRequired,
+  CreateProfile: PropTypes.func.isRequired
+};
+const mapStateToProps = state => ({
+  auth: state.auth,
+  profileEcole: state.profileEcole
+});
+export default connect(mapStateToProps, { getCurrentProfile, CreateProfile })(
+  withRouter(ContenuPageParameterEcole)
+);

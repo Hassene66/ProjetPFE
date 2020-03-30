@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import LoginForm from "./LoginForm";
 import EmplacementActuelle from "./EmplacementActuelle";
 import Footer from "./footer";
-import Alert from "./alert";
+import Alert from "../Components/alert";
 
 const PageLogin = () => {
   return (

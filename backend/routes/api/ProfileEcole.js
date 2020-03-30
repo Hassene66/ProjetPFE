@@ -38,7 +38,7 @@ router.post(
         "NumeroDeTel",
         "Entrez un numéro de téléphone valide avec au moins 8 chiffres"
       )
-        .isLength({ min: 8, max: 8 })
+        .isLength({ min: 7, max: 7 })
         .isMobilePhone(),
       check("Email", "Entrez une adresse mail valide").isEmail(),
       check("EmplacementDeEcole", "L'emplacement de l'école est requis")
