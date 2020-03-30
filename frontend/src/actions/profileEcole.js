@@ -5,7 +5,7 @@ import { GET_PROFILE_ECOLE, PROFILE_ECOLE_ERROR } from "./types";
 //Get current school profile
 export const getCurrentProfile = () => async dispatch => {
   try {
-    const res = await axios.get("/ParameterMonEcole");
+    const res = await axios.get("/ParameterMonEcole/getProfile");
     dispatch({
       type: GET_PROFILE_ECOLE,
       payload: res.data

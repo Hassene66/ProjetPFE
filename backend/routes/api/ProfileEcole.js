@@ -6,14 +6,9 @@ const { check, validationResult } = require("express-validator");
 //@route GET ParameterMonEcole
 //@desc Get current school profile
 // @access Public
-router.get("/", async (req, res) => {
+router.get("/getProfile", async (req, res) => {
   try {
     const profileEcole = await ProfileEcole.findOne();
-    if (!profileEcole) {
-      return res.status(400).json({
-        msg: "il n'y a pas de profil d'école antérieur dans la base de données"
-      });
-    }
     res.json(profileEcole);
   } catch (err) {
     console.error(err.message);
@@ -36,7 +31,7 @@ router.post(
         .isEmpty(),
       check(
         "NumeroDeTel",
-        "Entrez un numéro de téléphone valide avec au moins 8 chiffres"
+        "Entrez un numéro de téléphone valide avec 7 chiffres"
       )
         .isLength({ min: 7, max: 7 })
         .isMobilePhone(),
