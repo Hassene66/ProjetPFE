@@ -167,7 +167,10 @@ const Navbar = ({
           </ul>
           {!loading && !isAuthenticated && (
             <Fragment>
-              <li>{LoginbtnAvant}</li>
+              <ul className="navbar-nav">
+                {" "}
+                <li>{LoginbtnAvant}</li>
+              </ul>
             </Fragment>
           )}
         </div>
