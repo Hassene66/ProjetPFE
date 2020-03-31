@@ -15,22 +15,16 @@
 .my-form {
   border: 1px solid black;
   border-radius: 14px;
-  background-color: #dff3ff;
+  background-color: rgb(243, 243, 243);
 }
 .text1 {
   font-size: medium;
 }
-.botton-config {
-  background: rgba(152, 206, 227, 0.68);
-  border: 1px solid #1284ad;
-  box-sizing: border-box;
-  border-radius: 12px;
-}
 
 .button {
-  background-color: rgba(152, 206, 227, 0.68); /* Green */
+  background-color: #333333;
   border: none;
-  color: #0689bb;
+  color: white;
   padding: 8px 25px;
   text-align: center;
   text-decoration: none;
@@ -45,7 +39,7 @@
   box-sizing: border-box;
 }
 .couleur-identifier {
-  color: #007bff;
+  color: black;
 }
 input:focus {
   outline: none;

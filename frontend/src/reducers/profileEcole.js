@@ -2,7 +2,7 @@ import { GET_PROFILE_ECOLE, PROFILE_ECOLE_ERROR } from "../actions/types";
 
 const initialState = {
   profile: null,
-  loading: true,
+  loadingProfileEcole: true,
   errors: {}
 };
 export default function(state = initialState, action) {
@@ -12,13 +12,13 @@ export default function(state = initialState, action) {
       return {
         ...state,
         profile: payload,
-        loading: false
+        loadingProfileEcole: false
       };
     case PROFILE_ECOLE_ERROR:
       return {
         ...state,
         errors: payload,
-        loading: false
+        loadingProfileEcole: false
       };
     default:
       return state;

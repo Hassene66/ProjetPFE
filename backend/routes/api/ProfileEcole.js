@@ -31,9 +31,9 @@ router.post(
         .isEmpty(),
       check(
         "NumeroDeTel",
-        "Entrez un numéro de téléphone valide avec 7 chiffres"
+        "Entrez un numéro de téléphone valide avec 8 chiffres"
       )
-        .isLength({ min: 7, max: 7 })
+        .isLength({ min: 8, max: 8 })
         .isMobilePhone(),
       check("Email", "Entrez une adresse mail valide").isEmail(),
       check("EmplacementDeEcole", "L'emplacement de l'école est requis")
@@ -53,20 +53,69 @@ router.post(
         .isURL(),
       check(
         "MotDeDirecteur",
-        "Entrez le mot de directeur avec un min de 30 lettres "
+        "Entrez le mot de directeur avec un min de 10 lettres "
       )
         .not()
         .isEmpty()
         .isString()
-        .isLength({ min: 30 }),
+        .isLength({ min: 10 }),
       check(
         "QuiSommeNous",
-        "Entrez un paragraph ' QuiSommeNous ' avec un min de 30 lettres"
+        "Entrez un paragraph ' QuiSommeNous ' avec un min de 10 lettres"
       )
         .not()
         .isEmpty()
         .isString()
-        .isLength({ min: 30 }),
+        .isLength({ min: 10 }),
+
+      check(
+        "Témoinage",
+        "Entrez un paragraph ' Témoinage ' avec un min de 10 lettres"
+      )
+        .not()
+        .isEmpty()
+        .isString()
+        .isLength({ min: 10 }),
+      check(
+        "LesPlusDeNotreEcole",
+        "Entrez un paragraph ' LesPlusDeNotreEcole ' avec un min de 10 lettres"
+      )
+        .not()
+        .isEmpty()
+        .isString()
+        .isLength({ min: 10 }),
+      check(
+        "LesValeursDeNotreEcole",
+        "Entrez un paragraph ' LesValeursDeNotreEcole ' avec un min de 10 lettres"
+      )
+        .not()
+        .isEmpty()
+        .isString()
+        .isLength({ min: 10 }),
+      check(
+        "lesCyclesQueNotreEcolePropose",
+        "Entrez un paragraph ' lesCyclesQueNotreEcolePropose ' avec un min de 10 lettres"
+      )
+        .not()
+        .isEmpty()
+        .isString()
+        .isLength({ min: 10 }),
+      check(
+        "NosActivités",
+        "Entrez un paragraph ' NosActivités ' avec un min de 10 lettres"
+      )
+        .not()
+        .isEmpty()
+        .isString()
+        .isLength({ min: 10 }),
+      check(
+        "NosFormations",
+        "Entrez un paragraph ' NosFormations ' avec un min de 10 lettres"
+      )
+        .not()
+        .isEmpty()
+        .isString()
+        .isLength({ min: 10 }),
       check("NbEleve", "Entrez un nombre d'élèves valide")
         .not()
         .isEmpty()
@@ -81,7 +130,7 @@ router.post(
       check("tauxDeRéussite", "Le lien du logo de l'école est requis")
         .not()
         .isEmpty()
-        .isFloat()
+        .isDecimal()
     ]
   ],
   async (req, res) => {
@@ -102,7 +151,13 @@ router.post(
       Email,
       NumeroDeTel,
       NomEcole,
-      LogoEcole
+      LogoEcole,
+      Témoinage,
+      LesPlusDeNotreEcole,
+      LesValeursDeNotreEcole,
+      lesCyclesQueNotreEcolePropose,
+      NosActivités,
+      NosFormations
     } = req.body;
     //buils profile object
     const profileFields = {}; //create a profile object
@@ -121,6 +176,28 @@ router.post(
     if (NbEnseignantCertifiés)
       profileFields.NbEnseignantCertifiés = NbEnseignantCertifiés;
     if (tauxDeRéussite) profileFields.tauxDeRéussite = tauxDeRéussite;
+    if (Témoinage)
+      profileFields.Témoinage = Témoinage.split("/").map(tém => tém.trim());
+    if (LesPlusDeNotreEcole)
+      profileFields.LesPlusDeNotreEcole = LesPlusDeNotreEcole.split(
+        "/"
+      ).map(plus => plus.trim());
+    if (LesValeursDeNotreEcole)
+      profileFields.LesValeursDeNotreEcole = LesValeursDeNotreEcole.split(
+        "/"
+      ).map(valeur => valeur.trim());
+    if (lesCyclesQueNotreEcolePropose)
+      profileFields.lesCyclesQueNotreEcolePropose = lesCyclesQueNotreEcolePropose
+        .split("/")
+        .map(cycle => cycle.trim());
+    if (NosActivités)
+      profileFields.NosActivités = NosActivités.split("/").map(activité =>
+        activité.trim()
+      );
+    if (NosFormations)
+      profileFields.NosFormations = NosFormations.split("/").map(formation =>
+        formation.trim()
+      );
 
     try {
       let profile = await ProfileEcole.findOne();

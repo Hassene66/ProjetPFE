@@ -8,21 +8,33 @@ export class Gerer extends Component {
       <div>
         <div className="container mt-3 ">
           <div className="row  justify-content-between text-center   ">
-            <Link to="/GererLesEleves" className="gererCart col-lg-3">
+            <Link
+              to="/GererLesEleves"
+              className="gererCart col-lg-3"
+              style={{ color: "black" }}
+            >
               Gérer les Eléves
               <br />
               <span>
-                <i class="cc fas fa-user-cog fa-2x "></i>
+                <i className="cc fas fa-user-cog fa-2x "></i>
               </span>
             </Link>
-            <Link to="" className="gererCart col-lg-3">
+            <Link
+              to=""
+              className="gererCart col-lg-3"
+              style={{ color: "black" }}
+            >
               Gérer les enseignants
               <br />
               <span className="icon-gerer-etablissement">
-                <i class="cc fas fa-user-cog fa-2x "></i>
+                <i className="cc fas fa-user-cog fa-2x "></i>
               </span>
             </Link>
-            <Link to="" className="gererCart col-lg-3">
+            <Link
+              to=""
+              className="gererCart col-lg-3"
+              style={{ color: "black" }}
+            >
               Gérer les parents <br />
               <span>
                 <i class="cc fas fa-user-cog fa-2x "></i>
@@ -32,7 +44,11 @@ export class Gerer extends Component {
         </div>
         <div className="container mt-3">
           <div className="row justify-content-center text-center   ">
-            <Link to="/ParameterMonEcole" className="gererCart col-lg-3">
+            <Link
+              to="/ParameterMonEcole"
+              className="gererCart col-lg-3"
+              style={{ color: "black" }}
+            >
               Parametrer mon ecole
               <br />
               <span>

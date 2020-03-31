@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import LoginForm from "./LoginForm";
 import EmplacementActuelle from "./EmplacementActuelle";
-import Footer from "./footer";
+import Footer from "../Components/footer";
 import Alert from "../Components/alert";
 
 const PageLogin = () => {
@@ -9,7 +9,7 @@ const PageLogin = () => {
     <div>
       <div className="Site">
         <div className="Site-content">
-          <div className="fluid-container  ">
+          <div className="fluid-container ">
             <EmplacementActuelle />
             <Alert />
             <LoginForm />

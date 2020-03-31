@@ -7,11 +7,11 @@ class EmplacementActuelle extends Component {
     return (
       <div>
         <div className="emplacementActuelleLogin">
-          <Link className="ml-3 mb-2" to="/">
+          <Link className="ml-3 mb-2" to="/" style={{ color: "black" }}>
             Acceuil
           </Link>
           ->
-          <Link className="mb-2" to="/api/auth">
+          <Link className="mb-2" to="/api/auth" style={{ color: "black" }}>
             S'identifier
           </Link>
         </div>

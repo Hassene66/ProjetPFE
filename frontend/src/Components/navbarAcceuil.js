@@ -1,35 +1,68 @@
-import React, { Fragment } from "react";
-import logoEcole from "./Images/iconfinder_Closed_Book_Icon_1741323.svg";
+import React, { useState, useEffect, Fragment } from "react";
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout } from "../actions/auth";
+import { getCurrentProfile } from "../actions/profileEcole";
 
-const Navbar = ({ auth: { isAuthenticated, loading, token }, logout }) => {
-  const Loginbtn = (
-    <li className="nav-item active ml-3 mr-3">
-      <Link to="/api/auth">
-        <button type="submit" className="btn btn-light btn-sm ">
-          Se Connecter
-        </button>
+const Navbar = ({
+  getCurrentProfile,
+  profileEcole: { profile, loadingProfileEcole },
+  auth: { isAuthenticated, loading, token, user },
+  logout
+}) => {
+  const [stateNavbarAcceuil, setStateNavbarAcceuil] = useState({
+    LogoEcole: "",
+    NomEcole: ""
+  });
+
+  useEffect(() => {
+    getCurrentProfile();
+    if (profile === null) {
+      setStateNavbarAcceuil({
+        LogoEcole: "",
+        NomEcole: ""
+      });
+    } else {
+      setStateNavbarAcceuil({
+        LogoEcole: profile.LogoEcole,
+        NomEcole: profile.NomEcole
+      });
+    }
+  }, [loadingProfileEcole]);
+  const { LogoEcole, NomEcole } = stateNavbarAcceuil;
+
+  const LoginbtnApres = (
+    <Link className="dropdown-item">
+      <Link type="submit" className="btn btn-light btn-sm " to="/api/auth">
+        Se Connecter
       </Link>
-    </li>
+    </Link>
+  );
+  const LoginbtnAvant = (
+    <Link>
+      <Link type="submit" className="btn btn-light btn-sm " to="/api/auth">
+        Se Connecter
+      </Link>
+    </Link>
   );
 
   const Logoutbtn = (
-    <li className="nav-item active ml-3 mr-3">
-      <Link to="/">
-        <button
-          type="submit"
-          className="btn btn-light btn-sm "
-          onClick={logout}
-        >
-          Déconnexion
-        </button>
-      </Link>
-    </li>
+    <Link className="dropdown-item " to="/" onClick={logout}>
+      Déconnexion
+    </Link>
   );
+  function getUser() {
+    if (user === null) return "/";
+    else if (user.typeUtilisateur === "admin") {
+      return "/AccueilAdministration";
+    } else if (user.typeUtilisateur === "élève") {
+      return "/NosFormation";
+    } else {
+      return "/Activité";
+    }
+  }
 
   return (
     <div>
@@ -37,12 +70,12 @@ const Navbar = ({ auth: { isAuthenticated, loading, token }, logout }) => {
         <a className="navbar-brand  " href="/">
           <img
             alt=""
-            src={logoEcole}
+            src={LogoEcole}
             width="35"
             height="35"
             className="d-inline-block align-top"
           />
-          <span className="pl-2  ">Mon Ecole</span>
+          <span className="pl-2  ">{NomEcole}</span>
         </a>
         <button
           className="navbar-toggler"
@@ -105,12 +138,38 @@ const Navbar = ({ auth: { isAuthenticated, loading, token }, logout }) => {
                 Contact
               </Link>
             </li>
-            {!loading && (
+            {!loading && isAuthenticated && (
               <Fragment>
-                {isAuthenticated && token ? Logoutbtn : Loginbtn}
+                <li className="nav-item dropdown">
+                  <Link
+                    className="nav-link dropdown-toggle"
+                    id="navbarDropdown"
+                    role="button"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    {user.prénom + " " + user.nom}
+                  </Link>
+                  <div
+                    className="dropdown-menu"
+                    aria-labelledby="navbarDropdown"
+                  >
+                    <Link className="dropdown-item" to={getUser()}>
+                      Mon Espace
+                    </Link>
+
+                    {isAuthenticated && token ? Logoutbtn : LoginbtnApres}
+                  </div>
+                </li>
               </Fragment>
             )}
           </ul>
+          {!loading && !isAuthenticated && (
+            <Fragment>
+              <li>{LoginbtnAvant}</li>
+            </Fragment>
+          )}
         </div>
       </nav>
     </div>
@@ -119,9 +178,12 @@ const Navbar = ({ auth: { isAuthenticated, loading, token }, logout }) => {
 
 Navbar.prototype = {
   logout: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired,
+  profileEcole: PropTypes.object.isRequired
 };
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  profileEcole: state.profileEcole
 });
-export default connect(mapStateToProps, { logout })(Navbar);
+export default connect(mapStateToProps, { getCurrentProfile, logout })(Navbar);

@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import axios from "axios";
 class FormulaireContact extends Component {
   constructor(props) {
     super(props);
     this.state = {
       email: "",
-      MotDePasse: "",
+      nom: "",
       msg: ""
     };
     this.handleChange = this.handleChange.bind(this);
@@ -18,9 +19,17 @@ class FormulaireContact extends Component {
   }
   handleSubmit(evt) {
     evt.preventDefault();
+    const infocontact = {
+      emailVisiteur: this.state.email,
+      nomVisiteur: this.state.nom,
+      messageDuVisiteur: this.state.msg
+    };
+    axios
+      .post("/ContacterNous", infocontact)
+      .then(res => console.log(res.data));
     this.setState({
       email: "",
-      MotDePasse: "",
+      nom: "",
       msg: ""
     });
   }
@@ -41,13 +50,13 @@ class FormulaireContact extends Component {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="exampleInputPassword1">Mot de passe :</label>
+            <label htmlFor="exampleInputPassword1">Nom :</label>
             <input
-              type="password"
+              type="text"
               className="form-control w-25"
               id="exampleInputPassword1"
-              name="MotDePasse"
-              value={this.state.MotDePasse}
+              name="nom"
+              value={this.state.nom}
               onChange={this.handleChange}
             />
           </div>

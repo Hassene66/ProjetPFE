@@ -7,7 +7,7 @@ import { Link, withRouter } from "react-router-dom";
 const ContenuPageParameterEcole = ({
   getCurrentProfile,
   auth,
-  profileEcole: { profile, loading },
+  profileEcole: { profile, loadingProfileEcole },
   CreateProfile,
   history
 }) => {
@@ -24,7 +24,13 @@ const ContenuPageParameterEcole = ({
     NbEnseignantCertifiés: "",
     tauxDeRéussite: "",
     QuiSommeNous: "",
-    MotDeDirecteur: ""
+    MotDeDirecteur: "",
+    Témoinage: "",
+    LesPlusDeNotreEcole: "",
+    LesValeursDeNotreEcole: "",
+    lesCyclesQueNotreEcolePropose: "",
+    NosActivités: "",
+    NosFormations: ""
   });
 
   //get current profile object a soon as ContenuPageParameterEcole page loades
@@ -44,7 +50,13 @@ const ContenuPageParameterEcole = ({
         NbEnseignantCertifiés: "",
         tauxDeRéussite: "",
         QuiSommeNous: "",
-        MotDeDirecteur: ""
+        MotDeDirecteur: "",
+        Témoinage: "",
+        LesPlusDeNotreEcole: "",
+        LesValeursDeNotreEcole: "",
+        lesCyclesQueNotreEcolePropose: "",
+        NosActivités: "",
+        NosFormations: ""
       });
     } else {
       setFormData({
@@ -60,10 +72,16 @@ const ContenuPageParameterEcole = ({
         NbEnseignantCertifiés: profile.NbEnseignantCertifiés,
         tauxDeRéussite: profile.tauxDeRéussite,
         QuiSommeNous: profile.QuiSommeNous,
-        MotDeDirecteur: profile.MotDeDirecteur
+        MotDeDirecteur: profile.MotDeDirecteur,
+        Témoinage: profile.Témoinage,
+        LesPlusDeNotreEcole: profile.LesPlusDeNotreEcole,
+        LesValeursDeNotreEcole: profile.LesValeursDeNotreEcole,
+        lesCyclesQueNotreEcolePropose: profile.lesCyclesQueNotreEcolePropose,
+        NosActivités: profile.NosActivités,
+        NosFormations: profile.NosFormations
       });
     }
-  }, [loading]);
+  }, [loadingProfileEcole]);
 
   const {
     LogoEcole,
@@ -78,7 +96,13 @@ const ContenuPageParameterEcole = ({
     MotDeDirecteur,
     NbEleve,
     NbEnseignantCertifiés,
-    tauxDeRéussite
+    tauxDeRéussite,
+    Témoinage,
+    LesPlusDeNotreEcole,
+    LesValeursDeNotreEcole,
+    lesCyclesQueNotreEcolePropose,
+    NosActivités,
+    NosFormations
   } = formData;
   const onChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -92,7 +116,7 @@ const ContenuPageParameterEcole = ({
     }
   };
   //if the profile is not loaded then show a spinner else show the ContenuPageParameterEcole
-  return loading && profile === null ? (
+  return loadingProfileEcole && profile === null ? (
     <Spinner />
   ) : (
     <div>
@@ -308,6 +332,157 @@ const ContenuPageParameterEcole = ({
                     rows="6"
                     value={MotDeDirecteur}
                     name="MotDeDirecteur"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="row">
+          {/* //Témoinage */}
+          <div className="  col-sm-6 ">
+            <div className="row p-5 ">
+              <div className="col-sm-12  col-lg-10 px-0   ">
+                <div className="form-group">
+                  <label>
+                    <h5>Témoignage (Insérer 3 paragraphs)</h5>
+                  </label>
+                  <br />
+                  <p style={{ color: "#9c9a95" }}>
+                    * Veuillez insérer des paragraphs séparées par des slash
+                    (ex. très bonne école .../ exellente école ect ...)
+                  </p>
+                  <textarea
+                    className="form-control aa"
+                    rows="6"
+                    value={Témoinage}
+                    name="Témoinage"
+                    onChange={e => onChange(e)}
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          {/*//Les plus de notre école */}
+          <div className="col-sm-6">
+            <div className="row p-5 ">
+              <div className="col-sm-12  col-lg-10 px-0 ">
+                <div className="form-group">
+                  <label>
+                    <h5>Les plus de notre école (Insérer 2 paragraphs)</h5>
+                  </label>
+                  <p style={{ color: "#9c9a95" }}>
+                    * Veuillez insérer des paragraphs séparées par des slash
+                    (ex. meilleur méthode d'apprentissage ... / meilleur
+                    formation ect ...)
+                  </p>
+                  <textarea
+                    onChange={e => onChange(e)}
+                    className="form-control aa"
+                    rows="6"
+                    value={LesPlusDeNotreEcole}
+                    name="LesPlusDeNotreEcole"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="row">
+          {/* //Les valeurs de notre école */}
+          <div className="  col-sm-6 ">
+            <div className="row p-5 ">
+              <div className="col-sm-12  col-lg-10 px-0   ">
+                <div className="form-group">
+                  <label>
+                    <h5>Les valeurs de notre école (Insérer 3 paragraphs)</h5>
+                  </label>
+                  <p style={{ color: "#9c9a95" }}>
+                    * Veuillez insérer des paragraphs séparées par des slash
+                    (ex. La solidarité ... / La bienveillance ect ...)
+                  </p>
+                  <textarea
+                    className="form-control aa"
+                    rows="6"
+                    value={LesValeursDeNotreEcole}
+                    name="LesValeursDeNotreEcole"
+                    onChange={e => onChange(e)}
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          {/*//les cycles que notre école propose*/}
+          <div className="col-sm-6">
+            <div className="row p-5 ">
+              <div className="col-sm-12  col-lg-10 px-0 ">
+                <div className="form-group">
+                  <label>
+                    <h5>
+                      les cycles que notre école propose (Insérer 3 paragraphs)
+                    </h5>
+                  </label>
+                  <p style={{ color: "#9c9a95" }}>
+                    * Veuillez insérer des paragraphs séparées par des slash
+                    (ex. La septième est... / La huitième est ect ...)
+                  </p>
+                  <textarea
+                    onChange={e => onChange(e)}
+                    className="form-control aa"
+                    rows="6"
+                    value={lesCyclesQueNotreEcolePropose}
+                    name="lesCyclesQueNotreEcolePropose"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="row">
+          {/* //Nos activités */}
+          <div className="  col-sm-6 ">
+            <div className="row p-5 ">
+              <div className="col-sm-12  col-lg-10 px-0   ">
+                <div className="form-group">
+                  <label>
+                    <h5>Nos activités (Insérer 3 paragraphs)</h5>
+                  </label>
+                  <p style={{ color: "#9c9a95" }}>
+                    * Veuillez utiliser des paragraphs séparées par des slash
+                    (ex. Des clubs dans plusieur domaines / Plusieur activités
+                    sportive ect ...)
+                  </p>
+                  <textarea
+                    className="form-control aa"
+                    rows="6"
+                    value={NosActivités}
+                    name="NosActivités"
+                    onChange={e => onChange(e)}
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          {/*//Nos formations*/}
+          <div className="col-sm-6">
+            <div className="row p-5 ">
+              <div className="col-sm-12  col-lg-10 px-0 ">
+                <div className="form-group">
+                  <label>
+                    <h5>Nos formations (Insérer 2 paragraphs)</h5>
+                  </label>
+                  <p style={{ color: "#9c9a95" }}>
+                    * Veuillez utiliser des paragraphs séparées par des slash
+                    (ex. Une formation riche et variée... / Une formations basée
+                    sur les projects et le pratique ...)
+                  </p>
+                  <textarea
+                    onChange={e => onChange(e)}
+                    className="form-control aa"
+                    rows="6"
+                    value={NosFormations}
+                    name="NosFormations"
                   ></textarea>
                 </div>
               </div>

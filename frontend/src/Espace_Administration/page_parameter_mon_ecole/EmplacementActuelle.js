@@ -8,15 +8,23 @@ class EmplacementActuelle extends Component {
       <div>
         <div className="emplacementActuellePME ">
           <div className="align-items-center">
-            <Link className="ml-3 mb-2" to="/">
+            <Link className="ml-3 mb-2" to="/" style={{ color: "black" }}>
               Acceuil
             </Link>
             ->
-            <Link className="mb-2" to="/AccueilAdministration">
+            <Link
+              className="mb-2"
+              to="/AccueilAdministration"
+              style={{ color: "black" }}
+            >
               Espace Administration
             </Link>
             ->
-            <Link className="mb-2" to="/ParameterMonEcole">
+            <Link
+              className="mb-2"
+              to="/ParameterMonEcole"
+              style={{ color: "black" }}
+            >
               Paramétrer Mon Ecole
             </Link>
           </div>

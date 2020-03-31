@@ -1,23 +1,59 @@
-import React, { Component } from "react";
-import logoecole from "./Images/iconfinder_Closed_Book_Icon_1741323.svg";
+import React, { useState, useEffect, Fragment } from "react";
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout, login } from "../actions/auth";
-const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
+import { getCurrentProfile } from "../actions/profileEcole";
+const Navbar = ({
+  getCurrentProfile,
+  profileEcole: { profile, loadingProfileEcole },
+  auth: { isAuthenticated, loading },
+  logout
+}) => {
+  const [stateNav, setStateNav] = useState({
+    LogoEcole: "",
+    NomEcole: ""
+  });
+
+  useEffect(() => {
+    getCurrentProfile();
+    if (profile === null) {
+      setStateNav({
+        LogoEcole: "",
+        NomEcole: ""
+      });
+    } else {
+      setStateNav({
+        LogoEcole: profile.LogoEcole,
+        NomEcole: profile.NomEcole
+      });
+    }
+  }, [loadingProfileEcole]);
+  const { LogoEcole, NomEcole } = stateNav;
+  function getCurrentDate() {
+    var tempDate = new Date();
+    var date =
+      tempDate.getFullYear() +
+      "/" +
+      (tempDate.getMonth() + 1) +
+      "/" +
+      tempDate.getDate();
+
+    return <p>{date}</p>;
+  }
   return (
     <div>
-      <nav className=" navbar sticky-top navbar navbar-expand-lg navbar-dark bg-primary  ">
+      <nav className=" navbar sticky-top navbar navbar-expand-lg navbar-dark bg-dark  ">
         <Link className="navbar-brand  " to="/">
           <img
             alt=""
-            src={logoecole}
+            src={LogoEcole}
             width="35"
             height="35"
             className="d-inline-block align-top"
           />
-          <span className="pl-2 pr-5 ">Mon Ecole</span>
+          <span className="pl-2 pr-5 ">{NomEcole}</span>
         </Link>
         <button
           className="navbar-toggler"
@@ -34,7 +70,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
           <ul className="navbar-nav ml-auto">
             <li className="nav-item active ml-5 mr-5">
               <Link className="nav-link" to="/">
-                21/07/1998 <span className="sr-only">(current)</span>
+                {getCurrentDate()} <span className="sr-only">(current)</span>
               </Link>
             </li>
 
@@ -48,31 +84,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
                 <i className="fas fa-bell fa-2x" style={{ color: "white" }}></i>
               </Link>
             </li>
-            <li class="nav-item dropdown">
-              <Link
-                class="nav-link dropdown-toggle"
-                to="#"
-                id="navbarDropdown"
-                role="button"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                Dropdown
-              </Link>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <Link class="dropdown-item" to="/">
-                  Action
-                </Link>
-                <Link class="dropdown-item" to="/">
-                  Another action
-                </Link>
-                <div class="dropdown-divider"></div>
-                <Link class="dropdown-item" to="/">
-                  Something else here
-                </Link>
-              </div>
-            </li>
+
             <li className="nav-item active ml-2 mr-4">
               <Link className="nav-link" onClick={logout} to="/">
                 <i
@@ -89,7 +101,11 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
 };
 Navbar.propTypes = {
   logout: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
+  getCurrentProfile: PropTypes.func.isRequired,
+  profileEcole: PropTypes.object.isRequired
 };
-const mapStateToProps = state => ({ auth: state.auth });
-export default connect(mapStateToProps, { logout })(Navbar);
+const mapStateToProps = state => ({
+  auth: state.auth,
+  profileEcole: state.profileEcole
+});
+export default connect(mapStateToProps, { logout, getCurrentProfile })(Navbar);

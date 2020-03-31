@@ -52,9 +52,29 @@ const ProfileEcoleSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  createdAt: {
-    type: Date,
-    default: Date.now
+  Témoinage: {
+    type: [String],
+    required: true
+  },
+  LesPlusDeNotreEcole: {
+    type: [String],
+    required: true
+  },
+  LesValeursDeNotreEcole: {
+    type: [String],
+    required: true
+  },
+  lesCyclesQueNotreEcolePropose: {
+    type: [String],
+    required: true
+  },
+  NosActivités: {
+    type: [String],
+    required: true
+  },
+  NosFormations: {
+    type: [String],
+    required: true
   }
 });
 module.exports = ProfileEcole = mongoose.model(
