@@ -61,7 +61,7 @@ router.post(
         .isLength({ min: 10 }),
       check(
         "QuiSommeNous",
-        "Entrez un paragraph ' QuiSommeNous ' avec un min de 10 lettres"
+        "Entrez un paragraph ' Qui Somme Nous ' avec un min de 10 lettres"
       )
         .not()
         .isEmpty()
@@ -70,7 +70,7 @@ router.post(
 
       check(
         "Témoinage",
-        "Entrez un paragraph ' Témoinage ' avec un min de 10 lettres"
+        "Entrez 3 paragraphs de ' Témoignage '  avec un min de 10 lettres chacune"
       )
         .not()
         .isEmpty()
@@ -78,7 +78,7 @@ router.post(
         .isLength({ min: 10 }),
       check(
         "LesPlusDeNotreEcole",
-        "Entrez un paragraph ' LesPlusDeNotreEcole ' avec un min de 10 lettres"
+        "Entrez 3 paragraphs ' Les Plus De Notre Ecole ' avec un min de 10 lettres chacune"
       )
         .not()
         .isEmpty()
@@ -86,7 +86,7 @@ router.post(
         .isLength({ min: 10 }),
       check(
         "LesValeursDeNotreEcole",
-        "Entrez un paragraph ' LesValeursDeNotreEcole ' avec un min de 10 lettres"
+        "Entrez 3 paragraphs ' Les Valeurs De Notre Ecole ' avec un min de 10 lettres chacune"
       )
         .not()
         .isEmpty()
@@ -94,7 +94,7 @@ router.post(
         .isLength({ min: 10 }),
       check(
         "lesCyclesQueNotreEcolePropose",
-        "Entrez un paragraph ' lesCyclesQueNotreEcolePropose ' avec un min de 10 lettres"
+        "Entrez 3 paragraphs ' les Cycles Que Notre Ecole Propose ' avec un min de 10 lettres chacune"
       )
         .not()
         .isEmpty()
@@ -102,7 +102,7 @@ router.post(
         .isLength({ min: 10 }),
       check(
         "NosActivités",
-        "Entrez un paragraph ' NosActivités ' avec un min de 10 lettres"
+        "Entrez 3 paragraphs ' Nos Activités ' avec un min de 10 lettres chacune"
       )
         .not()
         .isEmpty()
@@ -110,7 +110,7 @@ router.post(
         .isLength({ min: 10 }),
       check(
         "NosFormations",
-        "Entrez un paragraph ' NosFormations ' avec un min de 10 lettres"
+        "Entrez 3 paragraphs ' Nos Formations ' avec un min de 10 lettres chacune"
       )
         .not()
         .isEmpty()

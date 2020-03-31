@@ -35,16 +35,23 @@ const Counter = ({
       });
     }
   }, [loadingProfileEcole]);
-  const { tauxDeRéussite, NbEnseignantCertifiés, NbEleve } = stateCounter;
+  const {
+    tauxDeRéussite,
+    NbEnseignantCertifiés,
+    NbEleve,
+    visible1,
+    visible2,
+    visible3
+  } = stateCounter;
 
-  const onChangeVisibility1 = isVisible => {
-    setStateCounter({ visible1: isVisible });
+  const onChangeVisibility1 = isActive => {
+    setStateCounter({ ...stateCounter, visible1: isActive });
   };
-  const onChangeVisibility2 = isVisible => {
-    setStateCounter({ visible2: isVisible });
+  const onChangeVisibility2 = isActive => {
+    setStateCounter({ ...stateCounter, visible2: isActive });
   };
-  const onChangeVisibility3 = isVisible => {
-    setStateCounter({ visible3: isVisible });
+  const onChangeVisibility3 = isActive => {
+    setStateCounter({ ...stateCounter, visible3: isActive });
   };
   return (
     <section class="counters">
@@ -59,8 +66,8 @@ const Counter = ({
             <VisibilitySensor
               stayVisible={true}
               partialVisibility
-              onChange={tauxDeRéussite}
-              active={!stateCounter.visible1}
+              onChange={e => onChangeVisibility1(e)}
+              active={!visible1}
             >
               {({ isVisible }) => (
                 <div style={{ height: 75, fontSize: "50px" }}>
@@ -81,8 +88,8 @@ const Counter = ({
             <VisibilitySensor
               stayVisible={true}
               partialVisibility
-              onChange={NbEnseignantCertifiés}
-              active={!stateCounter.visible2}
+              onChange={e => onChangeVisibility2(e)}
+              active={!visible2}
             >
               {({ isVisible }) => (
                 <div style={{ height: 75, fontSize: "50px" }}>
@@ -103,8 +110,8 @@ const Counter = ({
             <VisibilitySensor
               stayVisible={true}
               partialVisibility
-              onChange={NbEleve}
-              active={!stateCounter.visible3}
+              onChange={e => onChangeVisibility3(e)}
+              active={!visible3}
             >
               {({ isVisible }) => (
                 <div style={{ height: 75, fontSize: "50px" }}>

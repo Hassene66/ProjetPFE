@@ -39,7 +39,9 @@ export const CreateProfile = (
     });
     dispatch(
       setAlert(
-        edit ? "Le profil a été mis à jour" : "Le profil a été créé",
+        edit
+          ? "Le profil de l'école a été mis à jour"
+          : "Le profil de l'ecole a été créé",
         "success"
       )
     );
