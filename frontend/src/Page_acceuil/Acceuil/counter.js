@@ -5,6 +5,9 @@ import VisibilitySensor from "react-visibility-sensor";
 import { getCurrentProfile } from "../../actions/profileEcole";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import student from "./Images/student.png";
+import teacher from "./Images/teacher.png";
+import diploma from "./Images/diploma.png";
 
 const Counter = ({
   getCurrentProfile,
@@ -54,15 +57,11 @@ const Counter = ({
     setStateCounter({ ...stateCounter, visible3: isActive });
   };
   return (
-    <section class="counters">
+    <section class="counters ">
       <div class=" d-flex justify-content-around  row">
         <div className="col-sm-4 ">
           <div className="count ">
-            <span
-              class="iconify info-ecole"
-              data-inline="false"
-              data-icon="fa-solid:graduation-cap"
-            ></span>
+            <img src={student} alt="nombre élève" />
             <VisibilitySensor
               stayVisible={true}
               partialVisibility
@@ -80,11 +79,7 @@ const Counter = ({
         </div>
         <div className="col-sm-4">
           <div className="count">
-            <span
-              class="iconify info-ecole"
-              data-inline="false"
-              data-icon="fa-solid:chalkboard-teacher"
-            ></span>
+            <img src={teacher} alt="nombre d'enseignants ceritifié" />
             <VisibilitySensor
               stayVisible={true}
               partialVisibility
@@ -102,11 +97,7 @@ const Counter = ({
         </div>
         <div className="col-sm-4">
           <div className="count">
-            <span
-              class="iconify info-ecole"
-              data-inline="false"
-              data-icon="ic:baseline-percentage"
-            ></span>
+            <img src={diploma} alt="taux de réussite" />
             <VisibilitySensor
               stayVisible={true}
               partialVisibility
@@ -115,7 +106,7 @@ const Counter = ({
             >
               {({ isVisible }) => (
                 <div style={{ height: 75, fontSize: "50px" }}>
-                  {isVisible ? <CountUp end={tauxDeRéussite} /> : null}
+                  {isVisible ? <CountUp end={tauxDeRéussite} /> : null}%
                 </div>
               )}
             </VisibilitySensor>

@@ -24,12 +24,6 @@ router.post(
       "motDePasse",
       "veuillez entrer un mot de passe avec 6 caractères ou plus"
     ).isLength({ min: 6 }),
-    check("niveau", "la saisie d'un niveau est obligatoire")
-      .not()
-      .isEmpty(),
-    check("classe", "la saisie d'un classe  est obligatoire")
-      .not()
-      .isEmpty(),
     check(
       "typeUtilisateur",
       "la saisie d'un type d'utilisateur est obligatoire"
@@ -48,9 +42,10 @@ router.post(
       nom,
       identifiant,
       motDePasse,
-      niveau,
-      classe,
-      typeUtilisateur
+      typeUtilisateur,
+      profileEnseignant,
+      profileEleve,
+      profileAdmin
     } = req.body;
     try {
       //see if the user exists
@@ -60,15 +55,17 @@ router.post(
           .status(400)
           .json({ errors: [{ msg: "User already exists" }] });
       }
-      user = new User({
-        prénom,
-        nom,
-        identifiant, //make a new user if it is not exisit in the db
-        motDePasse,
-        niveau,
-        classe,
-        typeUtilisateur
-      });
+      const userInfo = {};
+      userInfo.prénom = prénom;
+      userInfo.nom = nom;
+      userInfo.identifiant = identifiant;
+      userInfo.motDePasse = motDePasse;
+      userInfo.typeUtilisateur = typeUtilisateur;
+      if (profileEnseignant) userInfo.profileEnseignant = profileEnseignant;
+      if (profileEleve) userInfo.profileEleve = profileEleve;
+      if (profileAdmin) userInfo.profileAdmin = profileAdmin;
+
+      user = new User(userInfo);
       await user.save(); //save the new user in the db
 
       const payload = {

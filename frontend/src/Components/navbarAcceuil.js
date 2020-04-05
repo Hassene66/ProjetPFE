@@ -10,11 +10,11 @@ const Navbar = ({
   getCurrentProfile,
   profileEcole: { profile, loadingProfileEcole },
   auth: { isAuthenticated, loading, token, user },
-  logout
+  logout,
 }) => {
   const [stateNavbarAcceuil, setStateNavbarAcceuil] = useState({
     LogoEcole: "",
-    NomEcole: ""
+    NomEcole: "",
   });
 
   useEffect(() => {
@@ -22,12 +22,12 @@ const Navbar = ({
     if (profile === null) {
       setStateNavbarAcceuil({
         LogoEcole: "",
-        NomEcole: ""
+        NomEcole: "",
       });
     } else {
       setStateNavbarAcceuil({
         LogoEcole: profile.LogoEcole,
-        NomEcole: profile.NomEcole
+        NomEcole: profile.NomEcole,
       });
     }
   }, [loadingProfileEcole]);
@@ -42,7 +42,12 @@ const Navbar = ({
   );
   const LoginbtnAvant = (
     <Link>
-      <Link type="submit" className="btn btn-light btn-sm " to="/api/auth">
+      <Link
+        type="submit"
+        className="btn btn-light btn-sm "
+        to="/api/auth"
+        style={{ marginLeft: "400px" }}
+      >
         Se Connecter
       </Link>
     </Link>
@@ -86,25 +91,28 @@ const Navbar = ({
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span className="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
           <ul className="navbar-nav ml-5">
             <li className="nav-item active ml-3 mr-3">
               <Link className="nav-link" to="/">
-                Acceuil
+                Acceuil<span class="sr-only">(current)</span>
               </Link>
             </li>
-            <li className="nav-item active ml-3 mr-3">
+
+            <li className="nav-item active  ml-3 mr-3">
               <Link className="nav-link" to="/Presentation">
                 Présentation
               </Link>
             </li>
+
             <li className="nav-item active ml-3 mr-3">
               <Link className="nav-link" to="/NosFormation">
                 Nos formation
               </Link>
             </li>
+
             <li className="nav-item active ml-3 mr-3">
               <Link className="nav-link" to="/Activité">
                 Activités
@@ -133,14 +141,20 @@ const Navbar = ({
                 </Link>
               </div>
             </li>
-            <li className="nav-item active ml-3 mr-3">
+
+            <li className="nav-item  ml-3 active ">
               <Link className="nav-link" to="/Contact">
                 Contact
               </Link>
             </li>
+
+            {/* d-flex justify-content-right */}
             {!loading && isAuthenticated && (
               <Fragment>
-                <li className="nav-item dropdown">
+                <li
+                  className="nav-item dropdown "
+                  style={{ marginLeft: "400px" }}
+                >
                   <Link
                     className="nav-link dropdown-toggle"
                     id="navbarDropdown"
@@ -149,6 +163,7 @@ const Navbar = ({
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
+                    <i className="fas fa-user text-white mr-2"></i>
                     {user.prénom + " " + user.nom}
                   </Link>
                   <div
@@ -183,10 +198,10 @@ Navbar.prototype = {
   logout: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
-  profileEcole: PropTypes.object.isRequired
+  profileEcole: PropTypes.object.isRequired,
 };
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   auth: state.auth,
-  profileEcole: state.profileEcole
+  profileEcole: state.profileEcole,
 });
 export default connect(mapStateToProps, { getCurrentProfile, logout })(Navbar);

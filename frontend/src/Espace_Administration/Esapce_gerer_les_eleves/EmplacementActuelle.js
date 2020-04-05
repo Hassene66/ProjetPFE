@@ -7,23 +7,15 @@ class EmplacementActuelle extends Component {
     return (
       <div>
         <div className="emplacementActuellePGE">
-          <Link className="ml-3 mb-2" to="#" style={{ color: "black" }}>
+          <Link className="ml-3 mb-2" to="/">
             Acceuil
           </Link>
           ->
-          <Link
-            className="mb-2"
-            to="/AccueilAdministration"
-            style={{ color: "black" }}
-          >
+          <Link className="mb-2" to="/AccueilAdministration">
             Espace Administration
           </Link>
           ->
-          <Link
-            className="mb-2"
-            to="/GererLesEleves"
-            style={{ color: "black" }}
-          >
+          <Link className="mb-2" to="/GererLesEleves">
             gérer les eleves
           </Link>
         </div>

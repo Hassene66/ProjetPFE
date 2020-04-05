@@ -30,7 +30,7 @@ const Article = ({
   const { LesPlusDeNotreEcole } = stateErticle;
 
   return (
-    <section className="posts ">
+    <section className="posts mx-5">
       <div className="fluid-container">
         <div className="row">
           <div className="col-md-6">

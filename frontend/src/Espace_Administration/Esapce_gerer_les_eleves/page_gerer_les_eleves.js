@@ -13,10 +13,8 @@ class App extends React.Component {
             <div className="fluid-container  ">
               <Nav />
               <Emplacement_Actuelle />
-              <div className="row">
-                <Sidebar />
-                <Main_content />
-              </div>
+
+              <Main_content />
             </div>
           </div>
           <div>

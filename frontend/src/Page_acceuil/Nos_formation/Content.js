@@ -27,7 +27,7 @@ const Content = ({
   }, [loadingProfileEcole]);
   const { NosFormations } = stateContent;
   return (
-    <div className="container px-0">
+    <div className="container px-0 mb-5">
       <div className="row align-items-center  ">
         <div
           id="premierLigne"

@@ -29,7 +29,7 @@ const Vision = ({
   const { LesValeursDeNotreEcole } = stateVision;
 
   return (
-    <div className="site-section bg-info">
+    <div className="site-section couleur-vision">
       <div className="fluid-container mx-5 ">
         <div className="row ">
           <div className="col-lg-4 mb-4 mb-lg-0 ">

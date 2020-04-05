@@ -17,8 +17,8 @@ class PageAcceuil extends React.Component {
             <div className="fluid-container  ">
               <Navbar />
               <Slider />
-              <Presentation />
               <Article />
+              <Presentation />
               <Counter />
               <Temoinage />
             </div>

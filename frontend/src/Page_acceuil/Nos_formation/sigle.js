@@ -6,18 +6,36 @@ import sigle3 from "./imagesPageFormation/success.svg";
 export class sigle extends Component {
   render() {
     return (
-      <div className="container-fluid px-0 test my-5">
+      <div className="container-fluid px-0 bg-white my-5">
         <div className="row text-center align-items-center ">
           <div className="col-sm-4 py-3">
-            <img className="sizingImg" src={sigle1} alt="" />
+            <img
+              className="sizingImg"
+              src={sigle1}
+              alt=""
+              height="100"
+              width="100"
+            />
             <h1>Créativité</h1>
           </div>
           <div className="col-sm-4 py-3">
-            <img className="sizingImg" src={sigle2} alt="" />
+            <img
+              className="sizingImg"
+              src={sigle2}
+              alt=""
+              height="100"
+              width="100"
+            />
             <h1>Autonomie</h1>
           </div>
           <div className="col-sm-4 py-3 ">
-            <img className="sizingImg" src={sigle3} alt="" />
+            <img
+              className="sizingImg"
+              src={sigle3}
+              alt=""
+              height="100"
+              width="100"
+            />
             <h1>Succès</h1>
           </div>
         </div>

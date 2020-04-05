@@ -11,8 +11,8 @@ export class PageFormation extends Component {
           <div className="Site-content">
             <div className="fluid-container  ">
               <Navbar />
-              <Content />
               <Sigle />
+              <Content />
             </div>
           </div>
           <div>

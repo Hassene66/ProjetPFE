@@ -1,16 +1,104 @@
-import React from "react";
+import React, { Fragment, useState } from "react";
 import "./main_content.css";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import axios from "axios";
 
-class Main_content extends React.Component {
-  render() {
+const Main_content = ({ auth: { user } }) => {
+  const [formData, setFormData] = useState({
+    classe: user.profileEnseignant.classeEnseigné[0],
+    listeDesEleves: [],
+  });
+  const { classe, listeDesEleves } = formData;
+
+  const onChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const body = JSON.stringify({ classe });
+    await axios
+      .post("/Enseignant/mesEleves", body, config)
+      .then((res) => setFormData({ ...formData, listeDesEleves: res.data }));
+  };
+
+  const returnTable = () => {
+    if (typeof listeDesEleves === "object" && listeDesEleves.length > 0) {
+      return (
+        <div>
+          <table className="table container mt-5">
+            <thead className="thead-dark">
+              <tr>
+                <th scope="col">Prénom</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Classe</th>
+              </tr>
+            </thead>
+            {listeDesEleves.map((élève) => {
+              return <Table listeDesEleves={élève} />;
+            })}
+          </table>
+        </div>
+      );
+    } else {
+      if (typeof listeDesEleves === "string") {
+        return (
+          <h3 className="text-center mt-5">
+            il n'y a pas des élèves dans cette classe
+          </h3>
+        );
+      }
+    }
+  };
+  const Table = (props) => {
     return (
-      <div class="main">
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. A alias
-        numquam facere quos commodi possimus totam reprehenderit quidem maxime,
-        rem inventore laborum est sequi sapiente necessitatibus velit iure, unde
-        quibusdam.
-      </div>
+      <tr>
+        <td>{props.listeDesEleves.prénom}</td>
+        <td>{props.listeDesEleves.nom}</td>
+        <td>{props.listeDesEleves.profileEleve[0].classe}</td>
+      </tr>
     );
-  }
-}
-export default Main_content;
+  };
+
+  return (
+    <div>
+      <form onSubmit={(e) => onSubmit(e)}>
+        <div className="form-group">
+          <label for="exampleFormControlSelect1">Choisir le classe</label>
+          <select
+            className="form-control w-25"
+            id="exampleFormControlSelect1"
+            value={classe}
+            onChange={(e) => onChange(e)}
+            name="classe"
+          >
+            {user.profileEnseignant.classeEnseigné.map((classe) => {
+              return (
+                <option key={classe} value={classe}>
+                  {classe}
+                </option>
+              );
+            })}
+          </select>
+        </div>
+        <button type="submit" className="button ml-5 ">
+          Valider
+        </button>
+      </form>
+      {returnTable()}
+    </div>
+  );
+};
+Main_content.prototype = {
+  auth: PropTypes.object.isRequired,
+};
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+export default connect(mapStateToProps, {})(Main_content);

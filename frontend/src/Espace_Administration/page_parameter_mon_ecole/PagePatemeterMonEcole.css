@@ -10,7 +10,7 @@ div.x {
 }
 
 input.y.form-control {
-  border-radius: 7;
+  border-radius: 0px 7px 7px 0px;
   border: 0px;
 }
 svg.iconify {
@@ -24,21 +24,7 @@ div.infoElm {
   display: flex;
   align-items: center;
 }
-div.x {
-  align-items: center;
-  display: flex;
 
-  background: #eeeeee;
-  border: 1px solid #9a9a9a;
-  box-sizing: border-box;
-  border-radius: 7px;
-  padding: 0;
-}
-
-input.y.form-control {
-  border-radius: 7;
-  border: 0px;
-}
 svg.iconify {
   font-size: 25px;
   margin: 8px;
@@ -49,9 +35,7 @@ div.infoElm {
 .cc {
   margin: 20px;
 }
-.btn-danger {
-  margin-right: 15px;
-}
+
 .browse-border {
   border: 1px solid #9a9a9a;
   border-radius: 0px 7px 7px 0px;
