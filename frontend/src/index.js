@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
 import { Route, BrowserRouter, Switch } from "react-router-dom";
 
-import Page_gerer_les_eleves from "./Espace_Administration/Esapce_gerer_les_eleves/page_gerer_les_eleves";
+import Page_gerer_les_eleves from "./Espace_Administration/Esapce_gerer_les_eleves/GererLesEleves";
 import Page_parameter_mon_ecole from "./Espace_Administration/page_parameter_mon_ecole/PagePatemeterMonEcole";
 import PageAccueilAdministration from "./Espace_Administration/Page_accueil_administration/pageAccueilAdministration";
 import PageLogin from "./page_Login/PageLogin";

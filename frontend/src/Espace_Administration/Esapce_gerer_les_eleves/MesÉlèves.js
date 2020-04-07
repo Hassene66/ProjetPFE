@@ -1,10 +1,10 @@
 import React, { Fragment, useState } from "react";
-import "./main_content.css";
+
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import axios from "axios";
 
-const Main_content = ({ auth: { user } }) => {
+const MesÉlèves = ({ auth: { user } }) => {
   const [formData, setFormData] = useState({
     classe: user.profileEnseignant.classeEnseigné[0],
     listeDesEleves: [],
@@ -67,10 +67,10 @@ const Main_content = ({ auth: { user } }) => {
   };
 
   return (
-    <div>
+    <div className="col p-3 bg-white ">
       <form onSubmit={(e) => onSubmit(e)}>
         <div className="form-group">
-          <label for="exampleFormControlSelect1">Choisir le classe</label>
+          <h4 for="exampleFormControlSelect1">Choisir le classe</h4>
           <select
             className="form-control w-25"
             id="exampleFormControlSelect1"
@@ -95,10 +95,10 @@ const Main_content = ({ auth: { user } }) => {
     </div>
   );
 };
-Main_content.prototype = {
+MesÉlèves.prototype = {
   auth: PropTypes.object.isRequired,
 };
 const mapStateToProps = (state) => ({
   auth: state.auth,
 });
-export default connect(mapStateToProps, {})(Main_content);
+export default connect(mapStateToProps, {})(MesÉlèves);

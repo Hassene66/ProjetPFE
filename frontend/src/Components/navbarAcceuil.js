@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout } from "../actions/auth";
 import { getCurrentProfile } from "../actions/profileEcole";
+import "./navbarAcceuil.css";
 
 const Navbar = ({
   getCurrentProfile,
@@ -33,23 +34,13 @@ const Navbar = ({
   }, [loadingProfileEcole]);
   const { LogoEcole, NomEcole } = stateNavbarAcceuil;
 
-  const LoginbtnApres = (
-    <Link className="dropdown-item">
-      <Link type="submit" className="btn btn-light btn-sm " to="/api/auth">
-        Se Connecter
-      </Link>
-    </Link>
-  );
   const LoginbtnAvant = (
-    <Link>
-      <Link
-        type="submit"
-        className="btn btn-light btn-sm "
-        to="/api/auth"
-        style={{ marginLeft: "400px" }}
-      >
-        Se Connecter
-      </Link>
+    <Link
+      type="submit"
+      className="btn btn-light btn-sm user-acc-margin "
+      to="/api/auth"
+    >
+      Se Connecter
     </Link>
   );
 
@@ -149,12 +140,9 @@ const Navbar = ({
             </li>
 
             {/* d-flex justify-content-right */}
-            {!loading && isAuthenticated && (
+            {!loading && isAuthenticated && token && (
               <Fragment>
-                <li
-                  className="nav-item dropdown "
-                  style={{ marginLeft: "400px" }}
-                >
+                <li className="nav-item dropdown user-acc-margin">
                   <Link
                     className="nav-link dropdown-toggle"
                     id="navbarDropdown"
@@ -174,20 +162,23 @@ const Navbar = ({
                       Mon Espace
                     </Link>
 
-                    {isAuthenticated && token ? Logoutbtn : LoginbtnApres}
+                    {Logoutbtn}
                   </div>
                 </li>
               </Fragment>
             )}
+            {!loading && isAuthenticated && !token && (
+              <Fragment>
+                <li className="nav-item">{LoginbtnAvant}</li>
+              </Fragment>
+            )}
+
+            {!loading && !isAuthenticated && (
+              <Fragment>
+                <li className="nav-item">{LoginbtnAvant}</li>
+              </Fragment>
+            )}
           </ul>
-          {!loading && !isAuthenticated && (
-            <Fragment>
-              <ul className="navbar-nav">
-                {" "}
-                <li>{LoginbtnAvant}</li>
-              </ul>
-            </Fragment>
-          )}
         </div>
       </nav>
     </div>

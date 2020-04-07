@@ -6,26 +6,42 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { login } from "../actions/auth";
 
-const LoginForm = ({ login, isAuthenticated, Role, Loading }) => {
+const LoginForm = ({
+  login,
+  isAuthenticated,
+  Role,
+  Loading,
+  auth: { token },
+}) => {
   const [formData, setFormData] = useState({
     identifiant: "",
-    MotDePasse: ""
+    MotDePasse: "",
   });
 
   const { identifiant, MotDePasse } = formData;
-  const onChange = e => {
+  const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  const onSubmit = async e => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     login(identifiant, MotDePasse);
   };
   //Redirect if loged in
   if (Role !== null)
-    if (isAuthenticated && Role.typeUtilisateur === "admin" && !Loading) {
+    if (
+      isAuthenticated &&
+      Role.typeUtilisateur === "admin" &&
+      !Loading &&
+      token
+    ) {
       return <Redirect to="/AccueilAdministration" />;
     } else {
-      if (isAuthenticated && Role.typeUtilisateur === "élève" && !Loading) {
+      if (
+        isAuthenticated &&
+        Role.typeUtilisateur === "élève" &&
+        !Loading &&
+        token
+      ) {
         return <Redirect to="/Contact" />;
       } else {
         if (
@@ -41,7 +57,7 @@ const LoginForm = ({ login, isAuthenticated, Role, Loading }) => {
     <div className="container   Font-type ">
       <div className="row my-row">
         <div className="col my-col  mt-5">
-          <form onSubmit={e => onSubmit(e)}>
+          <form onSubmit={(e) => onSubmit(e)}>
             <div className=" col-xl-4 col-lg-5 col-md-7 col-sm-9 mx-auto   form p-5 my-form mb-5">
               <h1 className="couleur-identifier mt-3 mb-3 text-center">
                 S'identifier
@@ -64,7 +80,7 @@ const LoginForm = ({ login, isAuthenticated, Role, Loading }) => {
                     name="identifiant"
                     placeholder="Votre identifiant"
                     value={identifiant}
-                    onChange={e => onChange(e)}
+                    onChange={(e) => onChange(e)}
                   />
                 </div>
               </div>
@@ -88,7 +104,7 @@ const LoginForm = ({ login, isAuthenticated, Role, Loading }) => {
                     id="mdp"
                     placeholder=" Votre mot de passe "
                     value={MotDePasse}
-                    onChange={e => onChange(e)}
+                    onChange={(e) => onChange(e)}
                   />
                 </div>
               </div>
@@ -109,12 +125,14 @@ LoginForm.propTypes = {
   login: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool,
   Role: PropTypes.object.isRequired,
-  Loading: PropTypes.bool
+  Loading: PropTypes.bool,
+  auth: PropTypes.object.isRequired,
 };
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
   Role: state.auth.user,
-  Loading: state.auth.loading
+  Loading: state.auth.loading,
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, { login })(LoginForm);

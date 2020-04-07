@@ -9,11 +9,11 @@ const Navbar = ({
   getCurrentProfile,
   profileEcole: { profile, loadingProfileEcole },
   auth: { isAuthenticated, loading },
-  logout
+  logout,
 }) => {
   const [stateNav, setStateNav] = useState({
     LogoEcole: "",
-    NomEcole: ""
+    NomEcole: "",
   });
 
   useEffect(() => {
@@ -21,12 +21,12 @@ const Navbar = ({
     if (profile === null) {
       setStateNav({
         LogoEcole: "",
-        NomEcole: ""
+        NomEcole: "",
       });
     } else {
       setStateNav({
         LogoEcole: profile.LogoEcole,
-        NomEcole: profile.NomEcole
+        NomEcole: profile.NomEcole,
       });
     }
   }, [loadingProfileEcole]);
@@ -34,13 +34,13 @@ const Navbar = ({
   function getCurrentDate() {
     var tempDate = new Date();
     var date =
-      tempDate.getFullYear() +
+      tempDate.getDate() +
       "/" +
       (tempDate.getMonth() + 1) +
       "/" +
-      tempDate.getDate();
+      tempDate.getFullYear();
 
-    return <p>{date}</p>;
+    return <h5 className="mb-0">{date}</h5>;
   }
   return (
     <div>
@@ -68,7 +68,7 @@ const Navbar = ({
         </button>
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
           <ul className="navbar-nav ml-auto">
-            <li className="nav-item active ml-5 mr-5">
+            <li className="nav-item active mx-5">
               <Link className="nav-link" to="/">
                 {getCurrentDate()} <span className="sr-only">(current)</span>
               </Link>
@@ -102,10 +102,10 @@ const Navbar = ({
 Navbar.propTypes = {
   logout: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
-  profileEcole: PropTypes.object.isRequired
+  profileEcole: PropTypes.object.isRequired,
 };
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   auth: state.auth,
-  profileEcole: state.profileEcole
+  profileEcole: state.profileEcole,
 });
 export default connect(mapStateToProps, { logout, getCurrentProfile })(Navbar);
