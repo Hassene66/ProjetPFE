@@ -45,7 +45,6 @@ const App = () => {
           <Route exact path="/api/auth" component={PageLogin} />
 
           <PrivateRouteAdmin
-            exact
             path="/GererLesEleves"
             component={Page_gerer_les_eleves}
           />

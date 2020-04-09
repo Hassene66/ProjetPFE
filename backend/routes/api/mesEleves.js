@@ -3,7 +3,7 @@ const router = express.Router();
 const auth = require("../../middleware/auth");
 const User = require("../../models/User");
 
-router.post("/mesEleves", async (req, res) => {
+router.post("/mesEleves", auth, async (req, res) => {
   try {
     const mesEleves = await User.find({
       profileEleve: {

@@ -1,15 +1,18 @@
 import React from "react";
-import MesÉlèves from "../MesÉlèves";
-import { Route, BrowserRouter, Switch } from "react-router-dom";
+import MesÉlèves from "../Content/MesÉlèves";
+import AttribuerNote from "../Content/AttribuerNote";
+import { Route, Switch } from "react-router-dom";
+
 const Content = () => {
   return (
-    <div>
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/MesÉlèves" component={MesÉlèves} />
-        </Switch>
-      </BrowserRouter>
-    </div>
+    <Switch>
+      <Route exact path="/GererLesEleves/MesÉlèves" component={MesÉlèves} />
+      <Route
+        exact
+        path="/GererLesEleves/AttribuerNote"
+        component={AttribuerNote}
+      />
+    </Switch>
   );
 };
 export default Content;

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Content from "./Roots/Content";
 import Navbar from "./Navbar";
 import "./GererLesEleves.css";
+import { Link } from "react-router-dom";
 const PageGererLesEleves = () => {
   const [showSub, setShowSub] = useState(false);
   return (
@@ -17,61 +18,67 @@ const PageGererLesEleves = () => {
             >
               <ul class="nav flex-column flex-nowrap text-truncate">
                 <li class="nav-item">
-                  <a class="nav-link active nav-links-color" href="#">
+                  <Link class="nav-link active nav-links-color" to="/">
                     Retour a l'acceuil
-                  </a>
+                  </Link>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active nav-links-color" href="/MesÉlèves">
+                  <Link
+                    class="nav-link active nav-links-color"
+                    to="/GererLesEleves/MesÉlèves"
+                  >
                     Mes élèves
-                  </a>
+                  </Link>
                 </li>
                 <li class="nav-item  flex-row ">
-                  <a
+                  <Link
                     class="nav-link nav-links-color dropdown-toggle "
-                    href="#"
+                    to="#"
                     disabled
                     onClick={() => setShowSub(!showSub)}
                   >
                     Cours
-                  </a>
+                  </Link>
                 </li>
                 <div className={showSub ? "show" : "hide"}>
                   <li class="nav-item sub-menu">
-                    <a class="nav-link nav-links-color" href="#">
+                    <Link class="nav-link nav-links-color" to="#">
                       Affichier mes cours
-                    </a>
+                    </Link>
                   </li>
                   <li class="nav-item sub-menu">
-                    <a class="nav-link nav-links-color" href="#">
+                    <Link class="nav-link nav-links-color" to="#">
                       Mettre à jour un cours
-                    </a>
+                    </Link>
                   </li>
                   <li class="nav-item sub-menu">
-                    <a class="nav-link nav-links-color" href="#">
+                    <Link class="nav-link nav-links-color" to="#">
                       Supprimer un cours
-                    </a>
+                    </Link>
                   </li>
                 </div>
                 <li class="nav-item">
-                  <a class="nav-link nav-links-color" href="#">
+                  <Link class="nav-link nav-links-color" to="#">
                     Registre d'appel
-                  </a>
+                  </Link>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link nav-links-color" href="#">
+                  <Link class="nav-link nav-links-color" to="#">
                     Ajouter quiz
-                  </a>
+                  </Link>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link nav-links-color" href="#">
+                  <Link class="nav-link nav-links-color" to="#">
                     Ajouter activité
-                  </a>
+                  </Link>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link nav-links-color" href="#">
+                  <Link
+                    class="nav-link nav-links-color"
+                    to="/GererLesEleves/AttribuerNote"
+                  >
                     Attribuer note
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>

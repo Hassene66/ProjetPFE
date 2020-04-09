@@ -67,10 +67,10 @@ const MesÉlèves = ({ auth: { user } }) => {
   };
 
   return (
-    <div className="col p-3 bg-white ">
+    <div className="col p-3  ">
       <form onSubmit={(e) => onSubmit(e)}>
         <div className="form-group">
-          <h4 for="exampleFormControlSelect1">Choisir le classe</h4>
+          <h4 for="exampleFormControlSelect1">Choisir la classe</h4>
           <select
             className="form-control w-25"
             id="exampleFormControlSelect1"
