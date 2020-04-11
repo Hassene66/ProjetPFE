@@ -56,12 +56,13 @@ const MesÉlèves = ({ auth: { user } }) => {
       }
     }
   };
+
   const Table = (props) => {
     return (
       <tr>
         <td>{props.listeDesEleves.prénom}</td>
         <td>{props.listeDesEleves.nom}</td>
-        <td>{props.listeDesEleves.profileEleve[0].classe}</td>
+        <td>{props.listeDesEleves.profileEleve.classe}</td>
       </tr>
     );
   };

@@ -10,12 +10,8 @@ const User = require("../../models/User");
 router.post(
   "/",
   [
-    check("nom", "la saisie d'un nom est obligatoire")
-      .not()
-      .isEmpty(),
-    check("prénom", "la saisie d'un prénom est obligatoire")
-      .not()
-      .isEmpty(),
+    check("nom", "la saisie d'un nom est obligatoire").not().isEmpty(),
+    check("prénom", "la saisie d'un prénom est obligatoire").not().isEmpty(),
     check(
       "identifiant",
       "veuillez entrer un idantifiant avec 6 caractères ou plus"
@@ -29,7 +25,7 @@ router.post(
       "la saisie d'un type d'utilisateur est obligatoire"
     )
       .not()
-      .isEmpty()
+      .isEmpty(),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -45,7 +41,7 @@ router.post(
       typeUtilisateur,
       profileEnseignant,
       profileEleve,
-      profileAdmin
+      profileAdmin,
     } = req.body;
     try {
       //see if the user exists
@@ -55,23 +51,30 @@ router.post(
           .status(400)
           .json({ errors: [{ msg: "User already exists" }] });
       }
+
       const userInfo = {};
       userInfo.prénom = prénom;
       userInfo.nom = nom;
       userInfo.identifiant = identifiant;
       userInfo.motDePasse = motDePasse;
       userInfo.typeUtilisateur = typeUtilisateur;
-      if (profileEnseignant) userInfo.profileEnseignant = profileEnseignant;
-      if (profileEleve) userInfo.profileEleve = profileEleve;
-      if (profileAdmin) userInfo.profileAdmin = profileAdmin;
+      if (profileEnseignant) {
+        userInfo.profileEnseignant = profileEnseignant;
+      }
+      if (profileEleve) {
+        userInfo.profileEleve = profileEleve;
+      }
+      if (profileAdmin) {
+        userInfo.profileAdmin = profileAdmin;
+      }
 
       user = new User(userInfo);
       await user.save(); //save the new user in the db
 
       const payload = {
         user: {
-          id: user.id
-        }
+          id: user.id,
+        },
       };
       jwt.sign(
         payload,

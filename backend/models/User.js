@@ -2,65 +2,68 @@ const mongoose = require("mongoose");
 
 const élèveSchema = new mongoose.Schema({
   classe: {
-    type: String
+    type: String,
   },
   niveau: {
-    type: String
-  }
+    type: String,
+  },
 });
 
 const enseignantSchema = new mongoose.Schema({
   classeEnseigné: {
-    type: [String]
+    type: [String],
   },
   niveauEnseigné: {
-    type: [String]
-  }
+    type: [String],
+  },
+  matièreEnseigné: {
+    type: String,
+  },
 });
 
 const adminSchema = new mongoose.Schema({
   classeEnseigné: {
-    type: String
+    type: String,
   },
   niveau: {
-    type: String
-  }
+    type: String,
+  },
 });
 
 const UserSchema = new mongoose.Schema({
   prénom: {
     type: String,
-    required: true
+    required: true,
   },
   nom: {
     type: String,
-    required: true
+    required: true,
   },
 
   identifiant: {
     type: String,
-    required: true
+    required: true,
   },
   motDePasse: {
     type: String,
-    required: true
+    required: true,
   },
 
   typeUtilisateur: {
     type: String,
-    required: true
+    required: true,
   },
   profileEnseignant: {
     type: enseignantSchema,
-    required: false
+    required: false,
   },
   profileEleve: {
-    type: [élèveSchema],
-    required: false
+    type: élèveSchema,
+    required: false,
   },
   profileAdmin: {
     type: adminSchema,
-    required: false
-  }
+    required: false,
+  },
 });
 module.exports = User = mongoose.model("user", UserSchema);

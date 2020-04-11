@@ -26,9 +26,7 @@ router.post(
       check("LogoEcole", "Le lien du logo de l'école est requis")
         .not()
         .isEmpty(),
-      check("NomEcole", "Le nom de l'école est requis")
-        .not()
-        .isEmpty(),
+      check("NomEcole", "Le nom de l'école est requis").not().isEmpty(),
       check(
         "NumeroDeTel",
         "Entrez un numéro de téléphone valide avec 8 chiffres"
@@ -130,8 +128,8 @@ router.post(
       check("tauxDeRéussite", "Le lien du logo de l'école est requis")
         .not()
         .isEmpty()
-        .isDecimal()
-    ]
+        .isDecimal(),
+    ],
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -157,7 +155,7 @@ router.post(
       LesValeursDeNotreEcole,
       lesCyclesQueNotreEcolePropose,
       NosActivités,
-      NosFormations
+      NosFormations,
     } = req.body;
     //buils profile object
     const profileFields = {}; //create a profile object
@@ -177,25 +175,25 @@ router.post(
       profileFields.NbEnseignantCertifiés = NbEnseignantCertifiés;
     if (tauxDeRéussite) profileFields.tauxDeRéussite = tauxDeRéussite;
     if (Témoinage)
-      profileFields.Témoinage = Témoinage.split("/").map(tém => tém.trim());
+      profileFields.Témoinage = Témoinage.split("/").map((tém) => tém.trim());
     if (LesPlusDeNotreEcole)
       profileFields.LesPlusDeNotreEcole = LesPlusDeNotreEcole.split(
         "/"
-      ).map(plus => plus.trim());
+      ).map((plus) => plus.trim());
     if (LesValeursDeNotreEcole)
       profileFields.LesValeursDeNotreEcole = LesValeursDeNotreEcole.split(
         "/"
-      ).map(valeur => valeur.trim());
+      ).map((valeur) => valeur.trim());
     if (lesCyclesQueNotreEcolePropose)
       profileFields.lesCyclesQueNotreEcolePropose = lesCyclesQueNotreEcolePropose
         .split("/")
-        .map(cycle => cycle.trim());
+        .map((cycle) => cycle.trim());
     if (NosActivités)
-      profileFields.NosActivités = NosActivités.split("/").map(activité =>
+      profileFields.NosActivités = NosActivités.split("/").map((activité) =>
         activité.trim()
       );
     if (NosFormations)
-      profileFields.NosFormations = NosFormations.split("/").map(formation =>
+      profileFields.NosFormations = NosFormations.split("/").map((formation) =>
         formation.trim()
       );
 
