@@ -41,6 +41,7 @@ const AttribuerNote = ({ setAlert, auth: { user } }) => {
       },
     };
     const body = JSON.stringify({ classe });
+    console.log(body);
     axios.post("/Enseignant/mesEleves", body, config).then((res) => {
       if (typeof res.data === "object") {
         setFormData({
@@ -71,10 +72,48 @@ const AttribuerNote = ({ setAlert, auth: { user } }) => {
   const onSubmit = (e) => {
     e.preventDefault();
 
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
     setFormData({
       ...formData,
-      submitted: true,
       count: Number(élèveSelectioné.charAt(0)) - 1,
+    });
+    const identifiant = listeDesEleves[count].identifiant;
+    const body = JSON.stringify({ identifiant });
+
+    axios.post("/Enseignant/NoteEleve", body, config).then((res) => {
+      console.log(res.data);
+
+      if (typeof res.data === "object" && Object.entries(res.data).length > 0) {
+        setFormData({
+          ...formData,
+          contrôle1: res.data.noteContrôle1,
+          contrôle2: res.data.noteContrôle2,
+          contrôle3: res.data.noteContrôle3,
+          synthèse1: res.data.noteSynthèse1,
+          synthèse2: res.data.noteSynthèse2,
+          synthèse3: res.data.noteSynthèse3,
+          submitted: true,
+          count: Number(élèveSelectioné.charAt(0)) - 1,
+        });
+      } else {
+        if (typeof res.data === "string") {
+          setFormData({
+            ...formData,
+            contrôle1: "",
+            synthèse1: "",
+            contrôle2: "",
+            synthèse2: "",
+            contrôle3: "",
+            synthèse3: "",
+            submitted: true,
+            count: Number(élèveSelectioné.charAt(0)) - 1,
+          });
+        }
+      }
     });
   };
 
@@ -107,16 +146,6 @@ const AttribuerNote = ({ setAlert, auth: { user } }) => {
     axios
       .post("/Enseignant/EnregistrerNote", NoteÉlève, config)
       .then((res) => setAlert(res.data.message, "success"));
-
-    setFormData({
-      ...formData,
-      contrôle1: "",
-      synthèse1: "",
-      contrôle2: "",
-      synthèse2: "",
-      contrôle3: "",
-      synthèse3: "",
-    });
   };
 
   const returnTable = () => {

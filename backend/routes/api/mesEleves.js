@@ -20,7 +20,6 @@ router.post("/mesEleves", auth, async (req, res) => {
     res.status(500).send("erreur du serveur");
   }
 });
-module.exports = router;
 
 router.post("/EnregistrerNote", auth, async (req, res) => {
   const {
@@ -68,6 +67,66 @@ router.post("/EnregistrerNote", auth, async (req, res) => {
     noteÉlève = new NoteÉlève(NoteÉlèveFields); //create a new profile with the new entred fields
     await noteÉlève.save(); //save the new profile in db
     return res.json({ message: "Note élève a été crée " });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Err");
+  }
+});
+
+router.post("/NoteEleve", async (req, res) => {
+  try {
+    let getNoteÉlève = await NoteÉlève.findOne({
+      identifiant: req.body.identifiant,
+    });
+
+    if (getNoteÉlève) {
+      const noteEleve = {};
+      noteEleve.noteContrôle1 = "";
+      noteEleve.noteContrôle2 = "";
+      noteEleve.noteContrôle3 = "";
+      noteEleve.noteSynthèse1 = "";
+      noteEleve.noteSynthèse2 = "";
+      noteEleve.noteSynthèse3 = "";
+      if (getNoteÉlève.identifiant) {
+        noteEleve.identifiant = getNoteÉlève.identifiant;
+      }
+      if (getNoteÉlève.PrénomEtNomEnseignant) {
+        noteEleve.PrénomEtNomEnseignant = getNoteÉlève.PrénomEtNomEnseignant;
+      }
+      if (getNoteÉlève.matièreEnseigné) {
+        noteEleve.matièreEnseigné = getNoteÉlève.matièreEnseigné;
+      }
+      if (getNoteÉlève.PrénomEtNomÉlève) {
+        noteEleve.PrénomEtNomÉlève = getNoteÉlève.PrénomEtNomÉlève;
+      }
+      if (getNoteÉlève.noteContrôle1) {
+        noteEleve.noteContrôle1 = getNoteÉlève.noteContrôle1;
+      }
+
+      if (getNoteÉlève.noteContrôle2) {
+        noteEleve.noteContrôle2 = getNoteÉlève.noteContrôle2;
+      }
+
+      if (getNoteÉlève.noteContrôle3) {
+        noteEleve.noteContrôle3 = getNoteÉlève.noteContrôle3;
+      }
+
+      if (getNoteÉlève.noteSynthèse1) {
+        noteEleve.noteSynthèse1 = getNoteÉlève.noteSynthèse1;
+      }
+
+      if (getNoteÉlève.noteSynthèse2) {
+        noteEleve.noteSynthèse2 = getNoteÉlève.noteSynthèse2;
+      }
+
+      if (getNoteÉlève.noteSynthèse3) {
+        noteEleve.noteSynthèse3 = getNoteÉlève.noteSynthèse3;
+      }
+
+      return res.json(noteEleve);
+    } else {
+      return res.json({ message: "Aucun enregistrement précédent" });
+    }
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Err");
