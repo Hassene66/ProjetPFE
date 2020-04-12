@@ -62,12 +62,12 @@ router.post("/EnregistrerNote", auth, async (req, res) => {
         { $set: NoteÉlèveFields },
         { new: true }
       );
-      return res.json(noteÉlève); //returns the new profile in a json format
+      return res.json({ message: "Note élève a été mise à jour " });
     }
     //create
     noteÉlève = new NoteÉlève(NoteÉlèveFields); //create a new profile with the new entred fields
     await noteÉlève.save(); //save the new profile in db
-    res.json(noteÉlève); //returns the new profile in a json format
+    return res.json({ message: "Note élève a été crée " });
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Err");

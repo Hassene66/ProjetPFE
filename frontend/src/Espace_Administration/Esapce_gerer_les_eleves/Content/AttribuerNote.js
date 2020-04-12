@@ -3,8 +3,9 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import axios from "axios";
 import Spinner from "../../../Components/Spinner";
-
-const AttribuerNote = ({ auth: { user } }) => {
+import { setAlert } from "../../../actions/alert";
+import Alert from "../../../Components/alert";
+const AttribuerNote = ({ setAlert, auth: { user } }) => {
   const [formData, setFormData] = useState({
     classe: user.profileEnseignant.classeEnseigné[0],
     listeDesEleves: [],
@@ -40,13 +41,23 @@ const AttribuerNote = ({ auth: { user } }) => {
       },
     };
     const body = JSON.stringify({ classe });
-    axios.post("/Enseignant/mesEleves", body, config).then((res) =>
-      setFormData({
-        ...formData,
-        listeDesEleves: res.data,
-        élèveSelectioné: "",
-      })
-    );
+    axios.post("/Enseignant/mesEleves", body, config).then((res) => {
+      if (typeof res.data === "object") {
+        setFormData({
+          ...formData,
+          listeDesEleves: res.data,
+          élèveSelectioné: "1 ) " + res.data[0].prénom + " " + res.data[0].nom,
+        });
+      } else {
+        if (typeof res.data === "string") {
+          setFormData({
+            ...formData,
+            listeDesEleves: res.data,
+            submitted: true,
+          });
+        }
+      }
+    });
   }, [classe]);
 
   const onChange = (e) => {
@@ -59,21 +70,12 @@ const AttribuerNote = ({ auth: { user } }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (élèveSelectioné.length === 0) {
-      setFormData({
-        ...formData,
-        submitted: true,
-        élèveSelectioné:
-          "1 ) " + listeDesEleves[0].prénom + " " + listeDesEleves[0].nom,
-        count: Number(élèveSelectioné.charAt(0)),
-      });
-    } else {
-      setFormData({
-        ...formData,
-        submitted: true,
-        count: Number(élèveSelectioné.charAt(0)) - 1,
-      });
-    }
+
+    setFormData({
+      ...formData,
+      submitted: true,
+      count: Number(élèveSelectioné.charAt(0)) - 1,
+    });
   };
 
   const onChangeInput = (e) => {
@@ -102,7 +104,9 @@ const AttribuerNote = ({ auth: { user } }) => {
         "Content-Type": "application/json",
       },
     };
-    axios.post("/Enseignant/EnregistrerNote", NoteÉlève, config);
+    axios
+      .post("/Enseignant/EnregistrerNote", NoteÉlève, config)
+      .then((res) => setAlert(res.data.message, "success"));
 
     setFormData({
       ...formData,
@@ -148,62 +152,80 @@ const AttribuerNote = ({ auth: { user } }) => {
 
                 <td>
                   <input
-                    type="text"
+                    type="number"
                     className="form-control"
                     name="contrôle1"
                     placeholder="contrôle n°1"
                     value={contrôle1}
                     onChange={(e) => onChangeInput(e)}
+                    min="0"
+                    max="20"
+                    step="0.25"
                   />
                 </td>
                 <td>
                   <input
-                    type="text"
+                    type="number"
                     className="form-control"
                     name="synthèse1"
                     placeholder="synthèse n°1"
                     value={synthèse1}
                     onChange={(e) => onChangeInput(e)}
+                    min="0"
+                    max="20"
+                    step="0.25"
                   />
                 </td>
                 <td>
                   <input
-                    type="text"
+                    type="number"
                     className="form-control"
                     name="contrôle2"
                     placeholder="contrôle n°2"
                     value={contrôle2}
                     onChange={(e) => onChangeInput(e)}
+                    min="0"
+                    max="20"
+                    step="0.25"
                   />
                 </td>
                 <td>
                   <input
-                    type="text"
+                    type="number"
                     className="form-control"
                     name="synthèse2"
                     placeholder="synthèse n°2"
                     value={synthèse2}
                     onChange={(e) => onChangeInput(e)}
+                    min="0"
+                    max="20"
+                    step="0.25"
                   />
                 </td>
                 <td>
                   <input
-                    type="text"
+                    type="number"
                     className="form-control"
                     name="contrôle3"
                     placeholder="contrôle n°3"
                     value={contrôle3}
                     onChange={(e) => onChangeInput(e)}
+                    min="0"
+                    max="20"
+                    step="0.25"
                   />
                 </td>
                 <td>
                   <input
-                    type="text"
+                    type="number"
                     className="form-control"
                     name="synthèse3"
                     placeholder="synthèse n°3"
                     value={synthèse3}
                     onChange={(e) => onChangeInput(e)}
+                    min="0"
+                    max="20"
+                    step="0.25"
                   />
                 </td>
               </tr>
@@ -217,14 +239,6 @@ const AttribuerNote = ({ auth: { user } }) => {
           </div>
         </form>
       );
-    } else {
-      if (typeof listeDesEleves === "string") {
-        return (
-          <h3 className="text-center mt-5">
-            il n'y a pas des élèves dans cette classe
-          </h3>
-        );
-      }
     }
   };
 
@@ -232,6 +246,7 @@ const AttribuerNote = ({ auth: { user } }) => {
     <Spinner />
   ) : (
     <div className="col p-3  ">
+      <Alert />
       <form onSubmit={(e) => onSubmit(e)}>
         <div className="form-group">
           <h4>Choisir la classe</h4>
@@ -250,31 +265,41 @@ const AttribuerNote = ({ auth: { user } }) => {
             })}
           </select>
         </div>
-        <div className="form-group">
-          <h4>Prénom et nom de l'élève</h4>
-          <select
-            className="form-control w-25"
-            value={élèveSelectioné}
-            onChange={(e) => onChange(e)}
-            name="élèveSelectioné"
-          >
-            {listeDesEleves.map((élève, index) => {
-              return (
-                <option
-                  key={élève._id}
-                  value={`${index + 1} ) ${élève.prénom}  ${élève.nom}`}
+        {typeof listeDesEleves === "string" ? (
+          <h3 className="text-center mt-5">
+            il n'y a pas des élèves dans cette classe
+          </h3>
+        ) : (
+          typeof listeDesEleves === "object" && (
+            <Fragment>
+              <div className="form-group">
+                <h4>Prénom et nom de l'élève</h4>
+                <select
+                  className="form-control w-25"
+                  value={élèveSelectioné}
                   onChange={(e) => onChange(e)}
                   name="élèveSelectioné"
                 >
-                  {`${index + 1} ) ${élève.prénom}  ${élève.nom}`}
-                </option>
-              );
-            })}
-          </select>
-        </div>
-        <button type="submit" className="button ml-5 ">
-          Valider
-        </button>
+                  {listeDesEleves.map((élève, index) => {
+                    return (
+                      <option
+                        key={élève._id}
+                        value={`${index + 1} ) ${élève.prénom}  ${élève.nom}`}
+                        onChange={(e) => onChange(e)}
+                        name="élèveSelectioné"
+                      >
+                        {`${index + 1} ) ${élève.prénom}  ${élève.nom}`}
+                      </option>
+                    );
+                  })}
+                </select>
+              </div>
+              <button type="submit" className="button ml-5 ">
+                Valider
+              </button>
+            </Fragment>
+          )
+        )}
       </form>
       {returnTable()}
     </div>
@@ -286,4 +311,4 @@ AttribuerNote.prototype = {
 const mapStateToProps = (state) => ({
   auth: state.auth,
 });
-export default connect(mapStateToProps, {})(AttribuerNote);
+export default connect(mapStateToProps, { setAlert })(AttribuerNote);
