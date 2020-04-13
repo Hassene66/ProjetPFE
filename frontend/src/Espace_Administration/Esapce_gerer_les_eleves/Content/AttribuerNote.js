@@ -41,7 +41,6 @@ const AttribuerNote = ({ setAlert, auth: { user } }) => {
       },
     };
     const body = JSON.stringify({ classe });
-    console.log(body);
     axios.post("/Enseignant/mesEleves", body, config).then((res) => {
       if (typeof res.data === "object") {
         setFormData({
@@ -60,7 +59,6 @@ const AttribuerNote = ({ setAlert, auth: { user } }) => {
       }
     });
   }, [classe]);
-
   const onChange = (e) => {
     setFormData({
       ...formData,
@@ -71,22 +69,16 @@ const AttribuerNote = ({ setAlert, auth: { user } }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-
     const config = {
       headers: {
         "Content-Type": "application/json",
       },
     };
-    setFormData({
-      ...formData,
-      count: Number(élèveSelectioné.charAt(0)) - 1,
-    });
-    const identifiant = listeDesEleves[count].identifiant;
+    const lastcount = Number(élèveSelectioné.charAt(0)) - 1;
+    const identifiant = listeDesEleves[lastcount].identifiant;
     const body = JSON.stringify({ identifiant });
 
     axios.post("/Enseignant/NoteEleve", body, config).then((res) => {
-      console.log(res.data);
-
       if (typeof res.data === "object" && Object.entries(res.data).length > 0) {
         setFormData({
           ...formData,
