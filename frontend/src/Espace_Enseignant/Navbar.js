@@ -1,10 +1,10 @@
 import React, { useState, useEffect, Fragment } from "react";
-import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { logout, login } from "../../actions/auth";
-import { getCurrentProfile } from "../../actions/profileEcole";
+import { logout, login } from "../actions/auth";
+import { getCurrentProfile } from "../actions/profileEcole";
 const Navbar = ({
   getCurrentProfile,
   profileEcole: { profile, loadingProfileEcole },
@@ -73,7 +73,9 @@ const Navbar = ({
               <i className="fa fa-bars fa-lg"></i>
             </Link>
             <ul className="navbar-nav ml-auto flex-row">
-              <li className="nav-item mr-5 text-white">{getCurrentDate()}</li>
+              <li className="nav-item mr-4 mr-sm-5 text-white">
+                {getCurrentDate()}
+              </li>
               <li className="nav-item ">
                 <Link>
                   <i
@@ -85,7 +87,7 @@ const Navbar = ({
               <li className="nav-item ">
                 <Link>
                   <i
-                    className="fas fa-bell fa-lg pt-2 mx-5"
+                    className="fas fa-bell fa-lg pt-2 mx-4 mx-sm-5"
                     style={{ color: "white" }}
                   />
                 </Link>

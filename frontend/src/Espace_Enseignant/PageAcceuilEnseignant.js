@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import Content from "./Roots/Content";
 import Navbar from "./Navbar";
-import "./GererLesEleves.css";
+import "./PageAcceuilEnseignant.css";
 import { Link } from "react-router-dom";
-const PageGererLesEleves = () => {
+const PageAcceuilEnseignant = () => {
   const [showSub, setShowSub] = useState(false);
   return (
     <div style={{ paddingTop: "62px" }}>
@@ -25,7 +25,7 @@ const PageGererLesEleves = () => {
                 <li class="nav-item">
                   <Link
                     class="nav-link active nav-links-color"
-                    to="/GererLesEleves/MesÉlèves"
+                    to="/PageAcceuilEnseignant/MesÉlèves"
                   >
                     Mes élèves
                   </Link>
@@ -75,7 +75,7 @@ const PageGererLesEleves = () => {
                 <li class="nav-item">
                   <Link
                     class="nav-link nav-links-color"
-                    to="/GererLesEleves/AttribuerNote"
+                    to="/PageAcceuilEnseignant/AttribuerNote"
                   >
                     Attribuer note
                   </Link>
@@ -89,4 +89,4 @@ const PageGererLesEleves = () => {
     </div>
   );
 };
-export default PageGererLesEleves;
+export default PageAcceuilEnseignant;

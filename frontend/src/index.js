@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
 import { Route, BrowserRouter, Switch } from "react-router-dom";
 
-import Page_gerer_les_eleves from "./Espace_Administration/Esapce_gerer_les_eleves/GererLesEleves";
 import Page_parameter_mon_ecole from "./Espace_Administration/page_parameter_mon_ecole/PagePatemeterMonEcole";
 import PageAccueilAdministration from "./Espace_Administration/Page_accueil_administration/pageAccueilAdministration";
+import PageAcceuilEnseignant from "./Espace_Enseignant/PageAcceuilEnseignant";
 import PageLogin from "./page_Login/PageLogin";
 import PageAcceuil from "./Page_acceuil/Acceuil/pageAcceuil";
 import PagePresentation from "./Page_acceuil/Presentation/PagePresentation";
@@ -44,9 +44,9 @@ const App = () => {
           />
           <Route exact path="/api/auth" component={PageLogin} />
 
-          <PrivateRouteAdmin
-            path="/GererLesEleves"
-            component={Page_gerer_les_eleves}
+          <PrivateRouteEnseignant
+            path="/PageAcceuilEnseignant"
+            component={PageAcceuilEnseignant}
           />
           <PrivateRouteAdmin
             exact

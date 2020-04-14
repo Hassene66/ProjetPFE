@@ -2,9 +2,9 @@ import React, { Fragment, useState, useEffect } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import axios from "axios";
-import Spinner from "../../../Components/Spinner";
-import { setAlert } from "../../../actions/alert";
-import Alert from "../../../Components/alert";
+import Spinner from "../../Components/Spinner";
+import { setAlert } from "../../actions/alert";
+import Alert from "../../Components/alert";
 const AttribuerNote = ({ setAlert, auth: { user } }) => {
   const [formData, setFormData] = useState({
     classe: user.profileEnseignant.classeEnseigné[0],
@@ -123,6 +123,8 @@ const AttribuerNote = ({ setAlert, auth: { user } }) => {
     NoteÉlève.matièreEnseigné = user.profileEnseignant.matièreEnseigné;
     NoteÉlève.PrénomEtNomÉlève =
       listeDesEleves[count].prénom + " " + listeDesEleves[count].nom;
+    NoteÉlève.Niveau = listeDesEleves[count].profileEleve.niveau;
+    NoteÉlève.Classe = listeDesEleves[count].profileEleve.classe;
     NoteÉlève.noteContrôle1 = contrôle1;
     NoteÉlève.noteContrôle2 = contrôle2;
     NoteÉlève.noteContrôle3 = contrôle3;
@@ -135,6 +137,7 @@ const AttribuerNote = ({ setAlert, auth: { user } }) => {
         "Content-Type": "application/json",
       },
     };
+
     axios
       .post("/Enseignant/EnregistrerNote", NoteÉlève, config)
       .then((res) => setAlert(res.data.message, "success"));

@@ -16,6 +16,14 @@ const NoteÉlèveSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  Niveau: {
+    type: String,
+    required: false,
+  },
+  Classe: {
+    type: String,
+    required: false,
+  },
   noteContrôle1: {
     type: String,
     required: false,

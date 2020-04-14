@@ -27,6 +27,8 @@ router.post("/EnregistrerNote", auth, async (req, res) => {
     PrénomEtNomEnseignant,
     matièreEnseigné,
     PrénomEtNomÉlève,
+    Niveau,
+    Classe,
     noteContrôle1,
     noteContrôle2,
     noteContrôle3,
@@ -42,13 +44,14 @@ router.post("/EnregistrerNote", auth, async (req, res) => {
     NoteÉlèveFields.PrénomEtNomEnseignant = PrénomEtNomEnseignant;
   if (matièreEnseigné) NoteÉlèveFields.matièreEnseigné = matièreEnseigné;
   if (PrénomEtNomÉlève) NoteÉlèveFields.PrénomEtNomÉlève = PrénomEtNomÉlève;
+  if (Niveau) NoteÉlèveFields.Niveau = Niveau;
+  if (Classe) NoteÉlèveFields.Classe = Classe;
   if (noteContrôle1) NoteÉlèveFields.noteContrôle1 = noteContrôle1;
   if (noteContrôle2) NoteÉlèveFields.noteContrôle2 = noteContrôle2;
   if (noteContrôle3) NoteÉlèveFields.noteContrôle3 = noteContrôle3;
   if (noteSynthèse1) NoteÉlèveFields.noteSynthèse1 = noteSynthèse1;
   if (noteSynthèse2) NoteÉlèveFields.noteSynthèse2 = noteSynthèse2;
   if (noteSynthèse3) NoteÉlèveFields.noteSynthèse3 = noteSynthèse3;
-
   try {
     let noteÉlève = await NoteÉlève.findOne({
       identifiant: identifiant,

@@ -49,7 +49,7 @@ const LoginForm = ({
           Role.typeUtilisateur === "enseignant" &&
           !Loading
         )
-          return <Redirect to="/NosFormation" />;
+          return <Redirect to="/PageAcceuilEnseignant" />;
       }
     }
 

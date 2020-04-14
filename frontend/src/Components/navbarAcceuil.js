@@ -55,8 +55,8 @@ const Navbar = ({
       return "/AccueilAdministration";
     } else if (user.typeUtilisateur === "élève") {
       return "/NosFormation";
-    } else {
-      return "/Activité";
+    } else if (user.typeUtilisateur === "enseignant") {
+      return "/PageAcceuilEnseignant";
     }
   }
 
