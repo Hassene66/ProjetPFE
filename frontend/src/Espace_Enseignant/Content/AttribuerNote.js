@@ -155,7 +155,7 @@ const AttribuerNote = ({ setAlert, auth: { user } }) => {
             <thead className="thead-dark">
               <tr>
                 <th scope="col">ID</th>
-                <th scope="col">Nom et Prénom</th>
+                <th scope="col">Prénom et Nom</th>
                 <th scope="col">Contrôle n°1</th>
                 <th scope="col">Synthèse n°1</th>
                 <th scope="col">Contrôle n°2</th>

@@ -35,9 +35,9 @@ const MesÉlèves = ({ auth: { user } }) => {
           <table className="table container mt-5">
             <thead className="thead-dark">
               <tr>
+                <th scope="col">ID</th>
                 <th scope="col">Prénom</th>
                 <th scope="col">Nom</th>
-                <th scope="col">Classe</th>
               </tr>
             </thead>
             {listeDesEleves.map((élève) => {
@@ -60,9 +60,9 @@ const MesÉlèves = ({ auth: { user } }) => {
   const Table = (props) => {
     return (
       <tr>
+        <td>{props.listeDesEleves.identifiant}</td>
         <td>{props.listeDesEleves.prénom}</td>
         <td>{props.listeDesEleves.nom}</td>
-        <td>{props.listeDesEleves.profileEleve.classe}</td>
       </tr>
     );
   };

@@ -76,7 +76,7 @@ router.post("/EnregistrerNote", auth, async (req, res) => {
   }
 });
 
-router.post("/NoteEleve", async (req, res) => {
+router.post("/NoteEleve", auth, async (req, res) => {
   try {
     let getNoteÉlève = await NoteÉlève.findOne({
       identifiant: req.body.identifiant,
