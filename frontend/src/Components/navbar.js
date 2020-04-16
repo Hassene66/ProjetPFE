@@ -5,6 +5,8 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout, login } from "../actions/auth";
 import { getCurrentProfile } from "../actions/profileEcole";
+import moment from "moment-timezone";
+
 const Navbar = ({
   getCurrentProfile,
   profileEcole: { profile, loadingProfileEcole },
@@ -32,14 +34,7 @@ const Navbar = ({
   }, [loadingProfileEcole]);
   const { LogoEcole, NomEcole } = stateNav;
   function getCurrentDate() {
-    var tempDate = new Date();
-    var date =
-      tempDate.getDate() +
-      "/" +
-      (tempDate.getMonth() + 1) +
-      "/" +
-      tempDate.getFullYear();
-
+    var date = moment().tz("Africa/Tunis").format("L");
     return <h5 className="mb-0">{date}</h5>;
   }
   return (

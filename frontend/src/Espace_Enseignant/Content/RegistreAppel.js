@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import axios from "axios";
+import moment from "moment-timezone";
 
 const RegistreAppel = ({ auth: { user } }) => {
   const [formData, setFormData] = useState({
@@ -71,21 +72,11 @@ const RegistreAppel = ({ auth: { user } }) => {
         }
       }
     }
+    var date = moment().tz("Africa/Tunis").format("L");
+    var time = moment().tz("Africa/Tunis").format("LTS");
+    console.log(date);
+    console.log(time);
 
-    var today = new Date();
-    var date =
-      today.getDate() +
-      "/" +
-      (today.getMonth() + 1) +
-      "/" +
-      today.getFullYear();
-    var time =
-      today.getHours() -
-      1 +
-      ":" +
-      today.getMinutes() +
-      ":" +
-      today.getSeconds();
     const RegistreAppel = {};
     RegistreAppel.PrénomEtNomEnseignant = user.prénom + " " + user.nom;
     RegistreAppel.matièreEnseigné = user.profileEnseignant.matièreEnseigné;
