@@ -3,8 +3,9 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import axios from "axios";
 import moment from "moment-timezone";
-
-const RegistreAppel = ({ auth: { user } }) => {
+import { setAlert } from "../../actions/alert";
+import Alert from "../../Components/alert";
+const RegistreAppel = ({ setAlert, auth: { user } }) => {
   const [formData, setFormData] = useState({
     classe: user.profileEnseignant.classeEnseigné[0],
     listeDesEleves: [],
@@ -38,11 +39,13 @@ const RegistreAppel = ({ auth: { user } }) => {
   };
 
   useEffect(() => {
-    setFormData({
-      ...formData,
-      selectedOption: listeDesEleves.map(() => "Present"),
-      inputName: listeDesEleves.map((x, i) => `Input${i}`),
-    });
+    if (typeof listeDesEleves === "object") {
+      setFormData({
+        ...formData,
+        selectedOption: listeDesEleves.map(() => "Present"),
+        inputName: listeDesEleves.map((x, i) => `Input${i}`),
+      });
+    }
   }, [submitted]);
 
   const onSubmit = async (e) => {
@@ -59,7 +62,7 @@ const RegistreAppel = ({ auth: { user } }) => {
         setFormData({ ...formData, listeDesEleves: res.data, submitted: true })
       );
   };
-  const onFormSubmit = (e) => {
+  const onFormSubmit = async (e) => {
     e.preventDefault();
     const Present = [];
     const Absent = [];
@@ -74,23 +77,32 @@ const RegistreAppel = ({ auth: { user } }) => {
     }
     var date = moment().tz("Africa/Tunis").format("L");
     var time = moment().tz("Africa/Tunis").format("LTS");
-    console.log(date);
-    console.log(time);
 
     const RegistreAppel = {};
     RegistreAppel.PrénomEtNomEnseignant = user.prénom + " " + user.nom;
     RegistreAppel.matièreEnseigné = user.profileEnseignant.matièreEnseigné;
-    RegistreAppel.date = date;
-    RegistreAppel.heurs = time;
+    RegistreAppel.Date = date;
+    RegistreAppel.Temps = time;
     RegistreAppel.Classe = classe;
     RegistreAppel.Niveau = classe.charAt(0);
     RegistreAppel.Present = Present;
     RegistreAppel.Absent = Absent;
-    console.log(RegistreAppel);
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    await axios
+      .post("/RegistreAppel/Enregister", RegistreAppel, config)
+      .then((res) => setAlert(res.data.message, "success"));
   };
 
   const returnTable = () => {
-    if (typeof listeDesEleves === "object" && listeDesEleves.length > 0) {
+    if (
+      typeof listeDesEleves === "object" &&
+      listeDesEleves.length > 0 &&
+      submitted
+    ) {
       return (
         <form onSubmit={(e) => onFormSubmit(e)}>
           <table className="table container mt-5">
@@ -144,7 +156,7 @@ const RegistreAppel = ({ auth: { user } }) => {
         </form>
       );
     } else {
-      if (typeof listeDesEleves === "string") {
+      if (typeof listeDesEleves === "string" && submitted) {
         return (
           <h3 className="text-center mt-5">
             il n'y a pas des élèves dans cette classe
@@ -156,6 +168,7 @@ const RegistreAppel = ({ auth: { user } }) => {
 
   return (
     <div className="col p-3  ">
+      <Alert />
       <form onSubmit={(e) => onSubmit(e)}>
         <div className="form-group">
           <h4 for="exampleFormControlSelect1">Choisir la classe</h4>
@@ -189,4 +202,4 @@ RegistreAppel.prototype = {
 const mapStateToProps = (state) => ({
   auth: state.auth,
 });
-export default connect(mapStateToProps, {})(RegistreAppel);
+export default connect(mapStateToProps, { setAlert })(RegistreAppel);
