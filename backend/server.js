@@ -17,6 +17,7 @@ app.use("/ContacterNous", require("./routes/api/contacterNous"));
 app.use("/Newsletter", require("./routes/api/newsletter"));
 app.use("/Enseignant", require("./routes/api/mesEleves"));
 app.use("/RegistreAppel", require("./routes/api/RegistreAppel"));
+app.use("/UploadCours", require("./routes/api/UploadCours"));
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, console.log(`server started on port ${PORT}`));

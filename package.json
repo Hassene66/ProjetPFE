@@ -5,6 +5,9 @@
   "main": "index.js",
   "dependencies": {
     "concurrently": "^5.1.0",
+    "cors": "^2.8.5",
+    "gridfs-stream": "^1.1.1",
+    "http-proxy-agent": "^4.0.1",
     "moment-timezone": "^0.5.28",
     "owl.carousel": "^2.3.4"
   },

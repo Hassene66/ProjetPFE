@@ -47,6 +47,14 @@ const PageAcceuilEnseignant = () => {
                     </Link>
                   </li>
                   <li class="nav-item sub-menu">
+                    <Link
+                      class="nav-link nav-links-color"
+                      to="/PageAcceuilEnseignant/UploadCours"
+                    >
+                      Ajouter un cours
+                    </Link>
+                  </li>
+                  <li class="nav-item sub-menu">
                     <Link class="nav-link nav-links-color" to="#">
                       Mettre à jour un cours
                     </Link>

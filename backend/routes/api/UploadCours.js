@@ -1,0 +1,103 @@
+const express = require("express");
+const bodyParser = require("body-parser");
+const path = require("path");
+const mongoose = require("mongoose");
+const multer = require("multer");
+const cors = require("cors");
+const GridFsStorage = require("multer-gridfs-storage");
+const Grid = require("gridfs-stream");
+const crypto = require("crypto");
+const router = express.Router();
+const app = express();
+
+app.use(express.json());
+app.use(cors());
+
+//Connect to DB
+const mongoURI =
+  "mongodb+srv://ProjectDB:Project2020@cluster0-mnrih.gcp.mongodb.net/test?retryWrites=true&w=majority";
+
+const conn = mongoose.createConnection(mongoURI);
+
+mongoose.connect(mongoURI, { useNewUrlParser: true });
+
+let gfs;
+conn.once("open", () => {
+  gfs = Grid(conn.db, mongoose.mongo);
+  gfs.collection("Cours");
+  console.log("Connection Successful");
+});
+
+// Create storage engine
+const storage = new GridFsStorage({
+  url: mongoURI,
+  file: (req, file) => {
+    return new Promise((resolve, reject) => {
+      crypto.randomBytes(16, (err, buf) => {
+        if (err) {
+          return reject(err);
+        }
+        const filename = file.originalname;
+        const fileInfo = {
+          filename: filename,
+          bucketName: "Cours",
+        };
+        resolve(fileInfo);
+      });
+    });
+  },
+});
+
+const upload = multer({ storage });
+
+router.post("/", upload.single("img"), (req, res, err) => {
+  if (res) {
+    res.json({ message: "Cours envoyé avec succès" });
+  } else {
+    if (err) {
+      res.json({ message: "Échec d'envoi" });
+    }
+  }
+});
+
+router.get("/get/:filename", (req, res) => {
+  gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
+    // Check if file
+    if (!file || file.length === 0) {
+      return res.status(404).json({
+        err: "No file exists",
+      });
+    }
+
+    // Check if image
+    if (file.contentType === "image/jpeg" || file.contentType === "image/png") {
+      // Read output to browser
+      const readstream = gfs.createReadStream(file.filename);
+      readstream.pipe(res);
+    } else {
+      res.status(404).json({
+        err: "Not an image",
+      });
+    }
+  });
+});
+
+router.get("/files", (req, res) => {
+  gfs.files.find().toArray((err, files) => {
+    if (!files || files.length === 0) {
+      return res.status(404).json({
+        message: "Could not find files",
+      });
+    }
+    return res.json(files);
+  });
+});
+router.delete("/files/:id", (req, res) => {
+  gfs.remove({ _id: req.params.id, root: "Cours" }, (err, gridStore) => {
+    if (err) {
+      return res.status(404).json({ err: err });
+    }
+    res.redirect("/");
+  });
+});
+module.exports = router;
