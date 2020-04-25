@@ -41,6 +41,7 @@ const storage = new GridFsStorage({
         const fileInfo = {
           filename: filename,
           bucketName: "Cours",
+          metadata: {},
         };
         resolve(fileInfo);
       });

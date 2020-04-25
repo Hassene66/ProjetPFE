@@ -42,7 +42,10 @@ const PageAcceuilEnseignant = () => {
                 </li>
                 <div className={showSub ? "show" : "hide"}>
                   <li class="nav-item sub-menu">
-                    <Link class="nav-link nav-links-color" to="#">
+                    <Link
+                      class="nav-link nav-links-color"
+                      to="/PageAcceuilEnseignant/Cours"
+                    >
                       Affichier mes cours
                     </Link>
                   </li>

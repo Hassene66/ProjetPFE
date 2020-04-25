@@ -2,7 +2,8 @@ import React from "react";
 import MesÉlèves from "../Content/MesÉlèves";
 import AttribuerNote from "../Content/AttribuerNote";
 import RegistreAppel from "../Content/RegistreAppel";
-import Cours from "../Content/cours";
+import UploadCours from "../Content/UploadCours";
+import MesCours from "../Content/MesCours";
 import { Route, Switch } from "react-router-dom";
 import PrivateRouteEnseignant from "../../PrivateRoutes/PrivateRoutesEnseignant";
 
@@ -27,7 +28,12 @@ const Content = () => {
       <PrivateRouteEnseignant
         exact
         path="/PageAcceuilEnseignant/UploadCours"
-        component={Cours}
+        component={UploadCours}
+      />
+      <PrivateRouteEnseignant
+        exact
+        path="/PageAcceuilEnseignant/Cours"
+        component={MesCours}
       />
     </Switch>
   );

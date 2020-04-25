@@ -4,14 +4,13 @@ import { setAlert } from "../../actions/alert";
 import Alert from "../../Components/alert";
 import { usePromiseTracker } from "react-promise-tracker";
 import { trackPromise } from "react-promise-tracker";
-const Cours = ({ setAlert }) => {
+import PropTypes from "prop-types";
+const Cours = ({ setAlert, auth: { user } }) => {
   const Post = (e) => {
     e.preventDefault();
     const file = document.getElementById("inputGroupFile01").files;
     const formData = new FormData();
-
     formData.append("img", file[0]);
-
     trackPromise(
       fetch("/UploadCours/", {
         method: "POST",
@@ -69,5 +68,10 @@ const Cours = ({ setAlert }) => {
     </div>
   );
 };
-
-export default connect(null, { setAlert })(Cours);
+Cours.prototype = {
+  auth: PropTypes.object.isRequired,
+};
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+export default connect(mapStateToProps, { setAlert })(Cours);
