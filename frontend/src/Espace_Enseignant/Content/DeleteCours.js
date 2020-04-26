@@ -8,9 +8,10 @@ import { usePromiseTracker } from "react-promise-tracker";
 import { trackPromise } from "react-promise-tracker";
 import PropTypes from "prop-types";
 
-const MesCours = ({ setAlert, auth: { user } }) => {
+const DeleteCours = ({ setAlert, auth: { user } }) => {
   const [formData, setFormData] = useState({ Cours: [] });
   const [loadingState, setloadingState] = useState(false);
+  const [ResState, setResState] = useState(false);
   const { Cours } = formData;
   const { promiseInProgress } = usePromiseTracker();
   useEffect(() => {
@@ -23,9 +24,16 @@ const MesCours = ({ setAlert, auth: { user } }) => {
             Cours: res.data,
           });
         })
-        .then(setloadingState(!loadingState))
+        .then(setloadingState({ loadingState: true }))
     );
-  }, []);
+  }, [ResState]);
+  const deleteCours = async (elem) => {
+    await axios.delete("/UploadCours/files/" + elem._id);
+
+    await setFormData({ ...formData, Cours: [] });
+
+    await setResState({ ...formData, ResState: true });
+  };
 
   return promiseInProgress ? (
     <Spinner />
@@ -44,6 +52,7 @@ const MesCours = ({ setAlert, auth: { user } }) => {
                     <th scope="col">Num</th>
                     <th scope="col">Nom du cours</th>
                     <th scope="col">Taille [Bytes]</th>
+                    <th scope="col">Supprimer Cours</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -53,6 +62,14 @@ const MesCours = ({ setAlert, auth: { user } }) => {
                         <td>{idx + 1}</td>
                         <td>{elem.filename}</td>
                         <td>{elem.length}</td>
+                        <td>
+                          <button
+                            className="btn btn-danger"
+                            onClick={() => deleteCours(elem)}
+                          >
+                            Supprimer
+                          </button>
+                        </td>
                       </tr>
                     );
                   })}
@@ -64,10 +81,10 @@ const MesCours = ({ setAlert, auth: { user } }) => {
     </div>
   );
 };
-MesCours.prototype = {
+DeleteCours.prototype = {
   auth: PropTypes.object.isRequired,
 };
 const mapStateToProps = (state) => ({
   auth: state.auth,
 });
-export default connect(mapStateToProps, { setAlert })(MesCours);
+export default connect(mapStateToProps, { setAlert })(DeleteCours);

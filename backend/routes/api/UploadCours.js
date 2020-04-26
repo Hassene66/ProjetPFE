@@ -41,7 +41,7 @@ const storage = new GridFsStorage({
         const fileInfo = {
           filename: filename,
           bucketName: "Cours",
-          metadata: {},
+          metadata: [],
         };
         resolve(fileInfo);
       });
@@ -93,12 +93,12 @@ router.get("/files", (req, res) => {
     return res.json(files);
   });
 });
-router.delete("/files/:id", (req, res) => {
-  gfs.remove({ _id: req.params.id, root: "Cours" }, (err, gridStore) => {
+router.delete("/files/:id", async (req, res) => {
+  await gfs.remove({ _id: req.params.id, root: "Cours" }, (err, gridStore) => {
     if (err) {
       return res.status(404).json({ err: err });
     }
-    res.redirect("/");
+    return res.json({ message: "file was deleted" });
   });
 });
 module.exports = router;
