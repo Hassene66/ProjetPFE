@@ -28,9 +28,8 @@ const DownloadCours = ({ setAlert, auth: { user } }) => {
     );
   }, []);
   const downloadCours = (elem) => {
-    console.log(elem.filename);
     axios
-      .get("/UploadCours/download/" + elem.filename, {
+      .get("/UploadCours/download/" + elem._id, {
         responseType: "arraybuffer",
       })
       .then((res) => {

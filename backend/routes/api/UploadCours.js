@@ -102,8 +102,8 @@ router.delete("/files/:id", async (req, res) => {
 
 // @route GET /download/:filename
 // @desc  Download single file object
-router.get("/download/:filename", async (req, res) => {
-  await gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
+router.get("/download/:id", async (req, res) => {
+  await gfs.files.find({ _id: req.params.id }, (err, file) => {
     // Check if file
     if (!file || file.length === 0) {
       return res.status(404).json({
@@ -118,7 +118,7 @@ router.get("/download/:filename", async (req, res) => {
     );
     // streaming from gridfs
     var readstream = gfs.createReadStream({
-      filename: req.params.filename,
+      _id: req.params.id,
     });
     //error handling, e.g. file does not exist
     readstream.on("error", function (err) {
