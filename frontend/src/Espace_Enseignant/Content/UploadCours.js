@@ -5,6 +5,7 @@ import Alert from "../../Components/alert";
 import { usePromiseTracker } from "react-promise-tracker";
 import { trackPromise } from "react-promise-tracker";
 import PropTypes from "prop-types";
+import bsCustomFileInput from "bs-custom-file-input";
 const Cours = ({ setAlert, auth: { user } }) => {
   const Post = (e) => {
     e.preventDefault();
@@ -27,6 +28,11 @@ const Cours = ({ setAlert, auth: { user } }) => {
       )
     );
   };
+
+  useEffect(() => {
+    bsCustomFileInput.init();
+  }, []);
+
   const { promiseInProgress } = usePromiseTracker();
   return (
     <div className="col p-3  ">
