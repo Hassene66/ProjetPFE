@@ -40,7 +40,7 @@ const Cours = ({ setAlert, auth: { user } }) => {
         <Alert />
         <h1 className="mb-3">Publier Cours </h1>
         <form>
-          <div className="input-group mb-3 w-50">
+          <div className="input-group mb-3 w-75">
             <div className="custom-file">
               <input
                 type="file"
@@ -50,7 +50,7 @@ const Cours = ({ setAlert, auth: { user } }) => {
                 required
               />
               <label className="custom-file-label" htmlFor="inputGroupFile01">
-                Choose file
+                Choisir fichier
               </label>
             </div>
           </div>
