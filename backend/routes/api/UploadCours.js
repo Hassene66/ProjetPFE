@@ -1,6 +1,4 @@
 const express = require("express");
-const bodyParser = require("body-parser");
-const path = require("path");
 const mongoose = require("mongoose");
 const multer = require("multer");
 const cors = require("cors");
@@ -101,4 +99,34 @@ router.delete("/files/:id", async (req, res) => {
     return res.json({ message: "file was deleted" });
   });
 });
+
+// @route GET /download/:filename
+// @desc  Download single file object
+router.get("/download/:filename", async (req, res) => {
+  await gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
+    // Check if file
+    if (!file || file.length === 0) {
+      return res.status(404).json({
+        err: "No file exists",
+      });
+    }
+    // File exists
+    res.set("Content-Type", file.contentType);
+    res.set(
+      "Content-Disposition",
+      'attachment; filename="' + file.filename + '"'
+    );
+    // streaming from gridfs
+    var readstream = gfs.createReadStream({
+      filename: req.params.filename,
+    });
+    //error handling, e.g. file does not exist
+    readstream.on("error", function (err) {
+      console.log("An error occurred!", err);
+      throw err;
+    });
+    readstream.pipe(res);
+  });
+});
+
 module.exports = router;

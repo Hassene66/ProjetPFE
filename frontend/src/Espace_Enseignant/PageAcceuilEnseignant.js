@@ -75,7 +75,10 @@ const PageAcceuilEnseignant = () => {
                   </Link>
                 </li>
                 <li class="nav-item">
-                  <Link class="nav-link nav-links-color" to="#">
+                  <Link
+                    class="nav-link nav-links-color"
+                    to="/PageAcceuilEnseignant/AjouterQuiz"
+                  >
                     Ajouter quiz
                   </Link>
                 </li>

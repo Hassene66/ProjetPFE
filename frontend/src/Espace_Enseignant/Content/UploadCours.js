@@ -11,6 +11,8 @@ const Cours = ({ setAlert, auth: { user } }) => {
     const file = document.getElementById("inputGroupFile01").files;
     const formData = new FormData();
     formData.append("img", file[0]);
+    formData.append("img", (file[0].identifiant = user.identifiant));
+    console.log(file[0]);
     trackPromise(
       fetch("/UploadCours/", {
         method: "POST",
