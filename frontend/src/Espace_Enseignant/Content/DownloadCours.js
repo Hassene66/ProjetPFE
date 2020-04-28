@@ -11,7 +11,10 @@ import fileDownload from "js-file-download";
 const DownloadCours = ({ setAlert, auth: { user } }) => {
   const [formData, setFormData] = useState({ Cours: [] });
   const [loadingState, setloadingState] = useState(false);
-  const [ResState, setResState] = useState(false);
+  const [TéléchargementState, setTéléchargementState] = useState({
+    index: null,
+  });
+  const { index } = TéléchargementState;
   const { Cours } = formData;
   const { promiseInProgress } = usePromiseTracker();
   useEffect(() => {
@@ -28,16 +31,24 @@ const DownloadCours = ({ setAlert, auth: { user } }) => {
     );
   }, []);
   const downloadCours = (elem) => {
-    axios
-      .get("/UploadCours/download/" + elem._id, {
-        responseType: "arraybuffer",
-      })
-      .then((res) => {
-        fileDownload(res.data, elem.filename);
-      });
+    trackPromise(
+      axios
+        .get("/UploadCours/download/" + elem._id, {
+          responseType: "arraybuffer",
+        })
+        .then((res) => {
+          fileDownload(res.data, elem.filename);
+        })
+    );
   };
 
-  return promiseInProgress ? (
+  const ChangeTéléchrgerState = (idx) => {
+    setTéléchargementState({
+      ...TéléchargementState,
+      index: idx,
+    });
+  };
+  return promiseInProgress && Cours.length === 0 ? (
     <Spinner />
   ) : (
     <div className="col p-3  ">
@@ -54,7 +65,7 @@ const DownloadCours = ({ setAlert, auth: { user } }) => {
                     <th scope="col">Num</th>
                     <th scope="col">Nom du cours</th>
                     <th scope="col">Taille [Bytes]</th>
-                    <th scope="col">Supprimer Cours</th>
+                    <th scope="col">Télécharger Cours</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -64,14 +75,28 @@ const DownloadCours = ({ setAlert, auth: { user } }) => {
                         <td>{idx + 1}</td>
                         <td>{elem.filename}</td>
                         <td>{elem.length}</td>
-                        <td>
+                        {promiseInProgress && index === idx ? (
                           <button
-                            className="btn btn-success"
+                            className="btn btn-success my-2"
                             onClick={() => downloadCours(elem)}
+                          >
+                            <i
+                              className="fa fa-refresh fa-spin"
+                              style={{ marginRight: "5px" }}
+                            />
+                            Téléchargement...
+                          </button>
+                        ) : (
+                          <button
+                            className="btn btn-success my-2"
+                            onClick={() => {
+                              downloadCours(elem);
+                              ChangeTéléchrgerState(idx);
+                            }}
                           >
                             Télécharger
                           </button>
-                        </td>
+                        )}
                       </tr>
                     );
                   })}
