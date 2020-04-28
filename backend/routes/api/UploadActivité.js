@@ -22,7 +22,7 @@ mongoose.connect(mongoURI, { useNewUrlParser: true });
 let gfs;
 conn.once("open", () => {
   gfs = Grid(conn.db, mongoose.mongo);
-  gfs.collection("Cours");
+  gfs.collection("Activité");
   console.log("Connection Successful");
 });
 
@@ -38,7 +38,7 @@ const storage = new GridFsStorage({
         const filename = file.originalname;
         const fileInfo = {
           filename: filename,
-          bucketName: "Cours",
+          bucketName: "Activité",
         };
         resolve(fileInfo);
       });
@@ -50,7 +50,7 @@ const upload = multer({ storage });
 
 router.post("/", upload.single("img"), (req, res, err) => {
   if (res) {
-    res.json({ message: "Cours envoyé avec succès" });
+    res.json({ message: "Zctivité envoyé avec succès" });
   } else {
     if (err) {
       res.json({ message: "Échec d'envoi" });
@@ -91,12 +91,15 @@ router.get("/files", (req, res) => {
   });
 });
 router.delete("/files/:id", async (req, res) => {
-  await gfs.remove({ _id: req.params.id, root: "Cours" }, (err, gridStore) => {
-    if (err) {
-      return res.status(404).json({ err: err });
+  await gfs.remove(
+    { _id: req.params.id, root: "Activité" },
+    (err, gridStore) => {
+      if (err) {
+        return res.status(404).json({ err: err });
+      }
+      return res.json({ message: "file was deleted" });
     }
-    return res.json({ message: "file was deleted" });
-  });
+  );
 });
 
 // @route GET /download/:filename

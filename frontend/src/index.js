@@ -5,6 +5,7 @@ import { Route, BrowserRouter, Switch } from "react-router-dom";
 import Page_parameter_mon_ecole from "./Espace_Administration/page_parameter_mon_ecole/PagePatemeterMonEcole";
 import PageAccueilAdministration from "./Espace_Administration/Page_accueil_administration/pageAccueilAdministration";
 import PageAcceuilEnseignant from "./Espace_Enseignant/PageAcceuilEnseignant";
+import PageAcceuilEleve from "./Espace_ÉLève/PageAcceuilEleve";
 import PageLogin from "./page_Login/PageLogin";
 import PageAcceuil from "./Page_acceuil/Acceuil/pageAcceuil";
 import PagePresentation from "./Page_acceuil/Presentation/PagePresentation";
@@ -47,6 +48,10 @@ const App = () => {
           <PrivateRouteEnseignant
             path="/PageAcceuilEnseignant"
             component={PageAcceuilEnseignant}
+          />
+          <PrivateRouteÉlève
+            path="/PageAcceuilEleve"
+            component={PageAcceuilEleve}
           />
           <PrivateRouteAdmin
             exact

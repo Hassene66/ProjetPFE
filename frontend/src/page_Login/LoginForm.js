@@ -42,7 +42,7 @@ const LoginForm = ({
         !Loading &&
         token
       ) {
-        return <Redirect to="/Contact" />;
+        return <Redirect to="/PageAcceuilEleve" />;
       } else {
         if (
           isAuthenticated &&

@@ -4,7 +4,8 @@ import Navbar from "./Navbar";
 import "./PageAcceuilEnseignant.css";
 import { Link } from "react-router-dom";
 const PageAcceuilEnseignant = () => {
-  const [showSub, setShowSub] = useState(false);
+  const [showSubCours, setShowSubCours] = useState(false);
+  const [showSubActivité, setShowSubActivité] = useState(false);
   return (
     <div style={{ paddingTop: "62px" }}>
       <Navbar />
@@ -35,12 +36,12 @@ const PageAcceuilEnseignant = () => {
                     class="nav-link nav-links-color dropdown-toggle "
                     to="#"
                     disabled
-                    onClick={() => setShowSub(!showSub)}
+                    onClick={() => setShowSubCours(!showSubCours)}
                   >
                     Cours
                   </Link>
                 </li>
-                <div className={showSub ? "show" : "hide"}>
+                <div className={showSubCours ? "show" : "hide"}>
                   <li class="nav-item sub-menu">
                     <Link
                       class="nav-link nav-links-color"
@@ -63,6 +64,42 @@ const PageAcceuilEnseignant = () => {
                       to="/PageAcceuilEnseignant/SupprimerCours"
                     >
                       Supprimer un cours
+                    </Link>
+                  </li>
+                </div>
+                <li class="nav-item  flex-row ">
+                  <Link
+                    class="nav-link nav-links-color dropdown-toggle "
+                    to="#"
+                    disabled
+                    onClick={() => setShowSubActivité(!showSubActivité)}
+                  >
+                    Activité
+                  </Link>
+                </li>
+                <div className={showSubActivité ? "show" : "hide"}>
+                  <li class="nav-item sub-menu">
+                    <Link
+                      class="nav-link nav-links-color"
+                      to="/PageAcceuilEnseignant/Activite"
+                    >
+                      Affichier mes activités
+                    </Link>
+                  </li>
+                  <li class="nav-item sub-menu">
+                    <Link
+                      class="nav-link nav-links-color"
+                      to="/PageAcceuilEnseignant/UploadActivite"
+                    >
+                      Ajouter un activité
+                    </Link>
+                  </li>
+                  <li class="nav-item sub-menu">
+                    <Link
+                      class="nav-link nav-links-color"
+                      to="/PageAcceuilEnseignant/SupprimerActivite"
+                    >
+                      Supprimer un activité
                     </Link>
                   </li>
                 </div>
