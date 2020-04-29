@@ -4,7 +4,6 @@ import Navbar from "./Navbar";
 import "./PageAcceuilEleve.css";
 import { Link } from "react-router-dom";
 const PageAcceuilEleve = () => {
-  const [showSub, setShowSub] = useState(false);
   return (
     <div style={{ paddingTop: "62px" }}>
       <Navbar />
@@ -30,33 +29,15 @@ const PageAcceuilEleve = () => {
                     Mes Cours
                   </Link>
                 </li>
-                <li class="nav-item  flex-row ">
+                <li class="nav-item">
                   <Link
-                    class="nav-link nav-links-color dropdown-toggle "
-                    to="#"
-                    disabled
-                    onClick={() => setShowSub(!showSub)}
+                    class="nav-link active nav-links-color"
+                    to="/PageAcceuilEleve/MesActivites"
                   >
-                    Cours
+                    Mes Activités
                   </Link>
                 </li>
-                <div className={showSub ? "show" : "hide"}>
-                  <li class="nav-item sub-menu">
-                    <Link class="nav-link nav-links-color" to="#">
-                      Affichier mes cours
-                    </Link>
-                  </li>
-                  <li class="nav-item sub-menu">
-                    <Link class="nav-link nav-links-color" to="#">
-                      Ajouter un cours
-                    </Link>
-                  </li>
-                  <li class="nav-item sub-menu">
-                    <Link class="nav-link nav-links-color" to="#">
-                      Supprimer un cours
-                    </Link>
-                  </li>
-                </div>
+
                 <li class="nav-item">
                   <Link class="nav-link nav-links-color" to="#">
                     Mes notes
