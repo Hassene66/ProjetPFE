@@ -77,7 +77,7 @@ const DownloadCours = ({ setAlert, auth: { user } }) => {
                         <td>{elem.length}</td>
                         {promiseInProgress && index === idx ? (
                           <button
-                            className="btn btn-success my-2"
+                            className="btn btn-success ml-3 my-2"
                             onClick={() => downloadCours(elem)}
                           >
                             <i
@@ -88,7 +88,7 @@ const DownloadCours = ({ setAlert, auth: { user } }) => {
                           </button>
                         ) : (
                           <button
-                            className="btn btn-success my-2"
+                            className="btn btn-success ml-3 my-2"
                             onClick={() => {
                               downloadCours(elem);
                               ChangeTéléchrgerState(idx);

@@ -42,7 +42,7 @@ const MesActivité = ({ setAlert, auth: { user } }) => {
                 <thead className="thead-dark">
                   <tr>
                     <th scope="col">Num</th>
-                    <th scope="col">Nom du Activité</th>
+                    <th scope="col">Nom de Activité</th>
                     <th scope="col">Taille [Bytes]</th>
                   </tr>
                 </thead>

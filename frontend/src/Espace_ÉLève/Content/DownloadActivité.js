@@ -63,7 +63,7 @@ const DownloadActivité = ({ setAlert, auth: { user } }) => {
                 <thead className="thead-dark">
                   <tr>
                     <th scope="col">Num</th>
-                    <th scope="col">Nom du l'activité</th>
+                    <th scope="col">Nom de l'activité</th>
                     <th scope="col">Taille [Bytes]</th>
                     <th scope="col">Télécharger Activité</th>
                   </tr>
@@ -77,7 +77,7 @@ const DownloadActivité = ({ setAlert, auth: { user } }) => {
                         <td>{elem.length}</td>
                         {promiseInProgress && index === idx ? (
                           <button
-                            className="btn btn-success my-2"
+                            className="btn btn-success ml-3 my-2"
                             onClick={() => downloadActivité(elem)}
                           >
                             <i
@@ -88,7 +88,7 @@ const DownloadActivité = ({ setAlert, auth: { user } }) => {
                           </button>
                         ) : (
                           <button
-                            className="btn btn-success my-2"
+                            className="btn btn-success ml-3 my-2"
                             onClick={() => {
                               downloadActivité(elem);
                               ChangeTéléchrgerState(idx);

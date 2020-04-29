@@ -49,7 +49,7 @@ const DeleteActivité = ({ setAlert, auth: { user } }) => {
                 <thead className="thead-dark">
                   <tr>
                     <th scope="col">Num</th>
-                    <th scope="col">Nom du l'activité</th>
+                    <th scope="col">Nom de l'activité</th>
                     <th scope="col">Taille [Bytes]</th>
                     <th scope="col">Supprimer Activité</th>
                   </tr>

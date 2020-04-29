@@ -76,7 +76,8 @@ const AttribuerNote = ({ setAlert, auth: { user } }) => {
     };
     const lastcount = Number(élèveSelectioné.charAt(0)) - 1;
     const identifiant = listeDesEleves[lastcount].identifiant;
-    const body = JSON.stringify({ identifiant });
+    const matièreEnseigné = user.profileEnseignant.matièreEnseigné;
+    const body = JSON.stringify({ identifiant, matièreEnseigné });
 
     axios.post("/Enseignant/NoteEleve", body, config).then((res) => {
       if (typeof res.data === "object" && Object.entries(res.data).length > 0) {

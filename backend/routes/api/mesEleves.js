@@ -55,12 +55,13 @@ router.post("/EnregistrerNote", auth, async (req, res) => {
   try {
     let noteÉlève = await NoteÉlève.findOne({
       identifiant: identifiant,
+      matièreEnseigné: matièreEnseigné,
     });
     if (noteÉlève) {
       //update
-      //find the profile of the school then update it with the new entred fields
+      //find the profile of the student grades and then update it with the new entred fields
       noteÉlève = await NoteÉlève.findOneAndUpdate(
-        { identifiant: identifiant },
+        { identifiant: identifiant, matièreEnseigné: matièreEnseigné },
         { $set: NoteÉlèveFields },
         { new: true }
       );
@@ -80,6 +81,7 @@ router.post("/NoteEleve", auth, async (req, res) => {
   try {
     let getNoteÉlève = await NoteÉlève.findOne({
       identifiant: req.body.identifiant,
+      matièreEnseigné: req.body.matièreEnseigné,
     });
 
     if (getNoteÉlève) {
@@ -127,6 +129,22 @@ router.post("/NoteEleve", auth, async (req, res) => {
       }
 
       return res.json(noteEleve);
+    } else {
+      return res.json({ message: "Aucun enregistrement précédent" });
+    }
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Err");
+  }
+});
+
+router.post("/MesNotes", auth, async (req, res) => {
+  try {
+    let MesNotes = await NoteÉlève.find({
+      identifiant: req.body.identifiant,
+    });
+    if (MesNotes) {
+      return res.json(MesNotes);
     } else {
       return res.json({ message: "Aucun enregistrement précédent" });
     }

@@ -39,7 +39,10 @@ const PageAcceuilEleve = () => {
                 </li>
 
                 <li class="nav-item">
-                  <Link class="nav-link nav-links-color" to="#">
+                  <Link
+                    class="nav-link nav-links-color"
+                    to="/PageAcceuilEleve/MesNotes"
+                  >
                     Mes notes
                   </Link>
                 </li>
