@@ -14,4 +14,22 @@ router.post("/Enregister", auth, async (req, res) => {
     res.status(500).send("Server Err");
   }
 });
+
+router.post("/Get", async (req, res) => {
+  try {
+    const ListeAbsence = await RegistreAppel.find({
+      Classe: req.body.classeSelectionné,
+      Date: req.body.newDate,
+    });
+    if (ListeAbsence) {
+      return res.json(ListeAbsence);
+    } else {
+      return res.json("Aucun enregistrement ");
+    }
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Err");
+  }
+});
+
 module.exports = router;

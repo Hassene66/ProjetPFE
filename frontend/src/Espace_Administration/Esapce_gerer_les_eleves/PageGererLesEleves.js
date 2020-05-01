@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Content from "./Roots/Content";
 import Navbar from "./Navbar";
-import "./PageAcceuilEleve.css";
+import "./PageGererLesEleves..css";
 import { Link } from "react-router-dom";
 const PageAcceuilEleve = () => {
   return (
@@ -24,7 +24,7 @@ const PageAcceuilEleve = () => {
                 <li class="nav-item">
                   <Link
                     class="nav-link active nav-links-color"
-                    to="/PageAcceuilEleve/MesCours"
+                    to="/GererLesEleves/ListeAbsence"
                   >
                     Liste d'absence
                   </Link>

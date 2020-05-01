@@ -6,6 +6,7 @@ import Page_parameter_mon_ecole from "./Espace_Administration/page_parameter_mon
 import PageAccueilAdministration from "./Espace_Administration/Page_accueil_administration/pageAccueilAdministration";
 import PageAcceuilEnseignant from "./Espace_Enseignant/PageAcceuilEnseignant";
 import PageAcceuilEleve from "./Espace_ÉLève/PageAcceuilEleve";
+import PageGererLesEleves from "./Espace_Administration/Esapce_gerer_les_eleves/PageGererLesEleves";
 import PageLogin from "./page_Login/PageLogin";
 import PageAcceuil from "./Page_acceuil/Acceuil/pageAcceuil";
 import PagePresentation from "./Page_acceuil/Presentation/PagePresentation";
@@ -57,6 +58,10 @@ const App = () => {
             exact
             path="/AccueilAdministration"
             component={PageAccueilAdministration}
+          />
+          <PrivateRouteAdmin
+            path="/GererLesEleves"
+            component={PageGererLesEleves}
           />
         </Switch>
       </div>

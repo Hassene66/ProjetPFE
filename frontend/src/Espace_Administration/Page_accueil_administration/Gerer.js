@@ -9,7 +9,7 @@ export class Gerer extends Component {
         <div className="container mt-3 ">
           <div className="row  justify-content-between text-center   ">
             <Link
-              to="#!"
+              to="/GererLesEleves"
               className="gererCart col-lg-3"
               style={{ color: "black" }}
             >

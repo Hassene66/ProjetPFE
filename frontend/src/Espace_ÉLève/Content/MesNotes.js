@@ -21,7 +21,6 @@ const MesNotes = ({ auth: { user } }) => {
     const identifiant = user.identifiant;
     const body = JSON.stringify({ identifiant });
     axios.post("/Enseignant/MesNotes", body, config).then((res) => {
-      console.log(res.data);
       if (typeof res.data === "object") {
         setFormData({
           ...formData,
@@ -39,7 +38,6 @@ const MesNotes = ({ auth: { user } }) => {
       }
     });
   }, []);
-  console.log(loadingState);
   return typeof MesNotes[0] === "undefined" && loadingState === false ? (
     <Spinner />
   ) : (
@@ -66,7 +64,6 @@ const MesNotes = ({ auth: { user } }) => {
                   </tr>
                 </thead>
                 {MesNotes.map((Note, idx) => {
-                  console.log(Note.noteContrôle2);
                   return (
                     <tbody>
                       <tr>
