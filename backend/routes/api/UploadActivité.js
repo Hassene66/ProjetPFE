@@ -39,6 +39,7 @@ const storage = new GridFsStorage({
         const fileInfo = {
           filename: filename,
           bucketName: "Activité",
+          metadata: req.body,
         };
         resolve(fileInfo);
       });
@@ -50,7 +51,7 @@ const upload = multer({ storage });
 
 router.post("/", upload.single("img"), (req, res, err) => {
   if (res) {
-    res.json({ message: "Zctivité envoyé avec succès" });
+    res.json({ message: "Activité envoyé avec succès" });
   } else {
     if (err) {
       res.json({ message: "Échec d'envoi" });
@@ -80,15 +81,17 @@ router.get("/get/:filename", (req, res) => {
   });
 });
 
-router.get("/files", (req, res) => {
-  gfs.files.find().toArray((err, files) => {
-    if (!files || files.length === 0) {
-      return res.status(404).json({
-        message: "Could not find files",
-      });
-    }
-    return res.json(files);
-  });
+router.post("/files", (req, res) => {
+  gfs.files
+    .find({ "metadata.Enseignant_id": req.body.identifiant })
+    .toArray((err, files) => {
+      if (!files || files.length === 0) {
+        return res.status(404).json({
+          message: "Could not find files",
+        });
+      }
+      return res.json(files);
+    });
 });
 router.delete("/files/:id", async (req, res) => {
   await gfs.remove(

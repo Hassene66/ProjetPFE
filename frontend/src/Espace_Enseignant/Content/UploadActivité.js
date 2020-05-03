@@ -11,8 +11,13 @@ const Activité = ({ setAlert, auth: { user } }) => {
     e.preventDefault();
     const file = document.getElementById("inputGroupFile01").files;
     const formData = new FormData();
+    const tab = [user.profileEnseignant.classeEnseigné];
+    for (var i = 0; i < tab.length; i++) {
+      formData.append("ClasseEnseigné[]", tab[i]);
+    }
+    formData.append("Enseignant_id", user.identifiant);
     formData.append("img", file[0]);
-    console.log(file[0]);
+
     trackPromise(
       fetch("/UploadActivite/", {
         method: "POST",

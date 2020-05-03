@@ -14,9 +14,16 @@ const MesCours = ({ setAlert, auth: { user } }) => {
   const { Cours } = formData;
   const { promiseInProgress } = usePromiseTracker();
   useEffect(() => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const identifiant = user.identifiant;
+    const body = JSON.stringify({ identifiant });
     trackPromise(
       axios
-        .get("/UploadCours/files")
+        .post("/UploadCours/files", body, config)
         .then((res) => {
           setFormData({
             ...formData,
@@ -26,7 +33,6 @@ const MesCours = ({ setAlert, auth: { user } }) => {
         .then(setloadingState(!loadingState))
     );
   }, []);
-
   return promiseInProgress ? (
     <Spinner />
   ) : (

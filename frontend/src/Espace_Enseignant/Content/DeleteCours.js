@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { setAlert } from "../../actions/alert";
 import axios from "axios";
 import Spinner from "../../Components/Spinner";
-import Alert from "../../Components/alert";
 import { usePromiseTracker } from "react-promise-tracker";
 import { trackPromise } from "react-promise-tracker";
 import PropTypes from "prop-types";
@@ -15,9 +14,16 @@ const DeleteCours = ({ setAlert, auth: { user } }) => {
   const { Cours } = formData;
   const { promiseInProgress } = usePromiseTracker();
   useEffect(() => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const identifiant = user.identifiant;
+    const body = JSON.stringify({ identifiant });
     trackPromise(
       axios
-        .get("/UploadCours/files")
+        .post("/UploadCours/files", body, config)
         .then((res) => {
           setFormData({
             ...formData,

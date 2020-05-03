@@ -14,9 +14,16 @@ const DeleteActivité = ({ setAlert, auth: { user } }) => {
   const { Activité } = formData;
   const { promiseInProgress } = usePromiseTracker();
   useEffect(() => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const identifiant = user.identifiant;
+    const body = JSON.stringify({ identifiant });
     trackPromise(
       axios
-        .get("/UploadActivite/files")
+        .post("/UploadActivite/files", body, config)
         .then((res) => {
           setFormData({
             ...formData,
