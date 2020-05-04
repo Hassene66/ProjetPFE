@@ -18,9 +18,16 @@ const DownloadCours = ({ setAlert, auth: { user } }) => {
   const { Cours } = formData;
   const { promiseInProgress } = usePromiseTracker();
   useEffect(() => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const monClasse = user.profileEleve.classe;
+    const body = JSON.stringify({ monClasse });
     trackPromise(
       axios
-        .get("/UploadCours/files")
+        .post("/UploadCours/getFiles", body, config)
         .then((res) => {
           setFormData({
             ...formData,
@@ -55,7 +62,7 @@ const DownloadCours = ({ setAlert, auth: { user } }) => {
       <div classname="container">
         {loadingState &&
           (Cours.length === 0 ? (
-            <h1>Vous n'avez publié aucun cours</h1>
+            <h1>Il n’y a pas encore des cours publiés</h1>
           ) : (
             <Fragment>
               <h1>Table des Cours</h1>

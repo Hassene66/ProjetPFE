@@ -26,7 +26,7 @@ const PageAcceuilEleve = () => {
                     class="nav-link active nav-links-color"
                     to="/PageAcceuilEleve/MesCours"
                   >
-                    Liste d'absence
+                    Mes Cours
                   </Link>
                 </li>
                 <li class="nav-item">

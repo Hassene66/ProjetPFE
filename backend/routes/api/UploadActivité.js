@@ -93,6 +93,23 @@ router.post("/files", (req, res) => {
       return res.json(files);
     });
 });
+router.post("/getFiles", (req, res) => {
+  var MesActivités = new Array();
+  gfs.files.find().toArray((err, files) => {
+    if (!files || files.length === 0) {
+      return res.status(404).json({
+        message: "Could not find files",
+      });
+    } else {
+      files.map((file) => {
+        if (file.metadata.ClasseEnseigné.includes(req.body.monClasse)) {
+          MesActivités.push(file);
+        }
+      });
+      return res.json(MesActivités);
+    }
+  });
+});
 router.delete("/files/:id", async (req, res) => {
   await gfs.remove(
     { _id: req.params.id, root: "Activité" },

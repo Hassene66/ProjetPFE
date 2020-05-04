@@ -11,12 +11,17 @@ const Cours = ({ setAlert, auth: { user } }) => {
     e.preventDefault();
     const file = document.getElementById("inputGroupFile01").files;
     const formData = new FormData();
-    const tab = [user.profileEnseignant.classeEnseigné];
+    const tab = user.profileEnseignant.classeEnseigné;
+    console.log(tab.length);
+    var ClasseEnseigné = new Array();
     for (var i = 0; i < tab.length; i++) {
-      formData.append("ClasseEnseigné[]", tab[i]);
+      formData.append("ClasseEnseigné[" + i + "]", tab[i]);
     }
     formData.append("Enseignant_id", user.identifiant);
     formData.append("img", file[0]);
+    for (let pair of formData.entries()) {
+      console.log(pair[0] + ": " + pair[1]);
+    }
     trackPromise(
       fetch("/UploadCours/", {
         method: "POST",
