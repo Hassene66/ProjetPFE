@@ -57,6 +57,7 @@ const DeleteActivité = ({ setAlert, auth: { user } }) => {
                   <tr>
                     <th scope="col">Num</th>
                     <th scope="col">Nom de l'activité</th>
+                    <th scope="col">Classe concerné</th>
                     <th scope="col">Taille [Bytes]</th>
                     <th scope="col">Supprimer Activité</th>
                   </tr>
@@ -67,6 +68,7 @@ const DeleteActivité = ({ setAlert, auth: { user } }) => {
                       <tr>
                         <td>{idx + 1}</td>
                         <td>{elem.filename}</td>
+                        <td>{elem.metadata.classe_ciblée}</td>
                         <td>{elem.length}</td>
                         <td>
                           <button

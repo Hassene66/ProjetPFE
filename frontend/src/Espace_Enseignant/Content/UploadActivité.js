@@ -7,15 +7,18 @@ import { trackPromise } from "react-promise-tracker";
 import PropTypes from "prop-types";
 import bsCustomFileInput from "bs-custom-file-input";
 const Activité = ({ setAlert, auth: { user } }) => {
+  const onChange = (e) => {
+    setFormData1({ ...formData1, [e.target.name]: e.target.value });
+  };
+  const [formData1, setFormData1] = useState({
+    classe: user.profileEnseignant.classeEnseigné[0],
+  });
+  const { classe } = formData1;
   const Post = (e) => {
     e.preventDefault();
     const file = document.getElementById("inputGroupFile01").files;
     const formData = new FormData();
-    const tab = user.profileEnseignant.classeEnseigné;
-    var ClasseEnseigné = new Array();
-    for (var i = 0; i < tab.length; i++) {
-      formData.append("ClasseEnseigné[" + i + "]", tab[i]);
-    }
+    formData.append("classe_ciblée", classe);
     formData.append("Enseignant_id", user.identifiant);
     formData.append("img", file[0]);
 
@@ -45,6 +48,7 @@ const Activité = ({ setAlert, auth: { user } }) => {
         <Alert />
         <h1 className="mb-3">Publier Activité </h1>
         <form>
+          <h5>Choisir un fichier</h5>
           <div className="input-group mb-3 w-75">
             <div className="custom-file">
               <input
@@ -59,8 +63,24 @@ const Activité = ({ setAlert, auth: { user } }) => {
               </label>
             </div>
           </div>
+          <h5>Choisir la classe</h5>
+          <select
+            className="form-control w-25"
+            id="exampleFormControlSelect1"
+            value={classe}
+            onChange={(e) => onChange(e)}
+            name="classe"
+          >
+            {user.profileEnseignant.classeEnseigné.map((classe) => {
+              return (
+                <option key={classe} value={classe}>
+                  {classe}
+                </option>
+              );
+            })}
+          </select>
           {promiseInProgress ? (
-            <button type="button" className="btn btn-primary">
+            <button type="button" className="btn btn-primary mt-4">
               <i
                 className="fa fa-refresh fa-spin"
                 style={{ marginRight: "5px" }}
@@ -70,7 +90,7 @@ const Activité = ({ setAlert, auth: { user } }) => {
           ) : (
             <button
               type="button"
-              className="btn btn-primary"
+              className="btn btn-primary mt-4"
               onClick={(e) => Post(e)}
             >
               Upload

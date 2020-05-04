@@ -102,7 +102,7 @@ router.post("/getFiles", (req, res) => {
       });
     } else {
       files.map((file) => {
-        if (file.metadata.ClasseEnseigné.includes(req.body.monClasse)) {
+        if (file.metadata.classe_ciblée === req.body.monClasse) {
           MesActivités.push(file);
         }
       });
