@@ -51,7 +51,7 @@ const MesActivité = ({ setAlert, auth: { user } }) => {
                     <th scope="col">Num</th>
                     <th scope="col">Nom de Activité</th>
                     <th scope="col">Classe concerné</th>
-                    <th scope="col">Taille [Bytes]</th>
+                    <th scope="col">Taille du fichier</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -61,7 +61,7 @@ const MesActivité = ({ setAlert, auth: { user } }) => {
                         <td>{idx + 1}</td>
                         <td>{elem.filename}</td>
                         <td>{elem.metadata.classe_ciblée}</td>
-                        <td>{elem.length}</td>
+                        <td>{(elem.length / 1048576).toFixed(2)} MB</td>
                       </tr>
                     );
                   })}

@@ -71,7 +71,8 @@ const DownloadCours = ({ setAlert, auth: { user } }) => {
                   <tr>
                     <th scope="col">Num</th>
                     <th scope="col">Nom du cours</th>
-                    <th scope="col">Taille [Bytes]</th>
+                    <th scope="col">Enseignant</th>
+                    <th scope="col">Taille du fichier</th>
                     <th scope="col">Télécharger Cours</th>
                   </tr>
                 </thead>
@@ -81,7 +82,8 @@ const DownloadCours = ({ setAlert, auth: { user } }) => {
                       <tr>
                         <td>{idx + 1}</td>
                         <td>{elem.filename}</td>
-                        <td>{elem.length}</td>
+                        <td>{elem.metadata.Prénom_Nom_Enseignant}</td>
+                        <td>{(elem.length / 1048576).toFixed(2)} MB</td>
                         {promiseInProgress && index === idx ? (
                           <button
                             className="btn btn-success ml-3 my-2"

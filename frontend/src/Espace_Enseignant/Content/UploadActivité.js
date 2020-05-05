@@ -19,6 +19,7 @@ const Activité = ({ setAlert, auth: { user } }) => {
     const file = document.getElementById("inputGroupFile01").files;
     const formData = new FormData();
     formData.append("classe_ciblée", classe);
+    formData.append("Prénom_Nom_Enseignant", user.prénom + " " + user.nom);
     formData.append("Enseignant_id", user.identifiant);
     formData.append("img", file[0]);
 
