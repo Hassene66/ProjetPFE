@@ -72,9 +72,9 @@ const Cours = ({ setAlert, auth: { user } }) => {
             onChange={(e) => onChange(e)}
             name="classe"
           >
-            {user.profileEnseignant.classeEnseigné.map((classe) => {
+            {user.profileEnseignant.classeEnseigné.map((classe, idx) => {
               return (
-                <option key={classe} value={classe}>
+                <option key={idx} value={classe}>
                   {classe}
                 </option>
               );

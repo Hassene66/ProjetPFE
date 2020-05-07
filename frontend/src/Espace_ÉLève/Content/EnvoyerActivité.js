@@ -6,48 +6,82 @@ import { usePromiseTracker } from "react-promise-tracker";
 import { trackPromise } from "react-promise-tracker";
 import PropTypes from "prop-types";
 import bsCustomFileInput from "bs-custom-file-input";
-const Activité = ({ setAlert, auth: { user } }) => {
-  const onChange = (e) => {
-    setFormData1({ ...formData1, [e.target.name]: e.target.value });
-  };
+import axios from "axios";
+import Spinner from "../../Components/Spinner";
+
+const EnvoyerActivité = ({ setAlert, auth: { user } }) => {
   const [formData1, setFormData1] = useState({
-    classe: user.profileEnseignant.classeEnseigné[0],
+    ListeDesEnseignant: [],
+    EnseignantSelectionné: "",
+    count: 0,
   });
-  const { classe } = formData1;
+  const [loadingState, setloadingState] = useState(false);
+
+  const { ListeDesEnseignant, EnseignantSelectionné, count } = formData1;
   const Post = (e) => {
     e.preventDefault();
     const file = document.getElementById("inputGroupFile01").files;
     const formData = new FormData();
-    formData.append("classe_ciblée", classe);
-    formData.append("Prénom_Nom_Enseignant", user.prénom + " " + user.nom);
-    formData.append("Enseignant_id", user.identifiant);
+    formData.append(
+      "Prénom_Nom_Enseignant",
+      EnseignantSelectionné.substring(4)
+    );
+    formData.append("Enseignant_id", ListeDesEnseignant[count].identifiant);
+    formData.append("Classe", user.profileEleve.classe);
     formData.append("img", file[0]);
 
     trackPromise(
-      fetch("/UploadActivite/", {
+      fetch("/EnvoyerActivite", {
         method: "POST",
         body: formData,
       }).then((res) =>
         setAlert(
           typeof file[0] === "undefined"
             ? "Veuillez insérer un fichier"
-            : "Activité publié avec succès",
+            : "Activité été envoyé avec succès",
           typeof file[0] === "undefined" ? "danger" : "success"
         )
       )
     );
   };
-
+  const onChange = (e) => {
+    setFormData1({
+      ...formData1,
+      [e.target.name]: e.target.value,
+      count: Number(e.target.value.charAt(0)) - 1,
+    });
+  };
+  bsCustomFileInput.init();
   useEffect(() => {
-    bsCustomFileInput.init();
-  }, []);
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const MonClasse = user.profileEleve.classe;
+    const body = JSON.stringify({ MonClasse });
 
+    axios
+      .post("/ListeEnseignant/", body, config)
+      .then((res) => {
+        setFormData1({
+          ...formData1,
+          ListeDesEnseignant: res.data,
+          EnseignantSelectionné:
+            "1 ) " + res.data[0].prénom + " " + res.data[0].nom,
+        });
+      })
+
+      .then(setloadingState({ loadingState: true }));
+  }, []);
   const { promiseInProgress } = usePromiseTracker();
-  return (
+  return loadingState === false && EnseignantSelectionné === "" ? (
+    <Spinner />
+  ) : (
     <div className="col p-3  ">
-      <div classname="container">
+      <div className="fluid-container">
         <Alert />
-        <h1 className="mb-3">Publier Activité </h1>
+        <h1 className="mb-3">Publier Cours </h1>
         <form>
           <h5>Choisir un fichier</h5>
           <div className="input-group mb-3 w-75">
@@ -64,22 +98,26 @@ const Activité = ({ setAlert, auth: { user } }) => {
               </label>
             </div>
           </div>
-          <h5>Choisir la classe</h5>
+          <h5>Choisir Enseignant</h5>
           <select
             className="form-control w-25"
             id="exampleFormControlSelect1"
-            value={classe}
+            value={EnseignantSelectionné}
             onChange={(e) => onChange(e)}
-            name="classe"
+            name="EnseignantSelectionné"
           >
-            {user.profileEnseignant.classeEnseigné.map((classe, idx) => {
+            {ListeDesEnseignant.map((Ens, idx) => {
               return (
-                <option key={idx} value={classe}>
-                  {classe}
+                <option
+                  key={idx}
+                  value={idx + 1 + " ) " + Ens.prénom + " " + Ens.nom}
+                >
+                  {idx + 1 + " ) " + Ens.prénom + " " + Ens.nom}
                 </option>
               );
             })}
           </select>
+
           {promiseInProgress ? (
             <button type="button" className="btn btn-primary mt-4">
               <i
@@ -102,10 +140,10 @@ const Activité = ({ setAlert, auth: { user } }) => {
     </div>
   );
 };
-Activité.prototype = {
+EnvoyerActivité.prototype = {
   auth: PropTypes.object.isRequired,
 };
 const mapStateToProps = (state) => ({
   auth: state.auth,
 });
-export default connect(mapStateToProps, { setAlert })(Activité);
+export default connect(mapStateToProps, { setAlert })(EnvoyerActivité);

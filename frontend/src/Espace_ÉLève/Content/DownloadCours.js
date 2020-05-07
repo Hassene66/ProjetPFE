@@ -59,7 +59,7 @@ const DownloadCours = ({ setAlert, auth: { user } }) => {
     <Spinner />
   ) : (
     <div className="col p-3  ">
-      <div classname="container">
+      <div className="fluid-container">
         {loadingState &&
           (Cours.length === 0 ? (
             <h1>Il n’y a pas encore des cours publiés</h1>
