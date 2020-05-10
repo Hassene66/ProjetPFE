@@ -102,6 +102,14 @@ const PageAcceuilEnseignant = () => {
                       Supprimer un activité
                     </Link>
                   </li>
+                  <li className="nav-item sub-menu">
+                    <Link
+                      className="nav-link nav-links-color"
+                      to="/PageAcceuilEnseignant/ActivitesRecues"
+                    >
+                      Activités Reçues
+                    </Link>
+                  </li>
                 </div>
                 <li className="nav-item">
                   <Link

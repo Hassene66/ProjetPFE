@@ -8,6 +8,7 @@ import PropTypes from "prop-types";
 import bsCustomFileInput from "bs-custom-file-input";
 import axios from "axios";
 import Spinner from "../../Components/Spinner";
+import moment from "moment-timezone";
 
 const EnvoyerActivité = ({ setAlert, auth: { user } }) => {
   const [formData1, setFormData1] = useState({
@@ -15,7 +16,6 @@ const EnvoyerActivité = ({ setAlert, auth: { user } }) => {
     EnseignantSelectionné: "",
     count: 0,
   });
-  const [loadingState, setloadingState] = useState(false);
 
   const { ListeDesEnseignant, EnseignantSelectionné, count } = formData1;
   const Post = (e) => {
@@ -26,7 +26,9 @@ const EnvoyerActivité = ({ setAlert, auth: { user } }) => {
       "Prénom_Nom_Enseignant",
       EnseignantSelectionné.substring(4)
     );
+    formData.append("Publié_Le", moment().tz("Africa/Tunis").format("L"));
     formData.append("Enseignant_id", ListeDesEnseignant[count].identifiant);
+    formData.append("Prénom_Nom_ÉLève", user.prénom + " " + user.nom);
     formData.append("Classe", user.profileEleve.classe);
     formData.append("img", file[0]);
 
@@ -51,7 +53,6 @@ const EnvoyerActivité = ({ setAlert, auth: { user } }) => {
       count: Number(e.target.value.charAt(0)) - 1,
     });
   };
-  bsCustomFileInput.init();
   useEffect(() => {
     const config = {
       headers: {
@@ -61,21 +62,20 @@ const EnvoyerActivité = ({ setAlert, auth: { user } }) => {
     const MonClasse = user.profileEleve.classe;
     const body = JSON.stringify({ MonClasse });
 
-    axios
-      .post("/ListeEnseignant/", body, config)
-      .then((res) => {
-        setFormData1({
-          ...formData1,
-          ListeDesEnseignant: res.data,
-          EnseignantSelectionné:
-            "1 ) " + res.data[0].prénom + " " + res.data[0].nom,
-        });
-      })
-
-      .then(setloadingState({ loadingState: true }));
+    axios.post("/ListeEnseignant/", body, config).then((res) => {
+      setFormData1({
+        ...formData1,
+        ListeDesEnseignant: res.data,
+        EnseignantSelectionné:
+          "1 ) " + res.data[0].prénom + " " + res.data[0].nom,
+      });
+    });
+    bsCustomFileInput.init();
   }, []);
+
   const { promiseInProgress } = usePromiseTracker();
-  return loadingState === false && EnseignantSelectionné === "" ? (
+
+  return EnseignantSelectionné === "" ? (
     <Spinner />
   ) : (
     <div className="col p-3  ">

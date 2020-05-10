@@ -1,10 +1,10 @@
 import React, { useState, useEffect, Fragment } from "react";
-import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { logout, login } from "../../actions/auth";
-import { getCurrentProfile } from "../../actions/profileEcole";
+import { logout, login } from "../actions/auth";
+import { getCurrentProfile } from "../actions/profileEcole";
 const Navbar = ({
   getCurrentProfile,
   profileEcole: { profile, loadingProfileEcole },

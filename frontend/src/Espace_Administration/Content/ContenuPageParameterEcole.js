@@ -4,12 +4,14 @@ import { CreateProfile, getCurrentProfile } from "../../actions/profileEcole";
 import { connect } from "react-redux";
 import Spinner from "../../Components/Spinner";
 import { Link, withRouter } from "react-router-dom";
+import Alert from "../../Components/alert";
+import "./ContenuPageParameterEcole.css";
 const ContenuPageParameterEcole = ({
   getCurrentProfile,
   auth,
   profileEcole: { profile, loadingProfileEcole },
   CreateProfile,
-  history
+  history,
 }) => {
   const [formData, setFormData] = useState({
     LogoEcole: "",
@@ -30,7 +32,7 @@ const ContenuPageParameterEcole = ({
     LesValeursDeNotreEcole: "",
     lesCyclesQueNotreEcolePropose: "",
     NosActivités: "",
-    NosFormations: ""
+    NosFormations: "",
   });
 
   //get current profile object a soon as ContenuPageParameterEcole page loades
@@ -56,7 +58,7 @@ const ContenuPageParameterEcole = ({
         LesValeursDeNotreEcole: "",
         lesCyclesQueNotreEcolePropose: "",
         NosActivités: "",
-        NosFormations: ""
+        NosFormations: "",
       });
     } else {
       setFormData({
@@ -78,7 +80,7 @@ const ContenuPageParameterEcole = ({
         LesValeursDeNotreEcole: profile.LesValeursDeNotreEcole,
         lesCyclesQueNotreEcolePropose: profile.lesCyclesQueNotreEcolePropose,
         NosActivités: profile.NosActivités,
-        NosFormations: profile.NosFormations
+        NosFormations: profile.NosFormations,
       });
     }
   }, [loadingProfileEcole]);
@@ -102,12 +104,12 @@ const ContenuPageParameterEcole = ({
     LesValeursDeNotreEcole,
     lesCyclesQueNotreEcolePropose,
     NosActivités,
-    NosFormations
+    NosFormations,
   } = formData;
-  const onChange = e => {
+  const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  const onSubmit = e => {
+  const onSubmit = (e) => {
     e.preventDefault();
     if (profile === null) {
       CreateProfile(formData, history);
@@ -119,8 +121,10 @@ const ContenuPageParameterEcole = ({
   return loadingProfileEcole && profile === null ? (
     <Spinner />
   ) : (
-    <div>
-      <form onSubmit={e => onSubmit(e)}>
+    <div className="col p-3  ">
+      <form onSubmit={(e) => onSubmit(e)}>
+        <h1>Paramétrer Mon Ecole</h1>
+        <Alert />
         <div className="row">
           {/* //LOGO */}
           <div className="  col-sm-6 ">
@@ -132,7 +136,7 @@ const ContenuPageParameterEcole = ({
                   </label>
                   <div className=" xx">
                     <input
-                      onChange={e => onChange(e)}
+                      onChange={(e) => onChange(e)}
                       className="form-control mr-3"
                       type="text"
                       placeholder="logo de l'école ici"
@@ -154,7 +158,7 @@ const ContenuPageParameterEcole = ({
                   </label>
                   <div className=" xx">
                     <input
-                      onChange={e => onChange(e)}
+                      onChange={(e) => onChange(e)}
                       className="form-control mr-3"
                       type="text"
                       placeholder="nom de l'ecole "
@@ -183,7 +187,7 @@ const ContenuPageParameterEcole = ({
                     data-icon="vaadin:phone-landline"
                   ></span>
                   <input
-                    onChange={e => onChange(e)}
+                    onChange={(e) => onChange(e)}
                     className="form-control y"
                     type="text"
                     placeholder="Numéro de téléphone"
@@ -202,7 +206,7 @@ const ContenuPageParameterEcole = ({
                     data-icon="ic:outline-email"
                   ></span>
                   <input
-                    onChange={e => onChange(e)}
+                    onChange={(e) => onChange(e)}
                     className="form-control y"
                     type="text"
                     placeholder="Email "
@@ -221,7 +225,7 @@ const ContenuPageParameterEcole = ({
                     data-icon="ic:sharp-location-on"
                   ></span>
                   <input
-                    onChange={e => onChange(e)}
+                    onChange={(e) => onChange(e)}
                     className="form-control y"
                     type="text"
                     placeholder="Emplacement de l'école"
@@ -252,7 +256,7 @@ const ContenuPageParameterEcole = ({
                     type="text"
                     name="LienFb"
                     value={LienFb}
-                    onChange={e => onChange(e)}
+                    onChange={(e) => onChange(e)}
                     placeholder="Lien vers la page Facebook"
                   ></input>
                 </div>
@@ -272,7 +276,7 @@ const ContenuPageParameterEcole = ({
                     placeholder="Lien vers la page Twitter"
                     name="LienTwitter"
                     value={LienTwitter}
-                    onChange={e => onChange(e)}
+                    onChange={(e) => onChange(e)}
                   ></input>
                 </div>
               </div>
@@ -291,7 +295,7 @@ const ContenuPageParameterEcole = ({
                     placeholder="Lien vers la page LinkedIn"
                     name="LienLinkedIn"
                     value={LienLinkedIn}
-                    onChange={e => onChange(e)}
+                    onChange={(e) => onChange(e)}
                   ></input>
                 </div>
               </div>
@@ -312,7 +316,7 @@ const ContenuPageParameterEcole = ({
                     rows="6"
                     value={QuiSommeNous}
                     name="QuiSommeNous"
-                    onChange={e => onChange(e)}
+                    onChange={(e) => onChange(e)}
                   ></textarea>
                 </div>
               </div>
@@ -327,7 +331,7 @@ const ContenuPageParameterEcole = ({
                     <h5>Mot du directeur</h5>
                   </label>
                   <textarea
-                    onChange={e => onChange(e)}
+                    onChange={(e) => onChange(e)}
                     className="form-control aa"
                     rows="6"
                     value={MotDeDirecteur}
@@ -358,7 +362,7 @@ const ContenuPageParameterEcole = ({
                     rows="6"
                     value={Témoinage}
                     name="Témoinage"
-                    onChange={e => onChange(e)}
+                    onChange={(e) => onChange(e)}
                   ></textarea>
                 </div>
               </div>
@@ -378,7 +382,7 @@ const ContenuPageParameterEcole = ({
                     formation ect ...)
                   </p>
                   <textarea
-                    onChange={e => onChange(e)}
+                    onChange={(e) => onChange(e)}
                     className="form-control aa"
                     rows="6"
                     value={LesPlusDeNotreEcole}
@@ -407,7 +411,7 @@ const ContenuPageParameterEcole = ({
                     rows="6"
                     value={LesValeursDeNotreEcole}
                     name="LesValeursDeNotreEcole"
-                    onChange={e => onChange(e)}
+                    onChange={(e) => onChange(e)}
                   ></textarea>
                 </div>
               </div>
@@ -428,7 +432,7 @@ const ContenuPageParameterEcole = ({
                     (ex. La septième est... / La huitième est ect ...)
                   </p>
                   <textarea
-                    onChange={e => onChange(e)}
+                    onChange={(e) => onChange(e)}
                     className="form-control aa"
                     rows="6"
                     value={lesCyclesQueNotreEcolePropose}
@@ -458,7 +462,7 @@ const ContenuPageParameterEcole = ({
                     rows="6"
                     value={NosActivités}
                     name="NosActivités"
-                    onChange={e => onChange(e)}
+                    onChange={(e) => onChange(e)}
                   ></textarea>
                 </div>
               </div>
@@ -478,7 +482,7 @@ const ContenuPageParameterEcole = ({
                     sur les projects et le pratique ...)
                   </p>
                   <textarea
-                    onChange={e => onChange(e)}
+                    onChange={(e) => onChange(e)}
                     className="form-control aa"
                     rows="6"
                     value={NosFormations}
@@ -500,7 +504,7 @@ const ContenuPageParameterEcole = ({
                   </label>
                   <div className=" xx">
                     <input
-                      onChange={e => onChange(e)}
+                      onChange={(e) => onChange(e)}
                       className="form-control mr-3"
                       type="text"
                       placeholder="nombre d'élèves ici"
@@ -522,7 +526,7 @@ const ContenuPageParameterEcole = ({
                   </label>
                   <div className=" xx">
                     <input
-                      onChange={e => onChange(e)}
+                      onChange={(e) => onChange(e)}
                       className="form-control mr-3"
                       type="text"
                       placeholder="nombre d'enseignants certifiés ici"
@@ -544,7 +548,7 @@ const ContenuPageParameterEcole = ({
                   </label>
                   <div className=" xx">
                     <input
-                      onChange={e => onChange(e)}
+                      onChange={(e) => onChange(e)}
                       className="form-control mr-3"
                       type="text"
                       placeholder="taux de réussite ici "
@@ -571,11 +575,11 @@ ContenuPageParameterEcole.propTypes = {
   getCurrentProfile: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   profileEcole: PropTypes.object.isRequired,
-  CreateProfile: PropTypes.func.isRequired
+  CreateProfile: PropTypes.func.isRequired,
 };
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   auth: state.auth,
-  profileEcole: state.profileEcole
+  profileEcole: state.profileEcole,
 });
 export default connect(mapStateToProps, { getCurrentProfile, CreateProfile })(
   withRouter(ContenuPageParameterEcole)

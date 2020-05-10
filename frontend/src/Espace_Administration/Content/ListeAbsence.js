@@ -2,11 +2,9 @@ import React, { Fragment, useState, useEffect } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import axios from "axios";
-import Spinner from "../../../Components/Spinner";
-import { setAlert } from "../../../actions/alert";
+import Spinner from "../../Components/Spinner";
 import moment from "moment-timezone";
 
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 const ListeAbsence = ({ auth: { user } }) => {
   const [formData, setFormData] = useState({
@@ -60,7 +58,6 @@ const ListeAbsence = ({ auth: { user } }) => {
         setFormData({ ...formData, ListeAbsence: res.data, submitted: true })
       );
   };
-  console.log(typeof ListeAbsence);
   return typeof classe[0] === "undefined" ? (
     <Spinner />
   ) : (
@@ -104,11 +101,11 @@ const ListeAbsence = ({ auth: { user } }) => {
                 <thead className="thead-dark ">
                   <tr>
                     <th scope="col">
-                      Enseignant :{elem.PrénomEtNomEnseignant}{" "}
+                      Enseignant : {elem.PrénomEtNomEnseignant}{" "}
                     </th>
                     <th scope="col">Matière : {elem.matièreEnseigné} </th>
                     <th scope="col">
-                      Date : {elem.Date} {"  "}Heurs : {elem.Temps}
+                      Date : {elem.Date} {"  "} Heurs : {elem.Temps}
                     </th>
                   </tr>
                 </thead>

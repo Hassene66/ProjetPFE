@@ -22,6 +22,7 @@ app.use("/UploadActivite", require("./routes/api/UploadActivité"));
 app.use("/ListeClasses", require("./routes/api/ListeClasse"));
 app.use("/ListeEnseignant", require("./routes/api/ListeEnseignant"));
 app.use("/EnvoyerActivite", require("./routes/api/EnvoyerActivité"));
+app.use("/GalerieImages", require("./routes/api/GèrerGalerie"));
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, console.log(`server started on port ${PORT}`));

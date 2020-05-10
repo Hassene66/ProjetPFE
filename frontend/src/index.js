@@ -2,11 +2,9 @@ import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
 import { Route, BrowserRouter, Switch } from "react-router-dom";
 
-import Page_parameter_mon_ecole from "./Espace_Administration/page_parameter_mon_ecole/PagePatemeterMonEcole";
-import PageAccueilAdministration from "./Espace_Administration/Page_accueil_administration/pageAccueilAdministration";
+import PageAccueilAdministration from "./Espace_Administration/PageAccueilAdministration";
 import PageAcceuilEnseignant from "./Espace_Enseignant/PageAcceuilEnseignant";
 import PageAcceuilEleve from "./Espace_ÉLève/PageAcceuilEleve";
-import PageGererLesEleves from "./Espace_Administration/Esapce_gerer_les_eleves/PageGererLesEleves";
 import PageLogin from "./page_Login/PageLogin";
 import PageAcceuil from "./Page_acceuil/Acceuil/pageAcceuil";
 import PagePresentation from "./Page_acceuil/Presentation/PagePresentation";
@@ -39,11 +37,6 @@ const App = () => {
           <Route exact path="/Contact" component={PageContact} />
           <Route exact path="/Activité" component={PageActivité} />
 
-          <PrivateRouteAdmin
-            exact
-            path="/ParameterMonEcole"
-            component={Page_parameter_mon_ecole}
-          />
           <Route exact path="/api/auth" component={PageLogin} />
 
           <PrivateRouteEnseignant
@@ -55,13 +48,8 @@ const App = () => {
             component={PageAcceuilEleve}
           />
           <PrivateRouteAdmin
-            exact
             path="/AccueilAdministration"
             component={PageAccueilAdministration}
-          />
-          <PrivateRouteAdmin
-            path="/GererLesEleves"
-            component={PageGererLesEleves}
           />
         </Switch>
       </div>

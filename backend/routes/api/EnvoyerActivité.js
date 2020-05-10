@@ -59,4 +59,52 @@ router.post("/", upload.single("img"), (req, res, err) => {
   }
 });
 
+router.post("/getFiles", (req, res) => {
+  var MesActivités = new Array();
+  gfs.files.find().toArray((err, files) => {
+    if (!files || files.length === 0) {
+      return res.status(404).json({
+        message: "Could not find files",
+      });
+    } else {
+      files.map((file) => {
+        if (
+          file.metadata.Classe === req.body.classe &&
+          file.metadata.Enseignant_id === req.body.Enseignant_id
+        ) {
+          MesActivités.push(file);
+        }
+      });
+      return res.json(MesActivités);
+    }
+  });
+});
+
+router.get("/download/:id", async (req, res) => {
+  await gfs.files.find({ _id: req.params.id }, (err, file) => {
+    // Check if file
+    if (!file || file.length === 0) {
+      return res.status(404).json({
+        err: "No file exists",
+      });
+    }
+    // File exists
+    res.set("Content-Type", file.contentType);
+    res.set(
+      "Content-Disposition",
+      'attachment; filename="' + file.filename + '"'
+    );
+    // streaming from gridfs
+    var readstream = gfs.createReadStream({
+      _id: req.params.id,
+    });
+    //error handling, e.g. file does not exist
+    readstream.on("error", function (err) {
+      console.log("An error occurred!", err);
+      throw err;
+    });
+    readstream.pipe(res);
+  });
+});
+
 module.exports = router;

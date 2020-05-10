@@ -8,6 +8,7 @@ import MesCours from "../Content/MesCours";
 import MesActivité from "../Content/MesActivité";
 import DeleteCours from "../Content/DeleteCours";
 import DeleteActivité from "../Content/DeleteActivité";
+import ActivitésReçues from "../Content/ActivitésReçues";
 import { Route, Switch } from "react-router-dom";
 import PrivateRouteEnseignant from "../../PrivateRoutes/PrivateRoutesEnseignant";
 
@@ -58,6 +59,11 @@ const Content = () => {
         exact
         path="/PageAcceuilEnseignant/SupprimerActivite"
         component={DeleteActivité}
+      />
+      <PrivateRouteEnseignant
+        exact
+        path="/PageAcceuilEnseignant/ActivitesRecues"
+        component={ActivitésReçues}
       />
     </Switch>
   );
