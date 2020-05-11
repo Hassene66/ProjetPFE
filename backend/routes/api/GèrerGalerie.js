@@ -58,141 +58,44 @@ router.post("/", upload.single("img"), (req, res, err) => {
   }
 });
 
-router.get("/get/:filename", (req, res) => {
-  gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
-    // Check if file
-    if (!file || file.length === 0) {
+router.get("/files/:id", (req, res) => {
+  var docId = mongoose.Types.ObjectId(req.params.id);
+  gfs.files.find({ _id: docId }).toArray((err, files) => {
+    if (!files || files.length === 0) {
       return res.status(404).json({
-        err: "No file exists",
+        message: "Could not find file",
       });
     }
 
-    // Check if image
-    if (file.contentType === "image/jpeg" || file.contentType === "image/png") {
-      // Read output to browser
-      const readstream = gfs.createReadStream(file.filename);
-      readstream.pipe(res);
-    } else {
-      res.status(404).json({
-        err: "Not an image",
-      });
-    }
+    var readstream = gfs.createReadStream({
+      filename: files[0].filename,
+    });
+    res.set("Content-Type", files[0].contentType);
+    return readstream.pipe(res);
   });
 });
 
-router.post("/files", (req, res) => {
-  gfs.files
-    .find({ "metadata.Enseignant_id": req.body.identifiant })
-    .toArray((err, files) => {
-      if (!files || files.length === 0) {
-        return res.status(404).json({
-          message: "Could not find files",
-        });
-      }
-      return res.json(files);
-    });
-});
-
-router.post("/getFiles", (req, res) => {
-  var MesCours = new Array();
+router.get("/getFiles", (req, res) => {
   gfs.files.find().toArray((err, files) => {
     if (!files || files.length === 0) {
       return res.status(404).json({
         message: "Could not find files",
       });
-    } else {
-      files.map((file) => {
-        if (file.metadata.classe_ciblée === req.body.monClasse) {
-          MesCours.push(file);
-        }
-      });
-      return res.json(MesCours);
     }
-  });
-});
-router.delete("/files/:id", async (req, res) => {
-  await gfs.remove({ _id: req.params.id, root: "Cours" }, (err, gridStore) => {
-    if (err) {
-      return res.status(404).json({ err: err });
-    }
-    return res.json({ message: "file was deleted" });
+    return res.json(files);
   });
 });
 
-// @route GET /download/:filename
-// @desc  Download single file object
-router.get("/download/:id", (req, res) => {
-  gfs.files.find({ _id: req.params.id }, (err, file) => {
-    // Check if file
-    if (!file || file.length === 0) {
-      return res.status(404).json({
-        err: "No file exists",
-      });
-    }
-    // File exists
-    res.set("Content-Type", file.contentType);
-    res.set(
-      "Content-Disposition",
-      'attachment; filename="' + file.filename + '"'
-    );
-    // streaming from gridfs
-    var readstream = gfs.createReadStream({
-      _id: req.params.id,
-    });
-    //error handling, e.g. file does not exist
-    readstream.on("error", function (err) {
-      console.log("An error occurred!", err);
-      throw err;
-    });
-    readstream.pipe(res);
-  });
-});
-
-router.get("/downloads", async (req, res) => {
-  await gfs.files.find().toArray((err, files) => {
-    // Check if file
-    if (!files || files.length === 0) {
-      return res.status(404).json({
-        err: "No file exists",
-      });
-    }
-
-    console.log(files);
-    files.map((file) => {
-      // File exists
-      res.set("Content-Type", file.contentType);
-      res.set(
-        "Content-Disposition",
-        'attachment; filename="' + file.filename + '"'
-      );
-      // streaming from gridfs
-      var readstream = gfs.createReadStream({
-        _id: file._id,
-      });
-
-      //error handling, e.g. file does not exist
-      readstream.on("error", function (err) {
-        console.log("An error occurred!", err);
-        throw err;
-      });
-      readstream.pipe(res);
-    });
-  });
-});
-
-app.get("/image/:filename", (req, res) => {
-  // console.log('id', req.params.id)
-  const file = gfs
-    .find({
-      filename: req.params.filename,
-    })
-    .toArray((err, files) => {
-      if (!files || files.length === 0) {
-        return res.status(404).json({
-          err: "no files exist",
-        });
+router.delete("/deleteFiles/:id", async (req, res) => {
+  await gfs.remove(
+    { _id: req.params.id, root: "GalerieImages" },
+    (err, gridStore) => {
+      if (err) {
+        return res.status(404).json({ err: err });
       }
-      gfs.openDownloadStreamByName(req.params.filename).pipe(res);
-    });
+      return res.json({ message: "file was deleted" });
+    }
+  );
 });
+
 module.exports = router;

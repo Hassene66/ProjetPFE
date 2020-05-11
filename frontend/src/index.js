@@ -11,6 +11,7 @@ import PagePresentation from "./Page_acceuil/Presentation/PagePresentation";
 import PageFormation from "./Page_acceuil/Nos_formation/PageFormation";
 import PageContact from "./Page_acceuil/Contact/PageContact";
 import PageActivité from "./Page_acceuil/Activité/PageActivité";
+import PageGalerie from "./Page_acceuil/Galerie/PageGalerie";
 import store from "./store";
 import { loadUser } from "./actions/auth";
 import setAuthToken from "./utils/setAuthToken";
@@ -36,6 +37,7 @@ const App = () => {
           <Route exact path="/NosFormation" component={PageFormation} />
           <Route exact path="/Contact" component={PageContact} />
           <Route exact path="/Activité" component={PageActivité} />
+          <Route exact path="/Galerie" component={PageGalerie} />
 
           <Route exact path="/api/auth" component={PageLogin} />
 

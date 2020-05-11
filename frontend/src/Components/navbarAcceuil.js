@@ -109,28 +109,10 @@ const Navbar = ({
                 Activités
               </Link>
             </li>
-
-            <li className="nav-item dropdown">
-              <Link
-                className="nav-link dropdown-toggle pl-3"
-                to="/Galerie"
-                id="navbarDropdown"
-                role="button"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
+            <li className="nav-item active ml-3 mr-3">
+              <Link className="nav-link" to="/Galerie">
                 Galerie
               </Link>
-              <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <Link className="dropdown-item" to="/Galerie/Image">
-                  Images
-                </Link>
-
-                <Link className="dropdown-item" to="/Galerie/Video">
-                  Videos
-                </Link>
-              </div>
             </li>
 
             <li className="nav-item  ml-3 active ">
