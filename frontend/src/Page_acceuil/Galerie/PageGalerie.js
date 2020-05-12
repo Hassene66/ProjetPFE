@@ -1,39 +1,27 @@
-import React, { useState, useEffect, Fragment } from "react";
-import Gallery from "react-grid-gallery";
-import axios from "axios";
-import { usePromiseTracker } from "react-promise-tracker";
-import { trackPromise } from "react-promise-tracker";
-
-const PageGalerie = () => {
-  const [formData, setFormData] = useState({ ListeImage: [] });
-  const { ListeImage } = formData;
-
-  useEffect(() => {
-    trackPromise(
-      axios.get("/GalerieImages/getFiles").then((res) => {
-        setFormData({
-          ...formData,
-          ListeImage: res.data,
-        });
-      })
+import React, { Component } from "react";
+import Navbar from "../../Components/navbarAcceuil";
+import Footer from "../../Components/footerAcceuil";
+import ListeImage from "./GalerieImage";
+import Jumbotron from "./ImageJumbotron";
+export class PageFormation extends Component {
+  render() {
+    return (
+      <div>
+        <div className="Site">
+          <div className="Site-content mb-5">
+            <div className="fluid-container  ">
+              <Navbar />
+              <Jumbotron />
+              <ListeImage />
+            </div>
+          </div>
+          <div>
+            <Footer />
+          </div>
+        </div>
+      </div>
     );
-  }, []);
-  var IMAGES = [];
-  if (ListeImage.length > 0) {
-    ListeImage.map((image) => {
-      IMAGES.push({
-        src: `http://localhost:5000/GalerieImages/files/${image._id}`,
-        thumbnail: `http://localhost:5000/GalerieImages/files/${image._id}`,
-        thumbnailWidth: 1920,
-        thumbnailHeight: 1080,
-      });
-    });
   }
+}
 
-  return (
-    <div>
-      <Gallery images={IMAGES} />,
-    </div>
-  );
-};
-export default PageGalerie;
+export default PageFormation;

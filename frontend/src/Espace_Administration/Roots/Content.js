@@ -2,6 +2,7 @@ import React from "react";
 import ListeAbsence from "../Content/ListeAbsence";
 import ContenuPageParameterEcole from "../Content/ContenuPageParameterEcole";
 import GalerieImage from "../Content/UploadImages";
+import SupprimerImage from "../Content/DeleteImage";
 import { Route, Switch } from "react-router-dom";
 import PrivateRoutesAdmin from "../../PrivateRoutes/PrivateRoutesAdmin";
 
@@ -20,8 +21,13 @@ const Content = () => {
       />
       <PrivateRoutesAdmin
         exact
-        path="/AccueilAdministration/GererGalerie"
+        path="/AccueilAdministration/AjouterImage"
         component={GalerieImage}
+      />
+      <PrivateRoutesAdmin
+        exact
+        path="/AccueilAdministration/SupprimerImage"
+        component={SupprimerImage}
       />
     </Switch>
   );

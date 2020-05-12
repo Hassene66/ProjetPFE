@@ -3,7 +3,7 @@ import "./jumbotron1.css";
 export class Jumbotron extends Component {
   render() {
     return (
-      <div>
+      <div className="jumbo">
         <div className="container">
           <div className="jumbotron img-fluid text-center ">
             <div className="row"></div>

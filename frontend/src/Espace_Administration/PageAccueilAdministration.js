@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 const PageAcceuilEleve = () => {
   const [showSubÉlève, setShowSubÉlève] = useState(false);
   const [showSubEnseignant, setShowSubEnseignant] = useState(false);
+  const [showSubGalerie, setShowSubGalerie] = useState(false);
   return (
     <div style={{ paddingTop: "62px" }}>
       <Navbar />
@@ -73,14 +74,35 @@ const PageAcceuilEleve = () => {
                     </Link>
                   </li>
                 </div>
-                <li className="nav-item">
+
+                <li className="nav-item  flex-row ">
                   <Link
-                    className="nav-link active nav-links-color"
-                    to="/AccueilAdministration/GererGalerie"
+                    className="nav-link nav-links-color dropdown-toggle "
+                    to="#"
+                    disabled
+                    onClick={() => setShowSubGalerie(!showSubGalerie)}
                   >
                     Gèrer galerie
                   </Link>
                 </li>
+                <div className={showSubGalerie ? "show" : "hide"}>
+                  <li className="nav-item sub-menu">
+                    <Link
+                      className="nav-link nav-links-color"
+                      to="/AccueilAdministration/AjouterImage"
+                    >
+                      Ajouter images
+                    </Link>
+                  </li>
+                  <li className="nav-item sub-menu">
+                    <Link
+                      className="nav-link nav-links-color"
+                      to="/AccueilAdministration/SupprimerImage"
+                    >
+                      Supprimer images
+                    </Link>
+                  </li>
+                </div>
               </ul>
             </div>
           </div>
