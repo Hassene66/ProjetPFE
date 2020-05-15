@@ -9,7 +9,7 @@ export class PageFormation extends Component {
       <div>
         <div className="Site">
           <div className="Site-content mb-5">
-            <div className="fluid-container  ">
+            <div className="fluid-container">
               <Navbar />
               <Jumbotron />
               <ListeImage />

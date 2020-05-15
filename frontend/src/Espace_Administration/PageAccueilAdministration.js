@@ -8,7 +8,7 @@ const PageAcceuilEleve = () => {
   const [showSubEnseignant, setShowSubEnseignant] = useState(false);
   const [showSubGalerie, setShowSubGalerie] = useState(false);
   return (
-    <div style={{ paddingTop: "62px" }}>
+    <div style={{ paddingTop: "68px" }}>
       <Navbar />
       <div className="container-fluid px-0">
         <div className="row collapse show no-gutters d-flex h-100 position-relative">
@@ -103,6 +103,14 @@ const PageAcceuilEleve = () => {
                     </Link>
                   </li>
                 </div>
+                <li className="nav-item">
+                  <Link
+                    className="nav-link active nav-links-color"
+                    to="/AccueilAdministration/listeContacterNous"
+                  >
+                    Liste Des Messages
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>

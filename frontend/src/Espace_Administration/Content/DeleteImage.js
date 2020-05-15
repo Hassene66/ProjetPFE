@@ -1,5 +1,4 @@
 import React, { useState, useEffect, Fragment } from "react";
-import img from "./imagesForGallerie/IMG_20190529_104205.jpg";
 import axios from "axios";
 import Spinner from "../../Components/Spinner";
 
@@ -28,7 +27,7 @@ function ImagesGrid() {
       <div className="row">
         {ListeImage.map((elem) => {
           return (
-            <div className="col-lg-2 col-sm-3 pb-4 ">
+            <div className="col-lg-2 col-sm-4 pb-4 ">
               <div className="thumbnail">
                 <img
                   src={`http://localhost:5000/GalerieImages/files/${elem._id}`}

@@ -5,6 +5,11 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout, login } from "../actions/auth";
 import { getCurrentProfile } from "../actions/profileEcole";
+import NotificationBadge from "react-notification-badge";
+import { Effect } from "react-notification-badge";
+import axios from "axios";
+import moment from "moment-timezone";
+
 const Navbar = ({
   getCurrentProfile,
   profileEcole: { profile, loadingProfileEcole },
@@ -14,6 +19,7 @@ const Navbar = ({
     LogoEcole: "",
     NomEcole: "",
   });
+  const [stateBadgeMsg, setStateBadgeMsg] = useState(1);
 
   useEffect(() => {
     getCurrentProfile();
@@ -23,6 +29,9 @@ const Navbar = ({
         NomEcole: "",
       });
     } else {
+      axios.get("/ContacterNous/countDocuments").then((res) => {
+        setStateBadgeMsg({ stateBadgeMsg: res.data });
+      });
       setStateNav({
         LogoEcole: profile.LogoEcole,
         NomEcole: profile.NomEcole,
@@ -31,15 +40,9 @@ const Navbar = ({
   }, [loadingProfileEcole]);
 
   function getCurrentDate() {
-    var tempDate = new Date();
-    var date =
-      tempDate.getDate() +
-      "/" +
-      (tempDate.getMonth() + 1) +
-      "/" +
-      tempDate.getFullYear();
+    var date = moment().tz("Africa/Tunis").format("L");
 
-    return <h6 className="mb-0 pt-1">{date}</h6>;
+    return <h5 className="mb-0 ">{date}</h5>;
   }
   const { LogoEcole, NomEcole } = stateNav;
   return (
@@ -73,28 +76,32 @@ const Navbar = ({
               <i className="fa fa-bars fa-lg"></i>
             </Link>
             <ul className="navbar-nav ml-auto flex-row">
-              <li className="nav-item mr-4 mr-sm-5 text-white">
+              <li className="nav-item mr-4 mr-sm-5 text-white d-flex align-items-center">
                 {getCurrentDate()}
               </li>
-              <li className="nav-item ">
+              <li className="nav-item d-flex align-items-center ">
+                <Link
+                  className="nav-link py-0"
+                  to="/AccueilAdministration/listeContacterNous"
+                >
+                  <NotificationBadge
+                    count={stateBadgeMsg.stateBadgeMsg}
+                    effect={Effect.SCALE}
+                  />
+                  <i className="far fa-envelope text-white fa-2x"></i>
+                </Link>
+              </li>
+              <li className="nav-item d-flex align-items-center ">
                 <Link>
                   <i
-                    className="fab fa-facebook-messenger fa-lg pt-2 "
+                    className="far fa-bell fa-2x  mx-4 mx-sm-5"
                     style={{ color: "white" }}
                   />
                 </Link>
               </li>
-              <li className="nav-item ">
-                <Link>
-                  <i
-                    className="fas fa-bell fa-lg pt-2 mx-4 mx-sm-5"
-                    style={{ color: "white" }}
-                  />
-                </Link>
-              </li>
-              <li className="nav-item ">
+              <li className="nav-item d-flex align-items-center ">
                 <Link className="nav-link p-0 " onClick={logout} to="/">
-                  <button className="btn btn-light btn-sm d-flex flex-row">
+                  <button className="btn btn-light btn-sm d-flex flex-row py-2">
                     <i className="fas fa-sign-out-alt fa-lg pt-1 mr-1  "></i>
                     <h6 className=" mr-2 mb-0  ">Déconnection</h6>
                   </button>
