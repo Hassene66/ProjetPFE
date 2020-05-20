@@ -9,7 +9,7 @@ import NotificationBadge from "react-notification-badge";
 import { Effect } from "react-notification-badge";
 import axios from "axios";
 import moment from "moment-timezone";
-
+import "./Navbar.css";
 const Navbar = ({
   getCurrentProfile,
   profileEcole: { profile, loadingProfileEcole },
@@ -46,7 +46,7 @@ const Navbar = ({
   }
   const { LogoEcole, NomEcole } = stateNav;
   return (
-    <div>
+    <div className="Navbar-notification">
       <div className="container-fluid fixed-top bg-dark py-3 navbar-nav">
         <div className="row collapse show no-gutters d-flex h-100 position-relative">
           <div className=" px-0 w-sidebar navbar-collapse collapse d-none d-md-flex ">
@@ -88,16 +88,112 @@ const Navbar = ({
                     count={stateBadgeMsg.stateBadgeMsg}
                     effect={Effect.SCALE}
                   />
-                  <i className="far fa-envelope text-white fa-2x"></i>
+                  <i className="far fa-envelope text-white fa-2x mr-4 mr-sm-5"></i>
                 </Link>
               </li>
               <li className="nav-item d-flex align-items-center ">
-                <Link>
+                <a
+                  className=" text-light"
+                  href="#!"
+                  id="navbarDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
                   <i
-                    className="far fa-bell fa-2x  mx-4 mx-sm-5"
+                    className="far fa-bell fa-2x  mr-4 mr-sm-5"
                     style={{ color: "white" }}
                   />
-                </Link>
+                </a>
+
+                <ul className="dropdown-menu mt-4">
+                  <li className="head text-light bg-secondary">
+                    <div className="row">
+                      <div className="col-lg-12 col-sm-12 col-12">
+                        <span>Notifications (3)</span>
+                        <a href className="float-right text-light">
+                          Mark all as read
+                        </a>
+                      </div>
+                    </div>
+                  </li>
+                  <div className="what">
+                    <li className="notification-box">
+                      <div className="row">
+                        <div className="col-lg-3 col-sm-3 col-3 text-center ">
+                          <img
+                            src="/demo/man-profile.jpg"
+                            className="w-50 rounded-circle"
+                          />
+                        </div>
+                        <div className="col-lg-8 col-sm-8 col-8">
+                          <strong className="text-info">David John</strong>
+                          <div>Lorem ipsum dolor sit amet, consectetur</div>
+                          <small className="text-warning">
+                            27.11.2015, 15:00
+                          </small>
+                        </div>
+                      </div>
+                    </li>
+                    <li className="notification-box bg-gray">
+                      <div className="row">
+                        <div className="col-lg-3 col-sm-3 col-3 text-center">
+                          <img
+                            src="/demo/man-profile.jpg"
+                            className="w-50 rounded-circle"
+                          />
+                        </div>
+                        <div className="col-lg-8 col-sm-8 col-8">
+                          <strong className="text-info">David John</strong>
+                          <div>Lorem ipsum dolor sit amet, consectetur</div>
+                          <small className="text-warning">
+                            27.11.2015, 15:00
+                          </small>
+                        </div>
+                      </div>
+                    </li>
+                    <li className="notification-box">
+                      <div className="row">
+                        <div className="col-lg-3 col-sm-3 col-3 text-center">
+                          <img
+                            src="/demo/man-profile.jpg"
+                            className="w-50 rounded-circle"
+                          />
+                        </div>
+                        <div className="col-lg-8 col-sm-8 col-8">
+                          <strong className="text-info">David John</strong>
+                          <div>Lorem ipsum dolor sit amet, consectetur</div>
+                          <small className="text-warning">
+                            27.11.2015, 15:00
+                          </small>
+                        </div>
+                      </div>
+                    </li>
+                    <li className="notification-box">
+                      <div className="row">
+                        <div className="col-lg-3 col-sm-3 col-3 text-center">
+                          <img
+                            src="/demo/man-profile.jpg"
+                            className="w-50 rounded-circle"
+                          />
+                        </div>
+                        <div className="col-lg-8 col-sm-8 col-8">
+                          <strong className="text-info">David John</strong>
+                          <div>Lorem ipsum dolor sit amet, consectetur</div>
+                          <small className="text-warning">
+                            27.11.2015, 15:00
+                          </small>
+                        </div>
+                      </div>
+                    </li>
+                  </div>
+                  <li className="footer bg-secondary text-center">
+                    <a href className="text-light">
+                      View All
+                    </a>
+                  </li>
+                </ul>
               </li>
               <li className="nav-item d-flex align-items-center ">
                 <Link className="nav-link p-0 " onClick={logout} to="/">

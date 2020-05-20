@@ -4,6 +4,7 @@ import ContenuPageParameterEcole from "../Content/ContenuPageParameterEcole";
 import GalerieImage from "../Content/UploadImages";
 import SupprimerImage from "../Content/DeleteImage";
 import ContacterNous from "../Content/AfficherContacterNous";
+import MoyenneÉlève from "../Content/Moyenne";
 import { Route, Switch } from "react-router-dom";
 import PrivateRoutesAdmin from "../../PrivateRoutes/PrivateRoutesAdmin";
 
@@ -34,6 +35,11 @@ const Content = () => {
         exact
         path="/AccueilAdministration/listeContacterNous"
         component={ContacterNous}
+      />
+      <PrivateRoutesAdmin
+        exact
+        path="/AccueilAdministration/AttribuerMoyenne"
+        component={MoyenneÉlève}
       />
     </Switch>
   );

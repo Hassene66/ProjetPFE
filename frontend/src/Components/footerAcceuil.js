@@ -7,7 +7,7 @@ import axios from "axios";
 
 const Footer = ({
   getCurrentProfile,
-  profileEcole: { profile, loadingProfileEcole }
+  profileEcole: { profile, loadingProfileEcole },
 }) => {
   const [stateFooterAcceuil, setStateFooterAcceuil] = useState({
     NumeroDeTel: "",
@@ -17,7 +17,7 @@ const Footer = ({
     LienTwitter: "",
     LienLinkedIn: "",
     NomEcole: "",
-    newsletter: ""
+    newsletter: "",
   });
 
   useEffect(() => {
@@ -30,7 +30,7 @@ const Footer = ({
         LienFb: "",
         LienTwitter: "",
         LienLinkedIn: "",
-        NomEcole: ""
+        NomEcole: "",
       });
     } else {
       setStateFooterAcceuil({
@@ -40,7 +40,7 @@ const Footer = ({
         LienFb: profile.LienFb,
         LienTwitter: profile.LienTwitter,
         LienLinkedIn: profile.LienLinkedIn,
-        NomEcole: profile.NomEcole
+        NomEcole: profile.NomEcole,
       });
     }
   }, [loadingProfileEcole]);
@@ -51,20 +51,20 @@ const Footer = ({
     LienFb,
     LienTwitter,
     LienLinkedIn,
-    NomEcole
+    NomEcole,
   } = stateFooterAcceuil;
-  const onChange = e => {
+  const onChange = (e) => {
     setStateFooterAcceuil({
       ...stateFooterAcceuil,
-      newsletter: e.target.value
+      newsletter: e.target.value,
     });
   };
-  const handleClick1 = e => {
+  const handleClick1 = (e) => {
     const letter = {
-      newsletter: stateFooterAcceuil.newsletter
+      newsletter: stateFooterAcceuil.newsletter,
     };
     console.log(stateFooterAcceuil.newsletter);
-    axios.post("/Newsletter", letter).then(res => console.log(res.data));
+    axios.post("/Newsletter", letter).then((res) => console.log(res.data));
     setStateFooterAcceuil({ newsletter: e.target.value });
   };
 
@@ -75,7 +75,7 @@ const Footer = ({
           <div className="row d-flex justify-content-between">
             <div className="col-lg-4 col-md-4 col-sm-6 mt-2 mb-4">
               <h5 className="mb-4 font-weight-bold">NOUS CONTACTER</h5>
-              <h6 className="mb-4">Vous avez des questions?</h6>
+              <h6 className="mb-4"> Avez vous des questions ?</h6>
               <ul className="f-address pl-0">
                 <li>
                   <div className="row">
@@ -133,21 +133,21 @@ const Footer = ({
 
             <div className="col-lg-4 col-md-4 col-sm-6 mt-2 mb-4">
               <h5 className="mb-4 font-weight-bold mr-5">
-                ABONNEZ-VOUS À NOTRE NEWSLETTER
+                S'INSCRIRE AU NEWSLETTER
               </h5>
               <div className="input-group">
                 <input
                   type="text"
                   className="form-control "
                   placeholder="Votre adresse email"
-                  onChange={e => onChange(e)}
+                  onChange={(e) => onChange(e)}
                   value={stateFooterAcceuil.newsletter}
                 />
 
                 <button
                   type="button"
                   className="btn btn-primary "
-                  onClick={e => handleClick1(e)}
+                  onClick={(e) => handleClick1(e)}
                 >
                   Ok
                 </button>
@@ -182,7 +182,7 @@ const Footer = ({
           <div className="row ">
             <div className="col-md-12  ">
               <div className="text-center text-white ">
-                © 2020 {NomEcole}. All Rights Reserved.
+                © 2020 {NomEcole}. Tous Droits Réservés.
               </div>
             </div>
           </div>
@@ -194,9 +194,9 @@ const Footer = ({
 
 Footer.prototype = {
   getCurrentProfile: PropTypes.func.isRequired,
-  profileEcole: PropTypes.object.isRequired
+  profileEcole: PropTypes.object.isRequired,
 };
-const mapStateToProps = state => ({
-  profileEcole: state.profileEcole
+const mapStateToProps = (state) => ({
+  profileEcole: state.profileEcole,
 });
 export default connect(mapStateToProps, { getCurrentProfile })(Footer);

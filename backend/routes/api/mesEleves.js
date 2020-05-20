@@ -8,6 +8,7 @@ router.post("/mesEleves", auth, async (req, res) => {
   try {
     const mesEleves = await User.find({
       "profileEleve.classe": req.body.classe,
+      typeUtilisateur: "élève",
     });
 
     if (mesEleves.length > 0) {

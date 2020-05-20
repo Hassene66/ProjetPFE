@@ -23,6 +23,7 @@ app.use("/ListeClasses", require("./routes/api/ListeClasse"));
 app.use("/ListeEnseignant", require("./routes/api/ListeEnseignant"));
 app.use("/EnvoyerActivite", require("./routes/api/EnvoyerActivité"));
 app.use("/GalerieImages", require("./routes/api/GèrerGalerie"));
+app.use("/Admin", require("./routes/api/MoyenneÉlève"));
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, console.log(`server started on port ${PORT}`));

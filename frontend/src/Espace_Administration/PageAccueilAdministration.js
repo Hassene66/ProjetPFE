@@ -8,7 +8,7 @@ const PageAcceuilEleve = () => {
   const [showSubEnseignant, setShowSubEnseignant] = useState(false);
   const [showSubGalerie, setShowSubGalerie] = useState(false);
   return (
-    <div style={{ paddingTop: "68px" }}>
+    <div style={{ paddingTop: "69px" }}>
       <Navbar />
       <div className="container-fluid px-0">
         <div className="row collapse show no-gutters d-flex h-100 position-relative">
@@ -109,6 +109,14 @@ const PageAcceuilEleve = () => {
                     to="/AccueilAdministration/listeContacterNous"
                   >
                     Liste Des Messages
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link
+                    className="nav-link active nav-links-color"
+                    to="/AccueilAdministration/AttribuerMoyenne"
+                  >
+                    Attribuer Moyenne
                   </Link>
                 </li>
               </ul>

@@ -5,90 +5,133 @@ import axios from "axios";
 import Spinner from "../../Components/Spinner";
 import { setAlert } from "../../actions/alert";
 import Alert from "../../Components/alert";
-const AttribuerNote = ({ setAlert, auth: { user } }) => {
+const MoyenneÉlève = ({ setAlert, auth: { user } }) => {
   const [formData, setFormData] = useState({
-    classe: user.profileEnseignant.classeEnseigné[0],
-    listeDesEleves: [],
-    contrôle1: "",
-    synthèse1: "",
-    contrôle2: "",
-    synthèse2: "",
-    contrôle3: "",
-    synthèse3: "",
-    élèveSelectioné: "",
+    classe: [],
+    classeSelectioné: "",
+    MoyenneS1: "",
+    MoyenneS2: "",
+    MoyenneS3: "",
     submitted: false,
     count: 0,
+  });
+  const [formData1, setFormData1] = useState({
+    listeDesEleves: [],
+    élèveSelectioné: "",
   });
 
   const {
     classe,
-    listeDesEleves,
-    contrôle1,
-    contrôle2,
-    contrôle3,
-    synthèse1,
-    synthèse2,
-    synthèse3,
+    classeSelectioné,
+    MoyenneS1,
+    MoyenneS2,
+    MoyenneS3,
     submitted,
-    élèveSelectioné,
     count,
   } = formData;
-
+  const { élèveSelectioné, listeDesEleves } = formData1;
   useEffect(() => {
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-    const body = JSON.stringify({ classe });
-    axios.post("/Enseignant/mesEleves", body, config).then((res) => {
-      if (typeof res.data === "object") {
-        setFormData({
-          ...formData,
-          listeDesEleves: res.data,
-          élèveSelectioné: "1 ) " + res.data[0].prénom + " " + res.data[0].nom,
-        });
-      } else {
-        if (typeof res.data === "string") {
-          setFormData({
-            ...formData,
+    async function anyNameFunction() {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      const response = await axios.get("/ListeClasses");
+      setFormData({
+        ...formData,
+        classe: response.data,
+        classeSelectioné: response.data[0],
+      });
+      let classe = response.data[0];
+      const body = JSON.stringify({ classe });
+      await axios.post("/Admin/mesEleves", body, config).then((res) => {
+        if (typeof res.data === "object") {
+          setFormData1({
+            ...formData1,
             listeDesEleves: res.data,
-            submitted: true,
+            élèveSelectioné:
+              "1 ) " + res.data[0].prénom + " " + res.data[0].nom,
           });
+        } else {
+          if (typeof res.data === "string") {
+            setFormData1({
+              ...formData1,
+              listeDesEleves: res.data,
+              submitted: true,
+            });
+          }
         }
-      }
-    });
-  }, [classe]);
+      });
+    }
+    anyNameFunction();
+  }, []);
+
   const onChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
       submitted: false,
     });
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const classe = e.target.value;
+    const body = JSON.stringify({ classe });
+    axios.post("/Admin/mesEleves", body, config).then((res) => {
+      if (typeof res.data === "object") {
+        setFormData1({
+          ...formData1,
+          listeDesEleves: res.data,
+          élèveSelectioné: "1 ) " + res.data[0].prénom + " " + res.data[0].nom,
+        });
+      } else {
+        if (typeof res.data === "string") {
+          setFormData1({
+            ...formData1,
+            listeDesEleves: res.data,
+            submitted: true,
+          });
+        }
+      }
+    });
+  };
+  const onChange1 = (e) => {
+    setFormData1({
+      ...formData1,
+      [e.target.name]: e.target.value,
+    });
+    setFormData({
+      ...formData,
+      submitted: false,
+    });
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
+    setFormData({
+      ...formData,
+      submitted: true,
+    });
     const config = {
       headers: {
         "Content-Type": "application/json",
       },
     };
     const lastcount = Number(élèveSelectioné.charAt(0)) - 1;
+    console.log(élèveSelectioné);
     const identifiant = listeDesEleves[lastcount].identifiant;
-    const matièreEnseigné = user.profileEnseignant.matièreEnseigné;
-    const body = JSON.stringify({ identifiant, matièreEnseigné });
-
-    axios.post("/Enseignant/NoteEleve", body, config).then((res) => {
+    const body = JSON.stringify({ identifiant });
+    axios.post("/Admin/NoteEleve", body, config).then((res) => {
+      console.log(typeof res.data);
       if (typeof res.data === "object" && Object.entries(res.data).length > 0) {
         setFormData({
           ...formData,
-          contrôle1: res.data.noteContrôle1,
-          contrôle2: res.data.noteContrôle2,
-          contrôle3: res.data.noteContrôle3,
-          synthèse1: res.data.noteSynthèse1,
-          synthèse2: res.data.noteSynthèse2,
-          synthèse3: res.data.noteSynthèse3,
+          MoyenneS1: res.data.MoyenneS1,
+          MoyenneS2: res.data.MoyenneS2,
+          MoyenneS3: res.data.MoyenneS3,
           submitted: true,
           count: Number(élèveSelectioné.charAt(0)) - 1,
         });
@@ -96,12 +139,9 @@ const AttribuerNote = ({ setAlert, auth: { user } }) => {
         if (typeof res.data === "string") {
           setFormData({
             ...formData,
-            contrôle1: "",
-            synthèse1: "",
-            contrôle2: "",
-            synthèse2: "",
-            contrôle3: "",
-            synthèse3: "",
+            MoyenneS1: "",
+            MoyenneS2: "",
+            MoyenneS3: "",
             submitted: true,
             count: Number(élèveSelectioné.charAt(0)) - 1,
           });
@@ -116,22 +156,16 @@ const AttribuerNote = ({ setAlert, auth: { user } }) => {
       [e.target.name]: e.target.value,
     });
   };
+
   const onFormSubmit = (e) => {
     e.preventDefault();
-    const NoteÉlève = {};
-    NoteÉlève.identifiant = listeDesEleves[count].identifiant;
-    NoteÉlève.PrénomEtNomEnseignant = user.prénom + " " + user.nom;
-    NoteÉlève.matièreEnseigné = user.profileEnseignant.matièreEnseigné;
-    NoteÉlève.PrénomEtNomÉlève =
+    const MoyenneÉlève = {};
+    MoyenneÉlève.identifiant = listeDesEleves[count].identifiant;
+    MoyenneÉlève.PrénomEtNomÉlève =
       listeDesEleves[count].prénom + " " + listeDesEleves[count].nom;
-    NoteÉlève.Niveau = listeDesEleves[count].profileEleve.niveau;
-    NoteÉlève.Classe = listeDesEleves[count].profileEleve.classe;
-    NoteÉlève.noteContrôle1 = contrôle1;
-    NoteÉlève.noteContrôle2 = contrôle2;
-    NoteÉlève.noteContrôle3 = contrôle3;
-    NoteÉlève.noteSynthèse1 = synthèse1;
-    NoteÉlève.noteSynthèse2 = synthèse2;
-    NoteÉlève.noteSynthèse3 = synthèse3;
+    MoyenneÉlève.MoyenneS1 = MoyenneS1;
+    MoyenneÉlève.MoyenneS2 = MoyenneS2;
+    MoyenneÉlève.MoyenneS3 = MoyenneS3;
 
     const config = {
       headers: {
@@ -140,7 +174,7 @@ const AttribuerNote = ({ setAlert, auth: { user } }) => {
     };
 
     axios
-      .post("/Enseignant/EnregistrerNote", NoteÉlève, config)
+      .post("/Admin/EnregistrerMoyenne", MoyenneÉlève, config)
       .then((res) => setAlert(res.data.message, "success"));
   };
 
@@ -157,12 +191,9 @@ const AttribuerNote = ({ setAlert, auth: { user } }) => {
               <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Prénom et Nom</th>
-                <th scope="col">Contrôle n°1</th>
-                <th scope="col">Synthèse n°1</th>
-                <th scope="col">Contrôle n°2</th>
-                <th scope="col">Synthèse n°2</th>
-                <th scope="col">Contrôle n°3</th>
-                <th scope="col">Synthèse n°3</th>
+                <th scope="col">Moyenne Semestre 1</th>
+                <th scope="col">Moyenne Semestre 2</th>
+                <th scope="col">Moyenne Semestre 3</th>
               </tr>
             </thead>
 
@@ -179,78 +210,33 @@ const AttribuerNote = ({ setAlert, auth: { user } }) => {
                   <input
                     type="number"
                     className="form-control"
-                    name="contrôle1"
-                    placeholder="contrôle n°1"
-                    value={contrôle1}
+                    name="MoyenneS1"
+                    value={MoyenneS1}
                     onChange={(e) => onChangeInput(e)}
                     min="0"
                     max="20"
-                    step="0.25"
                   />
                 </td>
                 <td>
                   <input
                     type="number"
                     className="form-control"
-                    name="synthèse1"
-                    placeholder="synthèse n°1"
-                    value={synthèse1}
+                    name="MoyenneS2"
+                    value={MoyenneS2}
                     onChange={(e) => onChangeInput(e)}
                     min="0"
                     max="20"
-                    step="0.25"
                   />
                 </td>
                 <td>
                   <input
                     type="number"
                     className="form-control"
-                    name="contrôle2"
-                    placeholder="contrôle n°2"
-                    value={contrôle2}
+                    name="MoyenneS3"
+                    value={MoyenneS3}
                     onChange={(e) => onChangeInput(e)}
                     min="0"
                     max="20"
-                    step="0.25"
-                  />
-                </td>
-                <td>
-                  <input
-                    type="number"
-                    className="form-control"
-                    name="synthèse2"
-                    placeholder="synthèse n°2"
-                    value={synthèse2}
-                    onChange={(e) => onChangeInput(e)}
-                    min="0"
-                    max="20"
-                    step="0.25"
-                  />
-                </td>
-                <td>
-                  <input
-                    type="number"
-                    className="form-control"
-                    name="contrôle3"
-                    placeholder="contrôle n°3"
-                    value={contrôle3}
-                    onChange={(e) => onChangeInput(e)}
-                    min="0"
-                    max="20"
-                    step="0.25"
-                  />
-                </td>
-                <td>
-                  <input
-                    type="number"
-                    className="form-control"
-                    name="synthèse3"
-                    placeholder="synthèse n°3"
-                    value={synthèse3}
-                    onChange={(e) => onChangeInput(e)}
-                    min="0"
-                    max="20"
-                    step="0.25"
                   />
                 </td>
               </tr>
@@ -266,21 +252,23 @@ const AttribuerNote = ({ setAlert, auth: { user } }) => {
       );
     }
   };
-  return typeof listeDesEleves[0] === "undefined" ? (
+
+  return typeof listeDesEleves[0] === "undefined" ||
+    classe[0] === "undefined" ? (
     <Spinner />
   ) : (
-    <div className="col p-3  ">
+    <div className="col p-3">
       <Alert />
       <form onSubmit={(e) => onSubmit(e)}>
         <div className="form-group">
           <h4>Choisir la classe</h4>
           <select
             className="form-control w-25"
-            value={classe}
+            value={classeSelectioné}
             onChange={(e) => onChange(e)}
-            name="classe"
+            name="classeSelectioné"
           >
-            {user.profileEnseignant.classeEnseigné.map((classe) => {
+            {classe.map((classe) => {
               return (
                 <option key={classe} value={classe}>
                   {classe}
@@ -301,7 +289,7 @@ const AttribuerNote = ({ setAlert, auth: { user } }) => {
                 <select
                   className="form-control w-25"
                   value={élèveSelectioné}
-                  onChange={(e) => onChange(e)}
+                  onChange={(e) => onChange1(e)}
                   name="élèveSelectioné"
                 >
                   {listeDesEleves.map((élève, index) => {
@@ -309,7 +297,7 @@ const AttribuerNote = ({ setAlert, auth: { user } }) => {
                       <option
                         key={élève._id}
                         value={`${index + 1} ) ${élève.prénom}  ${élève.nom}`}
-                        onChange={(e) => onChange(e)}
+                        onChange={(e) => onChange1(e)}
                         name="élèveSelectioné"
                       >
                         {`${index + 1} ) ${élève.prénom}  ${élève.nom}`}
@@ -329,10 +317,10 @@ const AttribuerNote = ({ setAlert, auth: { user } }) => {
     </div>
   );
 };
-AttribuerNote.prototype = {
+MoyenneÉlève.prototype = {
   auth: PropTypes.object.isRequired,
 };
 const mapStateToProps = (state) => ({
   auth: state.auth,
 });
-export default connect(mapStateToProps, { setAlert })(AttribuerNote);
+export default connect(mapStateToProps, { setAlert })(MoyenneÉlève);
