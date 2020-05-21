@@ -68,6 +68,14 @@ const PageAcceuilEleve = () => {
                   </Link>
                 </li>
                 <li className="nav-item">
+                  <Link
+                    className="nav-link nav-links-color"
+                    to="/PageAcceuilEleve/Moyennes"
+                  >
+                    Mes Moyennes
+                  </Link>
+                </li>
+                <li className="nav-item">
                   <Link className="nav-link nav-links-color" to="#">
                     Contacter Enseignant
                   </Link>

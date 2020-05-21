@@ -64,7 +64,7 @@ router.post("/EnregistrerMoyenne", async (req, res) => {
   }
 });
 
-router.post("/NoteEleve", auth, async (req, res) => {
+router.post("/MoyenneEleve", async (req, res) => {
   try {
     let getMoyenneÉlève = await MoyenneÉlève.findOne({
       identifiant: req.body.identifiant,
@@ -96,7 +96,7 @@ router.post("/NoteEleve", auth, async (req, res) => {
       }
       return res.json(MoyenneEleve);
     } else {
-      return res.json({ message: "Aucun enregistrement précédent" });
+      return res.json("Aucun enregistrement précédent");
     }
   } catch (err) {
     console.error(err.message);

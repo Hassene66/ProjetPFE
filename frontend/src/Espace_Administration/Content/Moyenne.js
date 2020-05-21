@@ -72,6 +72,10 @@ const MoyenneÉlève = ({ setAlert, auth: { user } }) => {
       ...formData,
       [e.target.name]: e.target.value,
       submitted: false,
+      count: 0,
+      MoyenneS1: "",
+      MoyenneS2: "",
+      MoyenneS3: "",
     });
     const config = {
       headers: {
@@ -111,20 +115,15 @@ const MoyenneÉlève = ({ setAlert, auth: { user } }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    setFormData({
-      ...formData,
-      submitted: true,
-    });
     const config = {
       headers: {
         "Content-Type": "application/json",
       },
     };
     const lastcount = Number(élèveSelectioné.charAt(0)) - 1;
-    console.log(élèveSelectioné);
     const identifiant = listeDesEleves[lastcount].identifiant;
     const body = JSON.stringify({ identifiant });
-    axios.post("/Admin/NoteEleve", body, config).then((res) => {
+    axios.post("/Admin/MoyenneEleve", body, config).then((res) => {
       console.log(typeof res.data);
       if (typeof res.data === "object" && Object.entries(res.data).length > 0) {
         setFormData({
@@ -215,6 +214,7 @@ const MoyenneÉlève = ({ setAlert, auth: { user } }) => {
                     onChange={(e) => onChangeInput(e)}
                     min="0"
                     max="20"
+                    step="0.01"
                   />
                 </td>
                 <td>
@@ -226,6 +226,7 @@ const MoyenneÉlève = ({ setAlert, auth: { user } }) => {
                     onChange={(e) => onChangeInput(e)}
                     min="0"
                     max="20"
+                    step="0.01"
                   />
                 </td>
                 <td>
@@ -237,6 +238,7 @@ const MoyenneÉlève = ({ setAlert, auth: { user } }) => {
                     onChange={(e) => onChangeInput(e)}
                     min="0"
                     max="20"
+                    step="0.01"
                   />
                 </td>
               </tr>
