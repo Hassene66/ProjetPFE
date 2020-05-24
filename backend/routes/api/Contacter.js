@@ -65,10 +65,20 @@ router.post("/Delete", async (req, res) => {
 });
 router.post("/Get", async (req, res) => {
   try {
-    const MesMessages = await ContacterEnseignant.find({
-      "ListeDesMesages.identifiantDestinataire": req.body.identifiant,
+    const ListeMessages = await ContacterEnseignant.find({});
+    console.log(ListeMessages);
+    const ListeDesMessages = [];
+    ListeMessages[0].ListeDesMesages.map((elem) => {
+      if (elem.identifiantDestinataire === req.body.identifiant) {
+        ListeDesMessages.push(elem);
+        ListeDesMessages.sort();
+      }
     });
-    return res.json({ MesMessages });
+    if (ListeMessages) {
+      return res.json(ListeDesMessages);
+    } else {
+      return res.json({ message: "Il n'y a pas des nouveaux messages" });
+    }
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Err");
