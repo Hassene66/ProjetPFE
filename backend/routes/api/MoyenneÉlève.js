@@ -64,7 +64,7 @@ router.post("/EnregistrerMoyenne", async (req, res) => {
   }
 });
 
-router.post("/MoyenneEleve", async (req, res) => {
+router.post("/MoyenneEleve", auth, async (req, res) => {
   try {
     let getMoyenneÉlève = await MoyenneÉlève.findOne({
       identifiant: req.body.identifiant,

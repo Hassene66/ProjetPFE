@@ -4,6 +4,7 @@ import DownloadActivité from "../Content/DownloadActivité";
 import MesNotes from "../Content/MesNotes";
 import EnvoyerActivité from "../Content/EnvoyerActivité";
 import Moyenne from "../Content/Moyenne";
+import ContacterEnseignant from "../Content/ContacterEnseignant";
 import { Route, Switch } from "react-router-dom";
 import PrivateRoutesÉlève from "../../PrivateRoutes/PrivateRoutesÉlève";
 
@@ -34,6 +35,11 @@ const Content = () => {
         exact
         path="/PageAcceuilEleve/Moyennes"
         component={Moyenne}
+      />
+      <PrivateRoutesÉlève
+        exact
+        path="/PageAcceuilEleve/ContacterEnseignant"
+        component={ContacterEnseignant}
       />
     </Switch>
   );

@@ -38,7 +38,7 @@ const MaMoyenne = ({ auth: { user } }) => {
       }
     });
   }, []);
-  console.log();
+
   return typeof MesMoyennes[0] === "undefined" && loadingState === false ? (
     <Spinner />
   ) : (

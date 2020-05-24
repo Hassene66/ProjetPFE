@@ -3,7 +3,7 @@ const router = express.Router();
 const User = require("../../models/User");
 const auth = require("../../middleware/auth");
 
-router.post("/", async (req, res) => {
+router.post("/", auth, async (req, res) => {
   try {
     const ListeEnseignant = await User.find({
       typeUtilisateur: "enseignant",

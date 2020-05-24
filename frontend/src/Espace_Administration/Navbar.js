@@ -88,7 +88,7 @@ const Navbar = ({
                     count={stateBadgeMsg.stateBadgeMsg}
                     effect={Effect.SCALE}
                   />
-                  <i className="far fa-envelope text-white fa-2x mr-4 mr-sm-5"></i>
+                  <i className="far fa-envelope text-white fa-2x "></i>
                 </Link>
               </li>
               <li className="nav-item d-flex align-items-center ">
@@ -102,7 +102,7 @@ const Navbar = ({
                   aria-expanded="false"
                 >
                   <i
-                    className="far fa-bell fa-2x  mr-4 mr-sm-5"
+                    className="far fa-bell fa-2x  mx-4 mx-sm-5"
                     style={{ color: "white" }}
                   />
                 </a>
