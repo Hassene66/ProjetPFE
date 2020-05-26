@@ -5,6 +5,7 @@ import "./PageAcceuilEleve.css";
 import { Link } from "react-router-dom";
 const PageAcceuilEleve = () => {
   const [showSubActivité, setShowSubActivité] = useState(false);
+  const [showSubMessages, setShowSubMessages] = useState(false);
 
   return (
     <div style={{ paddingTop: "62px" }}>
@@ -75,19 +76,34 @@ const PageAcceuilEleve = () => {
                     Mes Moyennes
                   </Link>
                 </li>
-                <li className="nav-item">
+                <li className="nav-item  flex-row ">
                   <Link
-                    className="nav-link nav-links-color"
-                    to="/PageAcceuilEleve/ContacterEnseignant"
+                    className="nav-link nav-links-color dropdown-toggle "
+                    to="#"
+                    disabled
+                    onClick={() => setShowSubMessages(!showSubMessages)}
                   >
                     Contacter Enseignant
                   </Link>
                 </li>
-                <li className="nav-item">
-                  <Link className="nav-link nav-links-color" to="#">
-                    Contacter Admin
-                  </Link>
-                </li>
+                <div className={showSubMessages ? "show" : "hide"}>
+                  <li className="nav-item sub-menu">
+                    <Link
+                      className="nav-link active nav-links-color"
+                      to="/PageAcceuilEleve/ContacterEnseignant"
+                    >
+                      Envoyer Message
+                    </Link>
+                  </li>
+                  <li className="nav-item sub-menu">
+                    <Link
+                      className="nav-link nav-links-color"
+                      to="/PageAcceuilEleve/BoiteDeReception"
+                    >
+                      Boîte De Réception
+                    </Link>
+                  </li>
+                </div>
               </ul>
             </div>
           </div>

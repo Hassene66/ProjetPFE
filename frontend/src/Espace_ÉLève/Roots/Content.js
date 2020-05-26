@@ -5,6 +5,7 @@ import MesNotes from "../Content/MesNotes";
 import EnvoyerActivité from "../Content/EnvoyerActivité";
 import Moyenne from "../Content/Moyenne";
 import ContacterEnseignant from "../Content/ContacterEnseignant";
+import BoiteDeReception from "../Content/BoiteDeRéception";
 import { Route, Switch } from "react-router-dom";
 import PrivateRoutesÉlève from "../../PrivateRoutes/PrivateRoutesÉlève";
 
@@ -40,6 +41,11 @@ const Content = () => {
         exact
         path="/PageAcceuilEleve/ContacterEnseignant"
         component={ContacterEnseignant}
+      />
+      <PrivateRoutesÉlève
+        exact
+        path="/PageAcceuilEleve/BoiteDeReception"
+        component={BoiteDeReception}
       />
     </Switch>
   );

@@ -36,9 +36,9 @@ const DeleteActivité = ({ setAlert, auth: { user } }) => {
   const deleteActivité = async (elem) => {
     await axios.delete("/UploadActivite/files/" + elem._id);
 
-    await setFormData({ ...formData, Activité: [] });
+    setFormData({ ...formData, Activité: [] });
 
-    await setResState({ ...formData, ResState: true });
+    setResState({ ...formData, ResState: true });
   };
 
   return promiseInProgress ? (
