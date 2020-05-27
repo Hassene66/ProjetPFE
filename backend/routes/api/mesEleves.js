@@ -7,10 +7,9 @@ const NoteÉlève = require("../../models/NoteÉlève");
 router.post("/mesEleves", auth, async (req, res) => {
   try {
     const mesEleves = await User.find({
-      "profileEleve.classe": req.body.classe,
       typeUtilisateur: "élève",
+      "profileEleve.classe": req.body.classe,
     });
-
     if (mesEleves.length > 0) {
       res.json(mesEleves);
     } else {

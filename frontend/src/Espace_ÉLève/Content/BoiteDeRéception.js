@@ -10,6 +10,8 @@ const BoiteDeReception = ({ auth: { user } }) => {
     MessagesRecu: [],
   });
   const [loadingState, setloadingState] = useState(false);
+  const [DeleteState, setDeleteState] = useState(false);
+
   const { MessagesRecu } = formData;
 
   useEffect(() => {
@@ -37,16 +39,25 @@ const BoiteDeReception = ({ auth: { user } }) => {
         }
       }
     });
-  }, []);
-  console.log(MessagesRecu);
+  }, [DeleteState]);
+  const deleteMsg = async (_id) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const body = JSON.stringify({ _id });
+    await axios.post("/Contacter/Delete", body, config);
+    setDeleteState(!DeleteState);
+  };
   return typeof MessagesRecu[0] === "undefined" && loadingState === false ? (
     <Spinner />
   ) : (
     <div className="col p-3  ">
-      <div classname="container">
+      <div className="container-fluid">
         {loadingState &&
           (MessagesRecu.length === 0 ? (
-            <h1>Il n'y a pas des nouveaux messages reçu</h1>
+            <h2>Il n'y a pas des nouveaux messages reçu</h2>
           ) : (
             <Fragment>
               <h1>Table des messages</h1>
@@ -65,37 +76,42 @@ const BoiteDeReception = ({ auth: { user } }) => {
                     <tbody>
                       <tr>
                         <td>{idx + 1}</td>
-                        <td>{elem.PrénomEtNomEnseignant}</td>
-                        <td>{elem.matièreEnseigné}</td>
+                        <td>{elem.prenomEmetteur + " " + elem.nomEmetteur}</td>
                         <td>
-                          {elem.noteContrôle1 === undefined
-                            ? "N/A"
-                            : elem.noteContrôle1}
+                          <p
+                            style={{
+                              textOverflow: "ellipsis",
+                              overflow: "hidden",
+                              width: "12rem",
+                              whiteSpace: "nowrap",
+                            }}
+                          >
+                            {elem.Sujet}
+                          </p>
                         </td>
                         <td>
-                          {elem.noteSynthèse1 === undefined
-                            ? "N/A"
-                            : elem.noteSynthèse1}
+                          <p
+                            style={{
+                              textOverflow: "ellipsis",
+                              overflow: "hidden",
+                              width: "20rem",
+                              whiteSpace: "nowrap",
+                            }}
+                          >
+                            {elem.Message}
+                          </p>
                         </td>
                         <td>
-                          {elem.noteContrôle2 === undefined
-                            ? "N/A"
-                            : elem.noteContrôle2}
-                        </td>
-                        <td>
-                          {elem.noteSynthèse2 === undefined
-                            ? "N/A"
-                            : elem.noteSynthèse2}
-                        </td>
-                        <td>
-                          {elem.noteContrôle3 === undefined
-                            ? "N/A"
-                            : elem.noteContrôle3}
-                        </td>
-                        <td>
-                          {elem.noteSynthèse3 === undefined
-                            ? "N/A"
-                            : elem.noteSynthèse3}
+                          <button className="btn btn-primary" title="Voir plus">
+                            <i class="fas fa-search-plus"></i>
+                          </button>
+                          <button
+                            className="btn btn-danger ml-3"
+                            title="Supprimer"
+                            onClick={() => deleteMsg(elem._id)}
+                          >
+                            <i class="fa fa-trash"></i>
+                          </button>
                         </td>
                       </tr>
                     </tbody>
