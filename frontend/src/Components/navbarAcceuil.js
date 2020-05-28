@@ -82,13 +82,13 @@ const Navbar = ({
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
           <ul className="navbar-nav ml-5">
             <li className="nav-item active ml-3 mr-3">
               <Link className="nav-link" to="/">
-                Acceuil<span class="sr-only">(current)</span>
+                Acceuil<span className="sr-only">(current)</span>
               </Link>
             </li>
 
@@ -123,31 +123,26 @@ const Navbar = ({
 
             {/* d-flex justify-content-right */}
             {!loading && isAuthenticated && token && (
-              <Fragment>
-                <li className="nav-item dropdown user-acc-margin">
-                  <Link
-                    className="nav-link dropdown-toggle"
-                    id="navbarDropdown"
-                    role="button"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    <i className="fas fa-user text-white mr-2"></i>
-                    {user.prénom + " " + user.nom}
+              <li className="nav-item dropdown user-acc-margin">
+                <Link
+                  className="nav-link dropdown-toggle"
+                  id="navbarDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <i className="fas fa-user text-white mr-2"></i>
+                  {user.prénom + " " + user.nom}
+                </Link>
+                <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <Link className="dropdown-item" to={getUser()}>
+                    Mon Espace
                   </Link>
-                  <div
-                    className="dropdown-menu"
-                    aria-labelledby="navbarDropdown"
-                  >
-                    <Link className="dropdown-item" to={getUser()}>
-                      Mon Espace
-                    </Link>
 
-                    {Logoutbtn}
-                  </div>
-                </li>
-              </Fragment>
+                  {Logoutbtn}
+                </div>
+              </li>
             )}
             {!loading && isAuthenticated && !token && (
               <Fragment>

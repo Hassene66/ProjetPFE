@@ -11,6 +11,7 @@ import DeleteActivité from "../Content/DeleteActivité";
 import ActivitésReçues from "../Content/ActivitésReçues";
 import BoiteDeReception from "../Content/BoiteDeReception";
 import ContacterEleve from "../Content/ContacterÉlève";
+import VoirPlus from "../Content/VoirPlus";
 import { Route, Switch } from "react-router-dom";
 import PrivateRouteEnseignant from "../../PrivateRoutes/PrivateRoutesEnseignant";
 
@@ -76,6 +77,11 @@ const Content = () => {
         exact
         path="/PageAcceuilEnseignant/BoiteDeReception"
         component={BoiteDeReception}
+      />
+      <PrivateRouteEnseignant
+        exact
+        path="/PageAcceuilEnseignant/VoirPlus"
+        component={VoirPlus}
       />
     </Switch>
   );

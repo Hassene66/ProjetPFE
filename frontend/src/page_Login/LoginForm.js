@@ -5,7 +5,7 @@ import "./LoginForm.css";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { login } from "../actions/auth";
-
+import iconfinder from "./image/iconfinder.png";
 const LoginForm = ({
   login,
   isAuthenticated,
@@ -54,67 +54,43 @@ const LoginForm = ({
     }
 
   return (
-    <div className="container   Font-type ">
-      <div className="row my-row">
-        <div className="col my-col  mt-5">
+    <div className="login-styling">
+      <div className="auth-wrapper">
+        <div className="auth-inner pt-4">
           <form onSubmit={(e) => onSubmit(e)}>
-            <div className=" col-xl-4 col-lg-5 col-md-7 col-sm-9 mx-auto   form p-5 my-form mb-5">
-              <h1 className="couleur-identifier mt-3 mb-3 text-center">
-                S'identifier
-              </h1>
-              <div className="form-group">
-                <label htmlFor="identifiant" className="text1   ">
-                  Identifiant :
-                </label>
-
-                <div className="add-icon">
-                  <span
-                    className="iconify "
-                    data-inline="false"
-                    data-icon="ic:round-person"
-                  ></span>
-                  <input
-                    type="text"
-                    className=" my-input "
-                    id="identifiant"
-                    name="identifiant"
-                    placeholder="Votre identifiant"
-                    value={identifiant}
-                    onChange={(e) => onChange(e)}
-                  />
-                </div>
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="mdp" className="text1">
-                  Mot de passe :
-                </label>
-
-                <div className="add-icon">
-                  <span
-                    className="iconify"
-                    data-inline="false"
-                    data-icon="bx:bxs-lock-alt"
-                    style={{ fontSize: "20px" }}
-                  ></span>
-                  <input
-                    type="password"
-                    name="MotDePasse"
-                    className="border-edit my-input"
-                    id="mdp"
-                    placeholder=" Votre mot de passe "
-                    value={MotDePasse}
-                    onChange={(e) => onChange(e)}
-                  />
-                </div>
-              </div>
-
-              <div className="text-center">
-                <button type="submit" className="button mb-3 mt-3 ">
-                  Login
-                </button>
-              </div>
+            <div className="text-center ">
+              <img src={iconfinder} width="90" height="90" className="mb-2" />
             </div>
+            <div className="form-group">
+              <label htmlFor="identifiant">Identifiant :</label>
+
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Identifiant"
+                name="identifiant"
+                value={identifiant}
+                onChange={(e) => onChange(e)}
+                autofocus
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="mdp" className="text1">
+                Mot de passe :
+              </label>
+              <input
+                type="password"
+                className="form-control"
+                name="MotDePasse"
+                onChange={(e) => onChange(e)}
+                value={MotDePasse}
+                placeholder="Mot de Passe"
+              />
+            </div>
+            <button type="submit" className="btn btn-dark btn-block mt-4">
+              S'identifier
+            </button>
           </form>
         </div>
       </div>

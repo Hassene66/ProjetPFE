@@ -6,6 +6,7 @@ import EnvoyerActivité from "../Content/EnvoyerActivité";
 import Moyenne from "../Content/Moyenne";
 import ContacterEnseignant from "../Content/ContacterEnseignant";
 import BoiteDeReception from "../Content/BoiteDeRéception";
+import VoirPlus from "../Content/VoirPlus";
 import { Route, Switch } from "react-router-dom";
 import PrivateRoutesÉlève from "../../PrivateRoutes/PrivateRoutesÉlève";
 
@@ -46,6 +47,11 @@ const Content = () => {
         exact
         path="/PageAcceuilEleve/BoiteDeReception"
         component={BoiteDeReception}
+      />
+      <PrivateRoutesÉlève
+        exact
+        path="/PageAcceuilEleve/VoirPlus"
+        component={VoirPlus}
       />
     </Switch>
   );

@@ -4,7 +4,8 @@ import PropTypes from "prop-types";
 import axios from "axios";
 import Spinner from "../../Components/Spinner";
 import { setAlert } from "../../actions/alert";
-import Alert from "../../Components/alert";
+import { Link } from "react-router-dom";
+
 const BoiteDeReception = ({ auth: { user } }) => {
   const [formData, setFormData] = useState({
     MessagesRecu: [],
@@ -104,9 +105,19 @@ const BoiteDeReception = ({ auth: { user } }) => {
                           </p>
                         </td>
                         <td>
-                          <button className="btn btn-primary" title="Voir plus">
-                            <i class="fas fa-search-plus"></i>
-                          </button>
+                          <Link
+                            to={{
+                              pathname: "/PageAcceuilEnseignant/VoirPlus",
+                              state: { detail: elem },
+                            }}
+                          >
+                            <button
+                              className="btn btn-primary"
+                              title="Voir plus"
+                            >
+                              <i class="fas fa-search-plus"></i>
+                            </button>
+                          </Link>
                           <button
                             className="btn btn-danger ml-3"
                             title="Supprimer"

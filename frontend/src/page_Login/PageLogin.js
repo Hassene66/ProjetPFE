@@ -10,13 +10,9 @@ const PageLogin = () => {
       <div className="Site">
         <div className="Site-content">
           <div className="fluid-container ">
-            <EmplacementActuelle />
             <Alert />
             <LoginForm />
           </div>
-        </div>
-        <div>
-          <Footer />
         </div>
       </div>
     </div>
