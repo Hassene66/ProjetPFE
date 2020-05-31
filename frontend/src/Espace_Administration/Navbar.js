@@ -79,7 +79,7 @@ const Navbar = ({
               <li className="nav-item mr-4 mr-sm-5 text-white d-flex align-items-center">
                 {getCurrentDate()}
               </li>
-              <li className="nav-item d-flex align-items-center ">
+              <li className="nav-item d-flex align-items-center mr-5">
                 <Link
                   className="nav-link py-0"
                   to="/AccueilAdministration/listeContacterNous"
@@ -91,7 +91,7 @@ const Navbar = ({
                   <i className="far fa-envelope text-white fa-2x "></i>
                 </Link>
               </li>
-              <li className="nav-item d-flex align-items-center ">
+              {/* <li className="nav-item d-flex align-items-center ">
                 <a
                   className=" text-light"
                   href="#!"
@@ -194,7 +194,7 @@ const Navbar = ({
                     </a>
                   </li>
                 </ul>
-              </li>
+              </li> */}
               <li className="nav-item d-flex align-items-center ">
                 <Link className="nav-link p-0 " onClick={logout} to="/">
                   <button className="btn btn-light btn-sm d-flex flex-row py-2">

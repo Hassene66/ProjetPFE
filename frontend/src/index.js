@@ -30,7 +30,7 @@ const App = () => {
   }, []);
   return (
     <Provider store={store}>
-      <div>
+      <div className="overflow-hidden">
         <Switch>
           <Route exact path="/" component={PageAcceuil} />
           <Route exact path="/Presentation" component={PagePresentation} />

@@ -22,8 +22,8 @@ const PageGalerie = () => {
   if (ListeImage.length > 0) {
     ListeImage.map((image) => {
       IMAGES.push({
-        src: `http://localhost:5000/GalerieImages/files/${image._id}`,
-        thumbnail: `http://localhost:5000/GalerieImages/files/${image._id}`,
+        src: `/GalerieImages/files/${image._id}`,
+        thumbnail: `/GalerieImages/files/${image._id}`,
         thumbnailWidth: 1920,
         thumbnailHeight: 1080,
       });

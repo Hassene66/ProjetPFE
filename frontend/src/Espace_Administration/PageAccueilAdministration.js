@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import Content from "./Roots/Content";
 import Navbar from "./Navbar";
 import "./PageAccueilAdministration.css";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 const PageAcceuilEleve = () => {
   const [showSubÉlève, setShowSubÉlève] = useState(false);
   const [showSubEnseignant, setShowSubEnseignant] = useState(false);
   const [showSubGalerie, setShowSubGalerie] = useState(false);
   return (
-    <div style={{ paddingTop: "69px" }}>
+    <div style={{ paddingTop: "69px" }} className="EspaceAdmin">
       <Navbar />
       <div className="container-fluid px-0">
         <div className="row collapse show no-gutters d-flex h-100 position-relative">
@@ -20,112 +20,123 @@ const PageAcceuilEleve = () => {
             >
               <ul className="nav flex-column flex-nowrap text-truncate">
                 <li className="nav-item">
-                  <Link className="nav-link active nav-links-color" to="/">
+                  <NavLink
+                    activeClassName="activenav"
+                    exact
+                    className="nav-link active nav-links-color"
+                    to="/"
+                  >
                     Retour a l'acceuil
-                  </Link>
+                  </NavLink>
                 </li>
                 <li className="nav-item">
-                  <Link
+                  <NavLink
+                    activeClassName="activenav"
+                    exact
                     className="nav-link active nav-links-color"
                     to="/AccueilAdministration/creerCompte"
                   >
                     Créer compte
-                  </Link>
+                  </NavLink>
                 </li>
 
                 <li className="nav-item">
-                  <Link
+                  <NavLink
+                    activeClassName="activenav"
+                    exact
                     className="nav-link active nav-links-color"
                     to="/AccueilAdministration/ParameterEcole"
                   >
                     Paramétrer ecole
-                  </Link>
+                  </NavLink>
                 </li>
 
                 <li className="nav-item  flex-row ">
-                  <Link
+                  <NavLink
                     className="nav-link nav-links-color dropdown-toggle "
                     to="#"
                     disabled
                     onClick={() => setShowSubÉlève(!showSubÉlève)}
                   >
                     Gèrer élève
-                  </Link>
+                  </NavLink>
                 </li>
                 <div className={showSubÉlève ? "show" : "hide"}>
                   <li className="nav-item sub-menu">
-                    <Link
-                      className="nav-link nav-links-color"
-                      to="/AccueilAdministration/ListeAbsence"
+                    <NavLink
+                      activeClassName="activenav"
+                      exact
+                      className="nav-link active nav-links-color"
+                      to="/AccueilAdministration/AttribuerMoyenne"
                     >
-                      Liste d'absence
-                    </Link>
+                      Attribuer Moyenne
+                    </NavLink>
                   </li>
                 </div>
                 <li className="nav-item  flex-row ">
-                  <Link
+                  <NavLink
                     className="nav-link nav-links-color dropdown-toggle "
                     to="#"
                     disabled
                     onClick={() => setShowSubEnseignant(!showSubEnseignant)}
                   >
                     Gèrer enseignant
-                  </Link>
+                  </NavLink>
                 </li>
                 <div className={showSubEnseignant ? "show" : "hide"}>
                   <li className="nav-item sub-menu">
-                    <Link
+                    <NavLink
+                      activeClassName="activenav"
+                      exact
                       className="nav-link nav-links-color"
                       to="/AccueilAdministration/ListeAbsence"
                     >
                       Liste d'absence
-                    </Link>
+                    </NavLink>
                   </li>
                 </div>
 
                 <li className="nav-item  flex-row ">
-                  <Link
+                  <NavLink
                     className="nav-link nav-links-color dropdown-toggle "
                     to="#"
                     disabled
                     onClick={() => setShowSubGalerie(!showSubGalerie)}
                   >
                     Gèrer galerie
-                  </Link>
+                  </NavLink>
                 </li>
                 <div className={showSubGalerie ? "show" : "hide"}>
                   <li className="nav-item sub-menu">
-                    <Link
+                    <NavLink
+                      activeClassName="activenav"
+                      exact
                       className="nav-link nav-links-color"
                       to="/AccueilAdministration/AjouterImage"
                     >
                       Ajouter images
-                    </Link>
+                    </NavLink>
                   </li>
                   <li className="nav-item sub-menu">
-                    <Link
+                    <NavLink
+                      activeClassName="activenav"
+                      exact
                       className="nav-link nav-links-color"
                       to="/AccueilAdministration/SupprimerImage"
                     >
                       Supprimer images
-                    </Link>
+                    </NavLink>
                   </li>
                 </div>
                 <li className="nav-item">
-                  <Link
+                  <NavLink
+                    activeClassName="activenav"
+                    exact
                     className="nav-link active nav-links-color"
                     to="/AccueilAdministration/listeContacterNous"
                   >
                     Liste Des Messages
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link
-                    className="nav-link active nav-links-color"
-                    to="/AccueilAdministration/AttribuerMoyenne"
-                  >
-                    Attribuer Moyenne
-                  </Link>
+                  </NavLink>
                 </li>
               </ul>
             </div>

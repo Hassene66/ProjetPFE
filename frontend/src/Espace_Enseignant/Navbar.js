@@ -5,28 +5,49 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout, login } from "../actions/auth";
 import { getCurrentProfile } from "../actions/profileEcole";
+import NotificationBadge from "react-notification-badge";
+import { Effect } from "react-notification-badge";
+import axios from "axios";
 import moment from "moment-timezone";
 const Navbar = ({
   getCurrentProfile,
   profileEcole: { profile, loadingProfileEcole },
   logout,
+  auth: { user },
 }) => {
   const [stateNav, setStateNav] = useState({
     LogoEcole: "",
     NomEcole: "",
+    MessagesRecu: [],
+    nbMessage: 0,
   });
+  const [stateBadgeMsg, setStateBadgeMsg] = useState(1);
 
   useEffect(() => {
     getCurrentProfile();
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const identifiant = user.identifiant;
+    const body = JSON.stringify({ identifiant });
     if (profile === null) {
       setStateNav({
         LogoEcole: "",
         NomEcole: "",
       });
     } else {
-      setStateNav({
-        LogoEcole: profile.LogoEcole,
-        NomEcole: profile.NomEcole,
+      axios.post("/Contacter/Get", body, config).then((res) => {
+        if (typeof res.data === "object") {
+          setStateNav({
+            ...stateNav,
+            MessagesRecu: res.data,
+            nbMessage: res.data.length,
+            LogoEcole: profile.LogoEcole,
+            NomEcole: profile.NomEcole,
+          });
+        }
       });
     }
   }, [loadingProfileEcole]);
@@ -34,11 +55,11 @@ const Navbar = ({
   function getCurrentDate() {
     var date = moment().tz("Africa/Tunis").format("L");
 
-    return <h6 className="mb-0 pt-1">{date}</h6>;
+    return <h5 className="mb-0 ">{date}</h5>;
   }
-  const { LogoEcole, NomEcole } = stateNav;
+  const { LogoEcole, NomEcole, MessagesRecu, nbMessage } = stateNav;
   return (
-    <div>
+    <div className="Navbar-notification">
       <div className="container-fluid fixed-top bg-dark py-3 navbar-nav">
         <div className="row collapse show no-gutters d-flex h-100 position-relative">
           <div className=" px-0 w-sidebar navbar-collapse collapse d-none d-md-flex ">
@@ -68,28 +89,22 @@ const Navbar = ({
               <i className="fa fa-bars fa-lg"></i>
             </Link>
             <ul className="navbar-nav ml-auto flex-row">
-              <li className="nav-item mr-4 mr-sm-5 text-white">
+              <li className="nav-item mr-4 mr-sm-5 text-white d-flex align-items-center">
                 {getCurrentDate()}
               </li>
-              <li className="nav-item ">
-                <Link>
-                  <i
-                    className="fab fa-facebook-messenger fa-lg pt-2 "
-                    style={{ color: "white" }}
-                  />
+              <li className="nav-item d-flex align-items-center mr-5">
+                <Link
+                  className="nav-link py-0"
+                  to="/PageAcceuilEnseignant/BoiteDeReception"
+                >
+                  <NotificationBadge count={nbMessage} effect={Effect.SCALE} />
+                  <i className="far fa-envelope text-white fa-2x "></i>
                 </Link>
               </li>
-              <li className="nav-item ">
-                <Link>
-                  <i
-                    className="fas fa-bell fa-lg pt-2 mx-4 mx-sm-5"
-                    style={{ color: "white" }}
-                  />
-                </Link>
-              </li>
-              <li className="nav-item ">
+
+              <li className="nav-item d-flex align-items-center ">
                 <Link className="nav-link p-0 " onClick={logout} to="/">
-                  <button className="btn btn-light btn-sm d-flex flex-row">
+                  <button className="btn btn-light btn-sm d-flex flex-row py-2">
                     <i className="fas fa-sign-out-alt fa-lg pt-1 mr-1  "></i>
                     <h6 className=" mr-2 mb-0  ">Déconnection</h6>
                   </button>

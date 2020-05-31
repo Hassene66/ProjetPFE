@@ -4,8 +4,6 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import image33 from "./Images/test.svg";
 import image4 from "./Images/learning.svg";
-import image1 from "./Images/2.png";
-import image2 from "./Images/3.png";
 
 import "./article.css";
 const Article = ({

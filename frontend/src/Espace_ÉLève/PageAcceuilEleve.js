@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import Content from "./Roots/Content";
 import Navbar from "./Navbar";
 import "./PageAcceuilEleve.css";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 const PageAcceuilEleve = () => {
   const [showSubActivité, setShowSubActivité] = useState(false);
   const [showSubMessages, setShowSubMessages] = useState(false);
 
   return (
-    <div style={{ paddingTop: "62px" }}>
+    <div style={{ paddingTop: "69px" }} className="EspaceEleve">
       <Navbar />
       <div className="container-fluid px-0">
         <div className="row collapse show no-gutters d-flex h-100 position-relative">
@@ -20,88 +20,107 @@ const PageAcceuilEleve = () => {
             >
               <ul className="nav flex-column flex-nowrap text-truncate">
                 <li className="nav-item">
-                  <Link className="nav-link active nav-links-color" to="/">
+                  <NavLink
+                    activeClassName="activenav"
+                    exact
+                    className="nav-link active nav-links-color"
+                    to="/"
+                  >
                     Retour a l'acceuil
-                  </Link>
+                  </NavLink>
                 </li>
                 <li className="nav-item">
-                  <Link
+                  <NavLink
+                    activeClassName="activenav"
+                    exact
                     className="nav-link active nav-links-color"
                     to="/PageAcceuilEleve/MesCours"
                   >
                     Mes Cours
-                  </Link>
+                  </NavLink>
                 </li>
                 <li className="nav-item  flex-row ">
-                  <Link
+                  <NavLink
                     className="nav-link nav-links-color dropdown-toggle "
                     to="#"
                     disabled
                     onClick={() => setShowSubActivité(!showSubActivité)}
                   >
                     Activité
-                  </Link>
+                  </NavLink>
                 </li>
                 <div className={showSubActivité ? "show" : "hide"}>
                   <li className="nav-item sub-menu">
-                    <Link
+                    <NavLink
+                      activeClassName="activenav"
+                      exact
                       className="nav-link active nav-links-color"
                       to="/PageAcceuilEleve/MesActivites"
                     >
                       Mes Activités
-                    </Link>
+                    </NavLink>
                   </li>
                   <li className="nav-item sub-menu">
-                    <Link
+                    <NavLink
+                      activeClassName="activenav"
+                      exact
                       className="nav-link nav-links-color"
                       to="/PageAcceuilEleve/EnvoyerActivite"
                     >
                       Envoyer Activité
-                    </Link>
+                    </NavLink>
                   </li>
                 </div>
                 <li className="nav-item">
-                  <Link
+                  <NavLink
+                    activeClassName="activenav"
+                    exact
                     className="nav-link nav-links-color"
                     to="/PageAcceuilEleve/MesNotes"
                   >
                     Mes notes
-                  </Link>
+                  </NavLink>
                 </li>
                 <li className="nav-item">
-                  <Link
+                  <NavLink
+                    activeClassName="activenav"
+                    exact
                     className="nav-link nav-links-color"
                     to="/PageAcceuilEleve/Moyennes"
                   >
                     Mes Moyennes
-                  </Link>
+                  </NavLink>
                 </li>
                 <li className="nav-item  flex-row ">
-                  <Link
+                  <NavLink
                     className="nav-link nav-links-color dropdown-toggle "
                     to="#"
                     disabled
                     onClick={() => setShowSubMessages(!showSubMessages)}
                   >
                     Contacter Enseignant
-                  </Link>
+                  </NavLink>
                 </li>
                 <div className={showSubMessages ? "show" : "hide"}>
                   <li className="nav-item sub-menu">
-                    <Link
+                    <NavLink
+                      activeClassName="activenav"
+                      exact
                       className="nav-link active nav-links-color"
                       to="/PageAcceuilEleve/ContacterEnseignant"
                     >
                       Envoyer Message
-                    </Link>
+                    </NavLink>
                   </li>
                   <li className="nav-item sub-menu">
-                    <Link
+                    <NavLink
+                      activeClassName="activenav"
+                      exact
                       className="nav-link nav-links-color"
                       to="/PageAcceuilEleve/BoiteDeReception"
                     >
                       Boîte De Réception
-                    </Link>
+                    </NavLink>
                   </li>
                 </div>
               </ul>

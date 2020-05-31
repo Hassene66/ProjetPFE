@@ -86,7 +86,7 @@ const ActivitésReçues = ({ auth: { user } }) => {
             })}
           </select>
         </div>
-        <button type="submit" className="button ml-5 ">
+        <button type="submit" className="btn btn-primary ml-5 ">
           Valider
         </button>
       </form>

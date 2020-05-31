@@ -18,7 +18,7 @@ class Slider extends React.Component {
               src={image1}
               alt="First slide"
               width="100%"
-              style={{ filter: "brightness(30%)", "max-height": "680px" }}
+              style={{ filter: "brightness(50%)", "max-height": "680px" }}
             />
             <div className="container">
               <div className="carousel-caption text-center">
@@ -42,7 +42,7 @@ class Slider extends React.Component {
               src={image2}
               alt="Second slide"
               width="100%"
-              style={{ filter: "brightness(30%)", "max-height": "680px" }}
+              style={{ filter: "brightness(60%)", "max-height": "680px" }}
             />
             <div className="container">
               <div className="carousel-caption">
@@ -66,7 +66,7 @@ class Slider extends React.Component {
               src={image3}
               alt="Third slide"
               width="100%"
-              style={{ filter: "brightness(30%)", "max-height": "680px" }}
+              style={{ filter: "brightness(60%)", "max-height": "680px" }}
             />
             <div className="container">
               <div className="carousel-caption text-center">

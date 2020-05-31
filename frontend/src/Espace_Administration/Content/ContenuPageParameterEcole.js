@@ -562,7 +562,7 @@ const ContenuPageParameterEcole = ({
           </div>
         </div>
         <div className="text-center">
-          <button type="submit" className="button mt-3 mb-5 ">
+          <button type="submit" className="btn btn-primary mt-3 mb-5 ">
             Valider
           </button>
         </div>

@@ -246,7 +246,7 @@ const MoyenneÉlève = ({ setAlert, auth: { user } }) => {
           </table>
 
           <div className="text-center">
-            <button type="submit " className="button  ">
+            <button type="submit " className="btn btn-primary  ">
               Enregistrer
             </button>
           </div>
@@ -308,7 +308,7 @@ const MoyenneÉlève = ({ setAlert, auth: { user } }) => {
                   })}
                 </select>
               </div>
-              <button type="submit" className="button ml-5 ">
+              <button type="submit" className="btn btn-primary ml-5 ">
                 Valider
               </button>
             </Fragment>

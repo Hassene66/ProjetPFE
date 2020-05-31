@@ -77,3 +77,8 @@
 a.dropdown-toggle::after {
   margin-left: 13px;
 }
+.EspaceAdmin .activenav {
+  color: black;
+  background-color: white;
+  border-left: 10px solid #594db9;
+}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { setAlert } from "../../actions/alert";
 import Alert from "../../Components/alert";
@@ -392,7 +392,7 @@ const CreerCompte = ({ setAlert }) => {
                             className="form-control w-75"
                             id="classeEnseigné1"
                             aria-describedby="classeEnseigné1"
-                            placeholder="eg. 7B2 ,8B1 ,9B4 ect.."
+                            placeholder="ex. 7B2 ,8B1 ,9B4 ect.."
                             name="classeEnseigné1"
                             value={classeEnseigné1}
                             onChange={(e) => onchange2(e)}
@@ -407,7 +407,7 @@ const CreerCompte = ({ setAlert }) => {
                             type="text"
                             className="form-control w-75"
                             id="niveauEnseigné1"
-                            placeholder="eg.  huitième ,neuvième ect.."
+                            placeholder="ex.  huitième ,neuvième ect.."
                             name="niveauEnseigné1"
                             value={niveauEnseigné1}
                             onChange={(e) => onchange2(e)}
@@ -500,7 +500,7 @@ const CreerCompte = ({ setAlert }) => {
                             className="form-control w-75"
                             id="NiveauEléve"
                             aria-describedby="NiveauEléve"
-                            placeholder="eg. septième ,huitième ,neuvième ect.."
+                            placeholder="ex. septième ,huitième ,neuvième ect.."
                             name="niveau"
                             value={niveau}
                             onChange={(e) => onchange3(e)}
@@ -513,7 +513,7 @@ const CreerCompte = ({ setAlert }) => {
                             type="text"
                             className="form-control w-75"
                             id="classeEléve"
-                            placeholder="eg. 7B6"
+                            placeholder="ex. 7B6"
                             name="classe"
                             value={classe}
                             onChange={(e) => onchange3(e)}
