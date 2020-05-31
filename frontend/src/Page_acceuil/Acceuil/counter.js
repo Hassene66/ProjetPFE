@@ -5,13 +5,13 @@ import VisibilitySensor from "react-visibility-sensor";
 import { getCurrentProfile } from "../../actions/profileEcole";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import student from "./Images/student.png";
-import teacher from "./Images/teacher.png";
-import diploma from "./Images/diploma.png";
+import student from "./Images/student1.svg";
+import teacher from "./Images/teacher1.svg";
+import goal from "./Images/goal.svg";
 
 const Counter = ({
   getCurrentProfile,
-  profileEcole: { profile, loadingProfileEcole }
+  profileEcole: { profile, loadingProfileEcole },
 }) => {
   const [stateCounter, setStateCounter] = useState({
     NbEleve: "",
@@ -19,7 +19,7 @@ const Counter = ({
     tauxDeRéussite: "",
     visible1: false,
     visible2: false,
-    visible3: false
+    visible3: false,
   });
 
   useEffect(() => {
@@ -28,13 +28,13 @@ const Counter = ({
       setStateCounter({
         NbEleve: "",
         NbEnseignantCertifiés: "",
-        tauxDeRéussite: ""
+        tauxDeRéussite: "",
       });
     } else {
       setStateCounter({
         NbEleve: profile.NbEleve,
         NbEnseignantCertifiés: profile.NbEnseignantCertifiés,
-        tauxDeRéussite: profile.tauxDeRéussite
+        tauxDeRéussite: profile.tauxDeRéussite,
       });
     }
   }, [loadingProfileEcole]);
@@ -44,16 +44,16 @@ const Counter = ({
     NbEleve,
     visible1,
     visible2,
-    visible3
+    visible3,
   } = stateCounter;
 
-  const onChangeVisibility1 = isActive => {
+  const onChangeVisibility1 = (isActive) => {
     setStateCounter({ ...stateCounter, visible1: isActive });
   };
-  const onChangeVisibility2 = isActive => {
+  const onChangeVisibility2 = (isActive) => {
     setStateCounter({ ...stateCounter, visible2: isActive });
   };
-  const onChangeVisibility3 = isActive => {
+  const onChangeVisibility3 = (isActive) => {
     setStateCounter({ ...stateCounter, visible3: isActive });
   };
   return (
@@ -61,56 +61,61 @@ const Counter = ({
       <div class=" d-flex justify-content-around  row">
         <div className="col-sm-4 ">
           <div className="count ">
-            <img src={student} alt="nombre élève" />
+            <img src={student} alt="nombre élève" height="100" width="100" />
             <VisibilitySensor
               stayVisible={true}
               partialVisibility
-              onChange={e => onChangeVisibility1(e)}
+              onChange={(e) => onChangeVisibility1(e)}
               active={!visible1}
             >
               {({ isVisible }) => (
-                <div style={{ height: 75, fontSize: "50px" }}>
+                <div style={{ height: 75, fontSize: "40px" }}>
                   {isVisible ? <CountUp end={NbEleve} /> : null}
                 </div>
               )}
             </VisibilitySensor>
-            <h3>élèves inscrit</h3>
+            <h4>élèves inscrit</h4>
           </div>
         </div>
         <div className="col-sm-4">
           <div className="count">
-            <img src={teacher} alt="nombre d'enseignants ceritifié" />
+            <img
+              src={teacher}
+              alt="nombre d'enseignants ceritifié"
+              height="100"
+              width="100"
+            />
             <VisibilitySensor
               stayVisible={true}
               partialVisibility
-              onChange={e => onChangeVisibility2(e)}
+              onChange={(e) => onChangeVisibility2(e)}
               active={!visible2}
             >
               {({ isVisible }) => (
-                <div style={{ height: 75, fontSize: "50px" }}>
+                <div style={{ height: 75, fontSize: "40px" }}>
                   {isVisible ? <CountUp end={NbEnseignantCertifiés} /> : null}
                 </div>
               )}
             </VisibilitySensor>
-            <h3>enseignents certifiés</h3>
+            <h4>enseignents certifiés</h4>
           </div>
         </div>
         <div className="col-sm-4">
           <div className="count">
-            <img src={diploma} alt="taux de réussite" />
+            <img src={goal} alt="taux de réussite" height="100" width="100" />
             <VisibilitySensor
               stayVisible={true}
               partialVisibility
-              onChange={e => onChangeVisibility3(e)}
+              onChange={(e) => onChangeVisibility3(e)}
               active={!visible3}
             >
               {({ isVisible }) => (
-                <div style={{ height: 75, fontSize: "50px" }}>
+                <div style={{ height: 75, fontSize: "40px" }}>
                   {isVisible ? <CountUp end={tauxDeRéussite} /> : null}%
                 </div>
               )}
             </VisibilitySensor>
-            <h3>taux de réussite</h3>
+            <h4>taux de réussite</h4>
           </div>
         </div>
       </div>
@@ -120,9 +125,9 @@ const Counter = ({
 
 Counter.prototype = {
   getCurrentProfile: PropTypes.func.isRequired,
-  profileEcole: PropTypes.object.isRequired
+  profileEcole: PropTypes.object.isRequired,
 };
-const mapStateToProps = state => ({
-  profileEcole: state.profileEcole
+const mapStateToProps = (state) => ({
+  profileEcole: state.profileEcole,
 });
 export default connect(mapStateToProps, { getCurrentProfile })(Counter);

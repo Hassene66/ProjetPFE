@@ -21,15 +21,6 @@ const enseignantSchema = new mongoose.Schema({
   },
 });
 
-const adminSchema = new mongoose.Schema({
-  classeEnseigné: {
-    type: String,
-  },
-  niveau: {
-    type: String,
-  },
-});
-
 const UserSchema = new mongoose.Schema({
   prénom: {
     type: String,
@@ -59,10 +50,6 @@ const UserSchema = new mongoose.Schema({
   },
   profileEleve: {
     type: élèveSchema,
-    required: false,
-  },
-  profileAdmin: {
-    type: adminSchema,
     required: false,
   },
 });

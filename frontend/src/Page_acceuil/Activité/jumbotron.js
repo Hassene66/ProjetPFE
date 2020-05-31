@@ -1,19 +1,25 @@
 import React, { Component } from "react";
-import "./jumbotron.css";
+import img4 from "./images_Page_activité/backgroundImg.jpg";
 export class Jumbotron extends Component {
   render() {
     return (
-      <div>
-        <div className="  jumbotron_activité mb-5  ">
-          <h1 className=" jumbo-txt">
-            Divers activités dans plusieurs domaine
-          </h1>
-
-          <p className="lead">
-            <a className="btn btn-primary btn-lg" href="#" role="button">
-              Learn more
-            </a>
-          </p>
+      <div
+        className="jumbotron mb-1"
+        style={{
+          backgroundImage: { img4 },
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+        }}
+      >
+        <div className="text-white text-center py-5 px-4">
+          <div>
+            <h1
+              className="card-title h1-responsive pt-3 mb-5 font-bold "
+              style={{ color: "#fead38", textShadow: "2px 2px #ff0000" }}
+            >
+              <strong>Découvrir nos activités </strong>
+            </h1>
+          </div>
         </div>
       </div>
     );

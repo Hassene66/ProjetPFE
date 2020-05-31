@@ -5,6 +5,7 @@ import GalerieImage from "../Content/UploadImages";
 import SupprimerImage from "../Content/DeleteImage";
 import ContacterNous from "../Content/AfficherContacterNous";
 import MoyenneÉlève from "../Content/Moyenne";
+import CreerCompte from "../Content/CreerCompte";
 import { Route, Switch } from "react-router-dom";
 import PrivateRoutesAdmin from "../../PrivateRoutes/PrivateRoutesAdmin";
 
@@ -15,6 +16,11 @@ const Content = () => {
         exact
         path="/AccueilAdministration/ListeAbsence"
         component={ListeAbsence}
+      />
+      <PrivateRoutesAdmin
+        exact
+        path="/AccueilAdministration/creerCompte"
+        component={CreerCompte}
       />
       <PrivateRoutesAdmin
         exact

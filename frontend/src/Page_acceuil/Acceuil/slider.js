@@ -21,7 +21,7 @@ class Slider extends React.Component {
               style={{ filter: "brightness(30%)", "max-height": "680px" }}
             />
             <div className="container">
-              <div className="carousel-caption text-left">
+              <div className="carousel-caption text-center">
                 <h1>Example headline.</h1>
                 <p>
                   Cras justo odio, dapibus ac facilisis in, egestas eget quam.
@@ -69,7 +69,7 @@ class Slider extends React.Component {
               style={{ filter: "brightness(30%)", "max-height": "680px" }}
             />
             <div className="container">
-              <div className="carousel-caption text-right">
+              <div className="carousel-caption text-center">
                 <h1>One more for good measure.</h1>
                 <p>
                   Cras justo odio, dapibus ac facilisis in, egestas eget quam.

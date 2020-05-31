@@ -6,7 +6,7 @@ import Article from "./article";
 import Presentation from "./presentation";
 import Counter from "./counter";
 
-import Temoinage from "./temoinage";
+import Temoinage from "./Temoignage";
 
 class PageAcceuil extends React.Component {
   render() {

@@ -61,7 +61,7 @@ const ListeAbsence = ({ auth: { user } }) => {
   return typeof classe[0] === "undefined" ? (
     <Spinner />
   ) : (
-    <div className="col p-3  ">
+    <div className="col p-3">
       <form onSubmit={(e) => onSubmit(e)}>
         <h5 for="exampleFormControlSelect1">Choisir la classe</h5>
         <select
@@ -88,7 +88,7 @@ const ListeAbsence = ({ auth: { user } }) => {
         />
 
         <div>
-          <button type="submit" className="button mt-4 ">
+          <button type="submit" className="btn btn-primary  mt-4">
             Valider
           </button>
         </div>

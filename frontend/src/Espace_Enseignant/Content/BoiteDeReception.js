@@ -97,7 +97,7 @@ const BoiteDeReception = ({ auth: { user } }) => {
                             style={{
                               textOverflow: "ellipsis",
                               overflow: "hidden",
-                              width: "20rem",
+                              width: "17rem",
                               whiteSpace: "nowrap",
                             }}
                           >

@@ -5,21 +5,21 @@ import { getCurrentProfile } from "../../actions/profileEcole";
 import imageQuiSommeNous from "./Images/about-us.png";
 const Presentation = ({
   getCurrentProfile,
-  profileEcole: { profile, loadingProfileEcole }
+  profileEcole: { profile, loadingProfileEcole },
 }) => {
   const [stateQuiSommeNous, setStateQuiSommeNous] = useState({
-    QuiSommeNous: ""
+    QuiSommeNous: "",
   });
 
   useEffect(() => {
     getCurrentProfile();
     if (profile === null) {
       setStateQuiSommeNous({
-        QuiSommeNous: ""
+        QuiSommeNous: "",
       });
     } else {
       setStateQuiSommeNous({
-        QuiSommeNous: profile.QuiSommeNous
+        QuiSommeNous: profile.QuiSommeNous,
       });
     }
   }, [loadingProfileEcole]);
@@ -27,18 +27,18 @@ const Presentation = ({
 
   return (
     <section>
-      <div className="mx-5 rounded">
-        <div className="card my-5 shadow-lg bg-white ">
+      <div className="rounded">
+        <div className=" bg-white ">
           <div className="row no-gutters">
             <div className="col-md-4 " style={{ backgroundColor: "#ededed" }}>
               <img
                 src={imageQuiSommeNous}
                 className="card-img  "
                 alt="..."
-                height="250"
+                height="300"
               />
             </div>
-            <div className="col-md-8">
+            <div className="col-md-8" style={{ backgroundColor: "#f7f7f7" }}>
               <div className="card-body">
                 <h5 className="card-title">Qui somme nous ?</h5>
                 <p className="card-text">{QuiSommeNous}</p>
@@ -53,9 +53,9 @@ const Presentation = ({
 
 Presentation.prototype = {
   getCurrentProfile: PropTypes.func.isRequired,
-  profileEcole: PropTypes.object.isRequired
+  profileEcole: PropTypes.object.isRequired,
 };
-const mapStateToProps = state => ({
-  profileEcole: state.profileEcole
+const mapStateToProps = (state) => ({
+  profileEcole: state.profileEcole,
 });
 export default connect(mapStateToProps, { getCurrentProfile })(Presentation);

@@ -24,6 +24,14 @@ const PageAcceuilEleve = () => {
                     Retour a l'acceuil
                   </Link>
                 </li>
+                <li className="nav-item">
+                  <Link
+                    className="nav-link active nav-links-color"
+                    to="/AccueilAdministration/creerCompte"
+                  >
+                    Créer compte
+                  </Link>
+                </li>
 
                 <li className="nav-item">
                   <Link

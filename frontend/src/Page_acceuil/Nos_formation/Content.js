@@ -7,27 +7,27 @@ import PropTypes from "prop-types";
 import { getCurrentProfile } from "../../actions/profileEcole";
 const Content = ({
   getCurrentProfile,
-  profileEcole: { profile, loadingProfileEcole }
+  profileEcole: { profile, loadingProfileEcole },
 }) => {
   const [stateContent, setStateContent] = useState({
-    NosFormations: ""
+    NosFormations: "",
   });
 
   useEffect(() => {
     getCurrentProfile();
     if (profile === null) {
       setStateContent({
-        NosFormations: ""
+        NosFormations: "",
       });
     } else {
       setStateContent({
-        NosFormations: profile.NosFormations
+        NosFormations: profile.NosFormations,
       });
     }
   }, [loadingProfileEcole]);
   const { NosFormations } = stateContent;
   return (
-    <div className="container px-0 mb-5">
+    <div className="fluid-container px-0 mb-5">
       <div className="row align-items-center  ">
         <div
           id="premierLigne"
@@ -35,7 +35,7 @@ const Content = ({
         >
           <div className="row justify-content-center">
             <div className="col-9">
-              <h2 className="display-4 pb-3">formation riche et variée</h2>
+              <h2 className="display-5 pb-3">Formation riche et variée</h2>
               <p id="premierParagraphe">{NosFormations[0]}</p>
             </div>
           </div>
@@ -51,8 +51,8 @@ const Content = ({
         <div id="dexiemeLigne" className="col-lg-6 text-center order-1 ">
           <div className="row justify-content-center">
             <div className="col-10">
-              <h2 className="display-4 pb-3">
-                formation basée sur les projects et le pratique
+              <h2 className="display-5 pb-3">
+                Formation basée sur les projects et le pratique
               </h2>
               <p id="dexiemeParagraphe">{NosFormations[1]}</p>
             </div>
@@ -65,9 +65,9 @@ const Content = ({
 
 Content.prototype = {
   getCurrentProfile: PropTypes.func.isRequired,
-  profileEcole: PropTypes.object.isRequired
+  profileEcole: PropTypes.object.isRequired,
 };
-const mapStateToProps = state => ({
-  profileEcole: state.profileEcole
+const mapStateToProps = (state) => ({
+  profileEcole: state.profileEcole,
 });
 export default connect(mapStateToProps, { getCurrentProfile })(Content);

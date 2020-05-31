@@ -1,25 +1,25 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getCurrentProfile } from "../../actions/profileEcole";
 
 const Info_Données = ({
   getCurrentProfile,
-  profileEcole: { profile, loadingProfileEcole }
+  profileEcole: { profile, loadingProfileEcole },
 }) => {
   const [stateInfoDonnées, setInfoDonnées] = useState({
-    lesCyclesQueNotreEcolePropose: ""
+    lesCyclesQueNotreEcolePropose: "",
   });
 
   useEffect(() => {
     getCurrentProfile();
     if (profile === null) {
       setInfoDonnées({
-        lesCyclesQueNotreEcolePropose: ""
+        lesCyclesQueNotreEcolePropose: "",
       });
     } else {
       setInfoDonnées({
-        lesCyclesQueNotreEcolePropose: profile.lesCyclesQueNotreEcolePropose
+        lesCyclesQueNotreEcolePropose: profile.lesCyclesQueNotreEcolePropose,
       });
     }
   }, [loadingProfileEcole]);
@@ -32,7 +32,7 @@ const Info_Données = ({
             fontFamily: "sans-serif",
             fontSize: "40px",
             "border-bottom": "4px solid #51be78",
-            display: "inline-block"
+            display: "inline-block",
           }}
         >
           Quelques informations et données sur le collége
@@ -128,9 +128,9 @@ const Info_Données = ({
 };
 Info_Données.prototype = {
   getCurrentProfile: PropTypes.func.isRequired,
-  profileEcole: PropTypes.object.isRequired
+  profileEcole: PropTypes.object.isRequired,
 };
-const mapStateToProps = state => ({
-  profileEcole: state.profileEcole
+const mapStateToProps = (state) => ({
+  profileEcole: state.profileEcole,
 });
 export default connect(mapStateToProps, { getCurrentProfile })(Info_Données);
