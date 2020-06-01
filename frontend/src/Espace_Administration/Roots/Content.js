@@ -6,12 +6,18 @@ import SupprimerImage from "../Content/DeleteImage";
 import ContacterNous from "../Content/AfficherContacterNous";
 import MoyenneÉlève from "../Content/Moyenne";
 import CreerCompte from "../Content/CreerCompte";
+import WelcomeAdmin from "../Content/WelcomeAdmin";
 import { Route, Switch } from "react-router-dom";
 import PrivateRoutesAdmin from "../../PrivateRoutes/PrivateRoutesAdmin";
 
 const Content = () => {
   return (
     <Switch>
+      <PrivateRoutesAdmin
+        exact
+        path="/AccueilAdministration"
+        component={WelcomeAdmin}
+      />
       <PrivateRoutesAdmin
         exact
         path="/AccueilAdministration/ListeAbsence"

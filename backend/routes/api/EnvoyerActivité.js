@@ -7,17 +7,16 @@ const Grid = require("gridfs-stream");
 const crypto = require("crypto");
 const router = express.Router();
 const app = express();
-
+const config = require("config");
+const dbURI = config.get("mongoURI");
 app.use(express.json());
 app.use(cors());
 
 //Connect to DB
-const mongoURI =
-  "mongodb+srv://ProjectDB:Project2020@cluster0-mnrih.gcp.mongodb.net/test?retryWrites=true&w=majority";
 
-const conn = mongoose.createConnection(mongoURI);
+const conn = mongoose.createConnection(dbURI);
 
-mongoose.connect(mongoURI, { useNewUrlParser: true });
+mongoose.connect(dbURI, { useNewUrlParser: true });
 
 let gfs;
 conn.once("open", () => {
@@ -28,7 +27,7 @@ conn.once("open", () => {
 
 // Create storage engine
 const storage = new GridFsStorage({
-  url: mongoURI,
+  url: dbURI,
   file: (req, file) => {
     return new Promise((resolve, reject) => {
       crypto.randomBytes(16, (err, buf) => {

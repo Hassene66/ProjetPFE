@@ -16,7 +16,7 @@ const PageAcceuilEleve = () => {
             {/* fixed sidebar */}
             <div
               className="navbar-dark  text-white position-fixed h-100 align-self-start w-sidebar"
-              style={{ backgroundColor: "#7566e8" }}
+              style={{ backgroundColor: "#404d5a" }}
             >
               <ul className="nav flex-column flex-nowrap text-truncate">
                 <li className="nav-item">

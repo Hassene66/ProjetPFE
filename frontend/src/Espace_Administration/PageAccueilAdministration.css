@@ -1,33 +1,33 @@
-.w-sidebar {
+.EspaceAdmin .w-sidebar {
   width: 200px;
   max-width: 200px;
 }
 
-.row.collapse {
+.EspaceAdmin .row.collapse {
   margin-left: -200px;
   left: 0;
   transition: margin-left 0.15s linear;
 }
 
-.row.collapse.show {
+.EspaceAdmin .row.collapse.show {
   margin-left: 0 !important;
 }
 
-.row.collapsing {
+.EspaceAdmin .row.collapsing {
   margin-left: -200px;
   left: -0.05%;
   transition: all 0.15s linear;
 }
 
 @media (max-width: 1029px) {
-  .row.collapse,
+  .EspaceAdmin .row.collapse,
   .row.collapsing {
     margin-left: 0 !important;
     left: 0 !important;
     overflow: visible;
   }
 
-  .row > .sidebar.collapse {
+  .EspaceAdmin .row > .sidebar.collapse {
     display: flex !important;
     margin-left: -100% !important;
     transition: all 0.25s linear;
@@ -38,14 +38,14 @@
     flex-basis: auto;
   }
 
-  .row > .sidebar.collapse.show {
+  .EspaceAdmin .row > .sidebar.collapse.show {
     margin-left: 0 !important;
     width: 100%;
     max-width: 100%;
     min-width: initial;
   }
 
-  .row > .sidebar.collapsing {
+  .EspaceAdmin .row > .sidebar.collapsing {
     display: flex !important;
     margin-left: -10% !important;
     transition: all 0.2s linear !important;
@@ -54,31 +54,31 @@
     min-width: initial;
   }
 }
-.nav-links-color {
+.EspaceAdmin .nav-links-color {
   color: white;
   font-size: large;
   font-weight: 500;
   font-family: sans-serif;
 }
-.nav-links-color:hover {
+.EspaceAdmin .nav-links-color:hover {
   color: black;
   background-color: white;
-  border-left: 10px solid #594db9;
+  border-left: 10px solid #7f8388;
 }
-.show {
+.EspaceAdmin .show {
   display: block;
 }
-.hide {
+.EspaceAdmin .hide {
   display: none;
 }
-.sub-menu {
-  background-color: #9284fa;
+.EspaceAdmin .sub-menu {
+  background-color: #728191d2;
 }
-a.dropdown-toggle::after {
+.EspaceAdmin a.dropdown-toggle::after {
   margin-left: 13px;
 }
 .EspaceAdmin .activenav {
   color: black;
   background-color: white;
-  border-left: 10px solid #594db9;
+  border-left: 10px solid #8ca2b6;
 }

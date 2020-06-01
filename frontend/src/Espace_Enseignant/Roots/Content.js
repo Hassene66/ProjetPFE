@@ -12,12 +12,18 @@ import ActivitésReçues from "../Content/ActivitésReçues";
 import BoiteDeReception from "../Content/BoiteDeReception";
 import ContacterEleve from "../Content/ContacterÉlève";
 import VoirPlus from "../Content/VoirPlus";
+import WelcomeEnseignant from "../Content/WelcomeEnseignant";
 import { Route, Switch } from "react-router-dom";
 import PrivateRouteEnseignant from "../../PrivateRoutes/PrivateRoutesEnseignant";
 
 const Content = () => {
   return (
     <Switch>
+      <PrivateRouteEnseignant
+        exact
+        path="/PageAcceuilEnseignant"
+        component={WelcomeEnseignant}
+      />
       <PrivateRouteEnseignant
         exact
         path="/PageAcceuilEnseignant/MesÉlèves"

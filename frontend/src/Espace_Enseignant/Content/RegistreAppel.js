@@ -122,26 +122,26 @@ const RegistreAppel = ({ setAlert, auth: { user } }) => {
                   <td>{élève.nom}</td>
                   <td>
                     <label>
-                      Present
                       <input
                         type="radio"
                         value="Present"
-                        className="mx-3"
+                        className="mr-2"
                         checked={selectedOption[idx] === "Present"}
                         onChange={(e) => onStatusChange(e, idx)}
                         name={inputName[idx]}
                       />
+                      Présent
                     </label>
                     <label>
-                      Absent
                       <input
                         type="radio"
                         value="Absent"
-                        className="ml-3"
+                        className="ml-3 mr-2"
                         checked={selectedOption[idx] === "Absent"}
                         onChange={(e) => onStatusChange(e, idx)}
                         name={inputName[idx]}
                       />
+                      Absent
                     </label>
                   </td>
                 </tr>
@@ -171,7 +171,7 @@ const RegistreAppel = ({ setAlert, auth: { user } }) => {
       <Alert />
       <form onSubmit={(e) => onSubmit(e)}>
         <div className="form-group">
-          <h4 for="exampleFormControlSelect1">Choisir la classe</h4>
+          <h4 for="exampleFormControlSelect1">Sélectionner un classe</h4>
           <select
             className="form-control w-25"
             id="exampleFormControlSelect1"

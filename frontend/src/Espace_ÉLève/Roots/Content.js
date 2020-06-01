@@ -7,12 +7,18 @@ import Moyenne from "../Content/Moyenne";
 import ContacterEnseignant from "../Content/ContacterEnseignant";
 import BoiteDeReception from "../Content/BoiteDeRéception";
 import VoirPlus from "../Content/VoirPlus";
+import WelcomeEleve from "../Content/WelcomeEleve";
 import { Route, Switch } from "react-router-dom";
 import PrivateRoutesÉlève from "../../PrivateRoutes/PrivateRoutesÉlève";
 
 const Content = () => {
   return (
     <Switch>
+      <PrivateRoutesÉlève
+        exact
+        path="/PageAcceuilEleve"
+        component={WelcomeEleve}
+      />
       <PrivateRoutesÉlève
         exact
         path="/PageAcceuilEleve/MesCours"

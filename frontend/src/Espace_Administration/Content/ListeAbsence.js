@@ -5,7 +5,6 @@ import axios from "axios";
 import Spinner from "../../Components/Spinner";
 import moment from "moment-timezone";
 
-import "react-datepicker/dist/react-datepicker.css";
 const ListeAbsence = ({ auth: { user } }) => {
   const [formData, setFormData] = useState({
     classe: [],

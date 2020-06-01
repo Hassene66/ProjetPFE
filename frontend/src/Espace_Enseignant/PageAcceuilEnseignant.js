@@ -17,7 +17,7 @@ const PageAcceuilEnseignant = () => {
             {/* fixed sidebar */}
             <div
               className="navbar-dark  text-white position-fixed h-100 align-self-start w-sidebar"
-              style={{ backgroundColor: "#7566e8" }}
+              style={{ backgroundColor: "#404d5a" }}
             >
               <ul className="nav flex-column flex-nowrap text-truncate">
                 <li className="nav-item">
@@ -132,7 +132,7 @@ const PageAcceuilEnseignant = () => {
                       className="nav-link nav-links-color"
                       to="/PageAcceuilEnseignant/ActivitesRecues"
                     >
-                      Activités Reçues
+                      Activités reçues
                     </NavLink>
                   </li>
                 </div>
@@ -164,7 +164,7 @@ const PageAcceuilEnseignant = () => {
                     disabled
                     onClick={() => setShowSubMessages(!showSubMessages)}
                   >
-                    Contacter Élève
+                    Contacter élève
                   </NavLink>
                 </li>
                 <div className={showSubMessages ? "show" : "hide"}>
@@ -175,7 +175,7 @@ const PageAcceuilEnseignant = () => {
                       className="nav-link active nav-links-color"
                       to="/PageAcceuilEnseignant/ContacterEleve"
                     >
-                      Envoyer Message
+                      Envoyer message
                     </NavLink>
                   </li>
                   <li className="nav-item sub-menu">
@@ -185,7 +185,7 @@ const PageAcceuilEnseignant = () => {
                       className="nav-link nav-links-color"
                       to="/PageAcceuilEnseignant/BoiteDeReception"
                     >
-                      Boîte De Réception
+                      Boîte de réception
                     </NavLink>
                   </li>
                 </div>

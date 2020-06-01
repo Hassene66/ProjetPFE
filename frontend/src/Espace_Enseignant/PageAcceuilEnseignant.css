@@ -1,25 +1,25 @@
-.w-sidebar {
+.EspaceEnseignant .w-sidebar {
   width: 200px;
   max-width: 200px;
 }
 
-.row.collapse {
+.EspaceEnseignant .row.collapse {
   margin-left: -200px;
   left: 0;
   transition: margin-left 0.15s linear;
 }
 
-.row.collapse.show {
+.EspaceEnseignant .row.collapse.show {
   margin-left: 0 !important;
 }
 
-.row.collapsing {
+.EspaceEnseignant .row.collapsing {
   margin-left: -200px;
   left: -0.05%;
   transition: all 0.15s linear;
 }
 
-@media (max-width: 1170px) {
+@media (max-width: 960px) {
   .row.collapse,
   .row.collapsing {
     margin-left: 0 !important;
@@ -27,7 +27,7 @@
     overflow: visible;
   }
 
-  .row > .sidebar.collapse {
+  .EspaceEnseignant .row > .sidebar.collapse {
     display: flex !important;
     margin-left: -100% !important;
     transition: all 0.25s linear;
@@ -38,14 +38,14 @@
     flex-basis: auto;
   }
 
-  .row > .sidebar.collapse.show {
+  .EspaceEnseignant .row > .sidebar.collapse.show {
     margin-left: 0 !important;
     width: 100%;
     max-width: 100%;
     min-width: initial;
   }
 
-  .row > .sidebar.collapsing {
+  .EspaceEnseignant .row > .sidebar.collapsing {
     display: flex !important;
     margin-left: -10% !important;
     transition: all 0.2s linear !important;
@@ -54,31 +54,31 @@
     min-width: initial;
   }
 }
-.nav-links-color {
+.EspaceEnseignant .nav-links-color {
   color: white;
   font-size: large;
   font-weight: 500;
   font-family: sans-serif;
 }
-.nav-links-color:hover {
+.EspaceEnseignant .nav-links-color:hover {
   color: black;
   background-color: white;
-  border-left: 10px solid #594db9;
+  border-left: 10px solid #7f8388;
 }
-.show {
+.EspaceEnseignant .show {
   display: block;
 }
-.hide {
+.EspaceEnseignant .hide {
   display: none;
 }
-.sub-menu {
-  background-color: #9284fa;
+.EspaceEnseignant .sub-menu {
+  background-color: #728191d2;
 }
-a.dropdown-toggle::after {
+.EspaceEnseignant a.dropdown-toggle::after {
   margin-left: 13px;
 }
 .EspaceEnseignant .activenav {
   color: black;
   background-color: white;
-  border-left: 10px solid #594db9;
+  border-left: 10px solid #8ca2b6;
 }
