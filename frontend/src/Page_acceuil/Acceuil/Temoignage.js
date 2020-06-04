@@ -35,7 +35,7 @@ const Temoinage = ({
           <div className="border"></div>
 
           <div className="row">
-            <div className="col-md">
+            <div className="col-lg">
               <div className="testimonial">
                 <img src={person1} alt="" />
                 <div className="name">Marouene</div>
@@ -44,7 +44,7 @@ const Temoinage = ({
               </div>
             </div>
 
-            <div className="col-md">
+            <div className="col-lg mx-4">
               <div className="testimonial">
                 <img src={person2} alt="" />
                 <div className="name">Aya</div>
@@ -53,7 +53,7 @@ const Temoinage = ({
               </div>
             </div>
 
-            <div className="col-md">
+            <div className="col-lg">
               <div className="testimonial">
                 <img src={person3} alt="" />
                 <div className="name">Yosra</div>

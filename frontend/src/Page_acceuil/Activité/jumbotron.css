@@ -1,0 +1,17 @@
+.jumbotron_activité {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  color: white;
+  font-weight: bold;
+  font-size: large;
+  text-align: center;
+  background-image: url("./images_Page_activité/schoolActivity.png");
+
+  z-index: 1;
+}
+
+.jumbo-txt {
+  z-index: 2;
+  margin-bottom: 1em;
+}

@@ -4,9 +4,9 @@ export class Jumbotron extends Component {
   render() {
     return (
       <div
-        className="jumbotron mb-1"
+        className="jumbotron "
         style={{
-          backgroundImage: { img4 },
+          backgroundImage: `url( ${img4} )`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
         }}

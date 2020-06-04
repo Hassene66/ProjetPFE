@@ -98,7 +98,7 @@ const Info_Données = ({
                 role="tabpanel"
                 aria-labelledby="one-tab"
               >
-                <h5 className="card-title">Cycle d'exploitation :</h5>
+                <h5 className="card-title">Le cycle d'adaptation</h5>
                 <p className="card-text">{lesCyclesQueNotreEcolePropose[0]}</p>
               </div>
               <div
@@ -107,7 +107,7 @@ const Info_Données = ({
                 role="tabpanel"
                 aria-labelledby="two-tab"
               >
-                <h5 className="card-title">Cycle d'exploitation :</h5>
+                <h5 className="card-title">Le cycle central</h5>
                 <p className="card-text">{lesCyclesQueNotreEcolePropose[1]}</p>
               </div>
               <div
@@ -116,7 +116,7 @@ const Info_Données = ({
                 role="tabpanel"
                 aria-labelledby="three-tab"
               >
-                <h5 className="card-title">Cycle d'exploitation :</h5>
+                <h5 className="card-title">Un cycle charnière d’orientation</h5>
                 <p className="card-text">{lesCyclesQueNotreEcolePropose[2]}</p>
               </div>
             </div>

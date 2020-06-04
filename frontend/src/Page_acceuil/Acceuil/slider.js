@@ -1,4 +1,5 @@
-import React from "react";
+import React, { Fragment } from "react";
+import { Link } from "react-router-dom";
 import image1 from "./Images/bg_1.jpg";
 import image2 from "./Images/bg_2.jpg";
 import image3 from "./Images/bg_3.jpg";
@@ -18,21 +19,21 @@ class Slider extends React.Component {
               src={image1}
               alt="First slide"
               width="100%"
-              style={{ filter: "brightness(50%)", "max-height": "680px" }}
+              style={{ filter: "brightness(40%)", "max-height": "680px" }}
             />
             <div className="container">
               <div className="carousel-caption text-center">
-                <h1>Example headline.</h1>
-                <p>
-                  Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-                  Donec id elit non mi porta gravida at eget metus. Nullam id
-                  dolor id nibh ultricies vehicula ut id elit.
-                </p>
-                <p>
-                  <a className="btn btn-lg btn-primary" href="#" role="button">
-                    Sign up today
-                  </a>
-                </p>
+                <h1
+                  className="mb-5 "
+                  style={{
+                    fontSize: "2.375em",
+                    fontWeight: "700",
+                    textShadow: "rgba(0,0,0,.5) 0 0 20px",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  la meilleur métodologie d'apprentisage
+                </h1>
               </div>
             </div>
           </div>
@@ -42,20 +43,29 @@ class Slider extends React.Component {
               src={image2}
               alt="Second slide"
               width="100%"
-              style={{ filter: "brightness(60%)", "max-height": "680px" }}
+              style={{ filter: "brightness(40%)", "max-height": "680px" }}
             />
             <div className="container">
               <div className="carousel-caption">
-                <h1>Another example headline.</h1>
+                <h1
+                  style={{
+                    fontSize: "2.375em",
+                    fontWeight: "700",
+                    textShadow: "rgba(0,0,0,.5) 0 0 20px",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  Découvrir nos gallerie d'images
+                </h1>
+
                 <p>
-                  Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-                  Donec id elit non mi porta gravida at eget metus. Nullam id
-                  dolor id nibh ultricies vehicula ut id elit.
-                </p>
-                <p>
-                  <a className="btn btn-lg btn-primary" href="#" role="button">
-                    Learn more
-                  </a>
+                  <Link
+                    className="btn btn-lg btn-primary"
+                    to="/Galerie"
+                    role="button"
+                  >
+                    Nos Galerie
+                  </Link>
                 </p>
               </div>
             </div>
@@ -66,20 +76,29 @@ class Slider extends React.Component {
               src={image3}
               alt="Third slide"
               width="100%"
-              style={{ filter: "brightness(60%)", "max-height": "680px" }}
+              style={{ filter: "brightness(40%)", "max-height": "680px" }}
             />
             <div className="container">
               <div className="carousel-caption text-center">
-                <h1>One more for good measure.</h1>
+                <h1
+                  style={{
+                    fontSize: "2.375em",
+                    fontWeight: "700",
+                    textShadow: "rgba(0,0,0,.5) 0 0 20px",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  Découvrir Nos Activités
+                </h1>
+
                 <p>
-                  Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-                  Donec id elit non mi porta gravida at eget metus. Nullam id
-                  dolor id nibh ultricies vehicula ut id elit.
-                </p>
-                <p>
-                  <a className="btn btn-lg btn-primary" href="#" role="button">
-                    Browse gallery
-                  </a>
+                  <Link
+                    className="btn btn-lg btn-primary"
+                    to="/Activité"
+                    role="button"
+                  >
+                    Nos activités
+                  </Link>
                 </p>
               </div>
             </div>

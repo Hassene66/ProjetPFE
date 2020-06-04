@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Fragment } from "react";
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import { Link, Redirect } from "react-router-dom";
+import { Link, NavLink, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout } from "../actions/auth";
@@ -61,8 +61,8 @@ const Navbar = ({
   }
 
   return (
-    <div>
-      <nav className=" navbar sticky-top navbar navbar-expand-lg navbar-dark bg-dark  ">
+    <div className="navbar-acceuil">
+      <nav className=" navbar sticky-top navbar navbar-expand-xl navbar-collapse navbar-dark bg-dark  ">
         <a className="navbar-brand  " href="/">
           <img
             alt=""
@@ -85,45 +85,77 @@ const Navbar = ({
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul className="navbar-nav ml-5">
+          <ul className="navbar-nav  ml-5">
             <li className="nav-item active ml-3 mr-3">
-              <Link className="nav-link" to="/">
+              <NavLink
+                activeClassName="navacceuil"
+                exact
+                className="nav-link"
+                to="/"
+              >
                 Acceuil<span className="sr-only">(current)</span>
-              </Link>
+              </NavLink>
             </li>
 
             <li className="nav-item active  ml-3 mr-3">
-              <Link className="nav-link" to="/Presentation">
+              <NavLink
+                activeClassName="navacceuil"
+                exact
+                className="nav-link"
+                to="/Presentation"
+              >
                 Présentation
-              </Link>
+              </NavLink>
             </li>
 
             <li className="nav-item active ml-3 mr-3">
-              <Link className="nav-link" to="/NosFormation">
+              <NavLink
+                activeClassName="navacceuil"
+                exact
+                className="nav-link"
+                to="/NosFormation"
+              >
                 Nos formation
-              </Link>
+              </NavLink>
             </li>
 
             <li className="nav-item active ml-3 mr-3">
-              <Link className="nav-link" to="/Activité">
+              <NavLink
+                activeClassName="navacceuil"
+                exact
+                className="nav-link"
+                to="/Activité"
+              >
                 Activités
-              </Link>
+              </NavLink>
             </li>
             <li className="nav-item active ml-3 mr-3">
-              <Link className="nav-link" to="/Galerie">
+              <NavLink
+                activeClassName="navacceuil"
+                exact
+                className="nav-link"
+                to="/Galerie"
+              >
                 Galerie
-              </Link>
+              </NavLink>
             </li>
 
             <li className="nav-item  ml-3 active ">
-              <Link className="nav-link" to="/Contact">
+              <NavLink
+                activeClassName="navacceuil"
+                exact
+                className="nav-link"
+                to="/Contact"
+              >
                 Contact
-              </Link>
+              </NavLink>
             </li>
+          </ul>
 
-            {/* d-flex justify-content-right */}
-            {!loading && isAuthenticated && token && (
-              <li className="nav-item dropdown user-acc-margin">
+          {/* d-flex justify-content-right */}
+          {!loading && isAuthenticated && token && (
+            <ul className="navbar-nav user-acc-margin1 user-acc-margin2">
+              <li className="nav-item dropdown ">
                 <Link
                   className="nav-link dropdown-toggle"
                   id="navbarDropdown"
@@ -143,19 +175,23 @@ const Navbar = ({
                   {Logoutbtn}
                 </div>
               </li>
-            )}
-            {!loading && isAuthenticated && !token && (
-              <Fragment>
+            </ul>
+          )}
+          {!loading && isAuthenticated && !token && (
+            <Fragment>
+              <ul className="navbar-nav Login-margin user-acc-margin1  ">
                 <li className="nav-item">{LoginbtnAvant}</li>
-              </Fragment>
-            )}
+              </ul>
+            </Fragment>
+          )}
 
-            {!loading && !isAuthenticated && (
-              <Fragment>
+          {!loading && !isAuthenticated && (
+            <Fragment>
+              <ul className="navbar-nav Login-margin user-acc-margin1  ">
                 <li className="nav-item">{LoginbtnAvant}</li>
-              </Fragment>
-            )}
-          </ul>
+              </ul>
+            </Fragment>
+          )}
         </div>
       </nav>
     </div>

@@ -1,5 +1,23 @@
 @media screen and (min-width: 992px) {
-  .user-acc-margin {
-    margin-left: 25rem;
+  .user-acc-margin1 {
+    margin-left: auto;
   }
+}
+@media screen and (max-width: 1200px) {
+  .user-acc-margin2 {
+    margin-left: 60px;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .Login-margin {
+    margin-left: 60px;
+  }
+}
+
+.navbar-acceuil .navacceuil {
+  border-bottom: 2px solid white;
+}
+
+.navbar-acceuil li {
+  font-weight: 600;
 }

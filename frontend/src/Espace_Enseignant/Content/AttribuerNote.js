@@ -273,7 +273,7 @@ const AttribuerNote = ({ setAlert, auth: { user } }) => {
       <Alert />
       <form onSubmit={(e) => onSubmit(e)}>
         <div className="form-group">
-          <h4>Choisir la classe</h4>
+          <h4>Sélectionner un classe</h4>
           <select
             className="form-control w-25"
             value={classe}

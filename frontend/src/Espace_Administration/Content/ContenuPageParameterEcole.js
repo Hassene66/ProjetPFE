@@ -75,12 +75,34 @@ const ContenuPageParameterEcole = ({
         tauxDeRéussite: profile.tauxDeRéussite,
         QuiSommeNous: profile.QuiSommeNous,
         MotDeDirecteur: profile.MotDeDirecteur,
-        Témoinage: profile.Témoinage,
-        LesPlusDeNotreEcole: profile.LesPlusDeNotreEcole,
-        LesValeursDeNotreEcole: profile.LesValeursDeNotreEcole,
-        lesCyclesQueNotreEcolePropose: profile.lesCyclesQueNotreEcolePropose,
-        NosActivités: profile.NosActivités,
-        NosFormations: profile.NosFormations,
+        Témoinage:
+          profile.Témoinage[0] +
+          "/" +
+          profile.Témoinage[1] +
+          "/" +
+          profile.Témoinage[2],
+        LesPlusDeNotreEcole:
+          profile.LesPlusDeNotreEcole[0] + "/" + profile.LesPlusDeNotreEcole[1],
+        LesValeursDeNotreEcole:
+          profile.LesValeursDeNotreEcole[0] +
+          "/" +
+          profile.LesValeursDeNotreEcole[1] +
+          "/" +
+          profile.LesValeursDeNotreEcole[2],
+        lesCyclesQueNotreEcolePropose:
+          profile.lesCyclesQueNotreEcolePropose[0] +
+          "/" +
+          profile.lesCyclesQueNotreEcolePropose[1] +
+          "/" +
+          profile.lesCyclesQueNotreEcolePropose[2],
+        NosActivités:
+          profile.NosActivités[0] +
+          "/" +
+          profile.NosActivités[1] +
+          "/" +
+          profile.NosActivités[2],
+        NosFormations:
+          profile.NosFormations[0] + "/" + profile.NosFormations[1],
       });
     }
   }, [loadingProfileEcole]);

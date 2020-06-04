@@ -1,0 +1,14 @@
+.carousel-item blockquote:before {
+  content: "\f10d";
+  font-family: "Fontawesome";
+  float: left;
+  margin-right: 10px;
+}
+blockquote {
+  padding-left: 110px;
+  padding-right: 110px;
+  text-align: center;
+}
+.tempoinage-color {
+  background-color: #e4e4e4;
+}
