@@ -4,7 +4,7 @@ export class Jumbotron extends Component {
   render() {
     return (
       <div
-        className="jumbotron "
+        className="jumbotron mb-3 "
         style={{
           backgroundImage: `url( ${img4} )`,
           backgroundRepeat: "no-repeat",
@@ -14,7 +14,7 @@ export class Jumbotron extends Component {
         <div className="text-white text-center py-5 px-4">
           <div>
             <h1
-              className="card-title h1-responsive pt-3 mb-5 font-bold "
+              className="card-title h1-responsive pt-3  font-bold "
               style={{ color: "#fead38", textShadow: "2px 2px #ff0000" }}
             >
               <strong>Découvrir nos activités </strong>

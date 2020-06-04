@@ -30,7 +30,7 @@ function ImagesGrid() {
             <div className="col-lg-2 col-sm-4 pb-4 ">
               <div className="thumbnail">
                 <img
-                  src={`http://localhost:5000/GalerieImages/files/${elem._id}`}
+                  src={`/GalerieImages/files/${elem._id}`}
                   className="img-thumbnail"
                   style={{
                     height: "130px",

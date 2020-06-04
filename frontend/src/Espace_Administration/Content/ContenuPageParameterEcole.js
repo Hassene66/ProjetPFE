@@ -143,7 +143,7 @@ const ContenuPageParameterEcole = ({
   return loadingProfileEcole && profile === null ? (
     <Spinner />
   ) : (
-    <div className="col p-3  ">
+    <div className="col p-3  parametrer-ecole">
       <form onSubmit={(e) => onSubmit(e)}>
         <h1>Paramétrer Mon Ecole</h1>
         <Alert />

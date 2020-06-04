@@ -47,7 +47,7 @@ const PageAcceuilEleve = () => {
                     className="nav-link active nav-links-color"
                     to="/AccueilAdministration/ParameterEcole"
                   >
-                    Paramétrer ecole
+                    Paramétrer école
                   </NavLink>
                 </li>
 
