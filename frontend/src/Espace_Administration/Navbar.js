@@ -50,7 +50,7 @@ const Navbar = ({
       <div className="container-fluid fixed-top bg-dark py-3 navbar-nav">
         <div className="row collapse show no-gutters d-flex h-100 position-relative">
           <div className=" px-0 w-sidebar navbar-collapse collapse d-none d-lg-flex ">
-            {/*  spacer col */}
+            {/*  spacer for col  */}
             <Link className="navbar-brand p-0 ml-2  " to="/">
               <img
                 alt=""
