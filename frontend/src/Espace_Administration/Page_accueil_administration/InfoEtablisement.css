@@ -1,8 +1,0 @@
-.wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-column-gap: 1em;
-  justify-items: center;
-  align-items: center;
-  margin-top: 3em;
-}

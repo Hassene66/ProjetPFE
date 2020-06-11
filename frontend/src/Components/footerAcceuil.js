@@ -63,9 +63,10 @@ const Footer = ({
     const letter = {
       newsletter: stateFooterAcceuil.newsletter,
     };
-    console.log(stateFooterAcceuil.newsletter);
-    axios.post("/Newsletter", letter).then((res) => console.log(res.data));
-    setStateFooterAcceuil({ newsletter: e.target.value });
+
+    axios
+      .post("/Newsletter", letter)
+      .then(setStateFooterAcceuil({ newsletter: e.target.value }));
   };
 
   return (

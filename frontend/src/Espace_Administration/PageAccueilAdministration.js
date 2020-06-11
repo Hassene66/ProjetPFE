@@ -135,7 +135,7 @@ const PageAcceuilEleve = () => {
                     className="nav-link active nav-links-color"
                     to="/AccueilAdministration/listeContacterNous"
                   >
-                    Liste Des Messages
+                    Liste des messages
                   </NavLink>
                 </li>
               </ul>

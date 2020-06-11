@@ -119,16 +119,18 @@ const CreerCompte = ({ setAlert }) => {
     const body = JSON.stringify(AccountEnseignant);
     axios
       .post("/api/users/", body, config)
-      .then((res) => console.log(res.data));
-    setAccountEnseignantData({
-      prenomEnseignant: "",
-      nomEnseignant: "",
-      identifiantEnseignant: "",
-      motDePasseEnseignant: "",
-      niveauEnseigné1: "",
-      classeEnseigné1: "",
-      matiéreEnseigné: "",
-    }).then(setAlert("Compte a été créé avec succès", "success"));
+      .then(
+        setAccountEnseignantData({
+          prenomEnseignant: "",
+          nomEnseignant: "",
+          identifiantEnseignant: "",
+          motDePasseEnseignant: "",
+          niveauEnseigné1: "",
+          classeEnseigné1: "",
+          matiéreEnseigné: "",
+        })
+      )
+      .then(setAlert("Compte a été créé avec succès", "success"));
   };
 
   const onSubmit3 = (e) => {
@@ -153,15 +155,17 @@ const CreerCompte = ({ setAlert }) => {
     const body = JSON.stringify(AccountEleve);
     axios
       .post("/api/users/", body, config)
-      .then((res) => console.log(res.data));
-    setAccountEléveData({
-      prénomEléve,
-      nomEléve,
-      identifiantEléve,
-      motDePasseEléve,
-      niveau,
-      classe,
-    }).then(setAlert("Compte a été créé avec succès", "success"));
+      .then(
+        setAccountEléveData({
+          prénomEléve,
+          nomEléve,
+          identifiantEléve,
+          motDePasseEléve,
+          niveau,
+          classe,
+        })
+      )
+      .then(setAlert("Compte a été créé avec succès", "success"));
   };
 
   return (

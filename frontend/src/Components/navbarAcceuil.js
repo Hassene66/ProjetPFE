@@ -115,7 +115,7 @@ const Navbar = ({
                 className="nav-link"
                 to="/NosFormation"
               >
-                Nos formation
+                Formation
               </NavLink>
             </li>
 

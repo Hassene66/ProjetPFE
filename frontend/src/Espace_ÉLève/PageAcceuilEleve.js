@@ -36,7 +36,7 @@ const PageAcceuilEleve = () => {
                     className="nav-link active nav-links-color"
                     to="/PageAcceuilEleve/MesCours"
                   >
-                    Mes Cours
+                    Mes cours
                   </NavLink>
                 </li>
                 <li className="nav-item  flex-row ">
@@ -57,7 +57,7 @@ const PageAcceuilEleve = () => {
                       className="nav-link active nav-links-color"
                       to="/PageAcceuilEleve/MesActivites"
                     >
-                      Mes Activités
+                      Mes activités
                     </NavLink>
                   </li>
                   <li className="nav-item sub-menu">
@@ -67,7 +67,7 @@ const PageAcceuilEleve = () => {
                       className="nav-link nav-links-color"
                       to="/PageAcceuilEleve/EnvoyerActivite"
                     >
-                      Envoyer Activité
+                      Envoyer activité
                     </NavLink>
                   </li>
                 </div>
@@ -88,7 +88,7 @@ const PageAcceuilEleve = () => {
                     className="nav-link nav-links-color"
                     to="/PageAcceuilEleve/Moyennes"
                   >
-                    Mes Moyennes
+                    Mes moyennes
                   </NavLink>
                 </li>
                 <li className="nav-item  flex-row ">
@@ -98,7 +98,7 @@ const PageAcceuilEleve = () => {
                     disabled
                     onClick={() => setShowSubMessages(!showSubMessages)}
                   >
-                    Contacter Enseignant
+                    Contacter enseignant
                   </NavLink>
                 </li>
                 <div className={showSubMessages ? "show" : "hide"}>
@@ -109,7 +109,7 @@ const PageAcceuilEleve = () => {
                       className="nav-link active nav-links-color"
                       to="/PageAcceuilEleve/ContacterEnseignant"
                     >
-                      Envoyer Message
+                      Envoyer message
                     </NavLink>
                   </li>
                   <li className="nav-item sub-menu">
@@ -119,7 +119,7 @@ const PageAcceuilEleve = () => {
                       className="nav-link nav-links-color"
                       to="/PageAcceuilEleve/BoiteDeReception"
                     >
-                      Boîte De Réception
+                      Boîte de réception
                     </NavLink>
                   </li>
                 </div>
