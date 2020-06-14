@@ -124,7 +124,6 @@ const MoyenneÉlève = ({ setAlert, auth: { user } }) => {
     const identifiant = listeDesEleves[lastcount].identifiant;
     const body = JSON.stringify({ identifiant });
     axios.post("/Admin/MoyenneEleve", body, config).then((res) => {
-      console.log(typeof res.data);
       if (typeof res.data === "object" && Object.entries(res.data).length > 0) {
         setFormData({
           ...formData,
@@ -280,9 +279,7 @@ const MoyenneÉlève = ({ setAlert, auth: { user } }) => {
           </select>
         </div>
         {typeof listeDesEleves === "string" ? (
-          <h3 className="text-center mt-5">
-            il n'y a pas des élèves dans cette classe
-          </h3>
+          <h3 className="text-center mt-5">aucun élève dans cette classe</h3>
         ) : (
           typeof listeDesEleves === "object" && (
             <Fragment>

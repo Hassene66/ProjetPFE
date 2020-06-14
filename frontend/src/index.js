@@ -5,6 +5,7 @@ import { Route, BrowserRouter, Switch } from "react-router-dom";
 import PageAccueilAdministration from "./Espace_Administration/PageAccueilAdministration";
 import PageAcceuilEnseignant from "./Espace_Enseignant/PageAcceuilEnseignant";
 import PageAcceuilEleve from "./Espace_ÉLève/PageAcceuilEleve";
+import PageAcceuilParent from "./Espace_Parent/PageAcceuilParent";
 import PageLogin from "./page_Login/PageLogin";
 import PageAcceuil from "./Page_acceuil/Acceuil/pageAcceuil";
 import PagePresentation from "./Page_acceuil/Presentation/PagePresentation";
@@ -19,6 +20,7 @@ import { Provider } from "react-redux";
 import PrivateRouteAdmin from "./PrivateRoutes/PrivateRoutesAdmin";
 import PrivateRouteEnseignant from "./PrivateRoutes/PrivateRoutesEnseignant";
 import PrivateRouteÉlève from "./PrivateRoutes/PrivateRoutesÉlève";
+import PrivateRouteParent from "./PrivateRoutes/PrivateRoutesParent";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -52,6 +54,10 @@ const App = () => {
           <PrivateRouteAdmin
             path="/AccueilAdministration"
             component={PageAccueilAdministration}
+          />
+          <PrivateRouteParent
+            path="/PageAcceuilParent"
+            component={PageAcceuilParent}
           />
         </Switch>
       </div>

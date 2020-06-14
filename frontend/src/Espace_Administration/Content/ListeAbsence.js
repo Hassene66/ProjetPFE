@@ -104,7 +104,7 @@ const ListeAbsence = ({ auth: { user } }) => {
                     </th>
                     <th scope="col">Matière : {elem.matièreEnseigné} </th>
                     <th scope="col">
-                      Date : {elem.Date} {"  "} Heurs : {elem.Temps}
+                      Date : {elem.Date} {"  "} Heure : {elem.Temps}
                     </th>
                   </tr>
                 </thead>
@@ -119,7 +119,7 @@ const ListeAbsence = ({ auth: { user } }) => {
                   {elem.Absent.map((el, i) => {
                     return (
                       <tr key={i}>
-                        <td>{el}</td>
+                        <td>{el.prénom + " " + el.nom}</td>
                         <td>{elem.Classe}</td>
                         <td>Absent</td>
                       </tr>
@@ -128,7 +128,7 @@ const ListeAbsence = ({ auth: { user } }) => {
                   {elem.Present.map((el, i) => {
                     return (
                       <tr key={i}>
-                        <td>{el}</td>
+                        <td>{el.prénom + " " + el.nom}</td>
                         <td>{elem.Classe}</td>
                         <td>Present</td>
                       </tr>
@@ -142,7 +142,7 @@ const ListeAbsence = ({ auth: { user } }) => {
       ) : (
         submitted && (
           <h4 className="text-center mt-5">
-            il n’y a pas des listes d’absences correspondant à cette date{" "}
+            Aucune liste d’absences correspondant à cette date{" "}
           </h4>
         )
       )}

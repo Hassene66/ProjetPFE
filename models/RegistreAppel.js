@@ -25,11 +25,11 @@ const RegistreAppelSchema = new mongoose.Schema({
     required: true,
   },
   Present: {
-    type: [String],
+    type: [Object],
     required: true,
   },
   Absent: {
-    type: [String],
+    type: [Object],
     required: true,
   },
 });

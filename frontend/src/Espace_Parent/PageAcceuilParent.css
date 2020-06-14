@@ -1,0 +1,84 @@
+.EspaceEnseignant .w-sidebar {
+  width: 200px;
+  max-width: 200px;
+}
+
+.EspaceEnseignant .row.collapse {
+  margin-left: -200px;
+  left: 0;
+  transition: margin-left 0.15s linear;
+}
+
+.EspaceEnseignant .row.collapse.show {
+  margin-left: 0 !important;
+}
+
+.EspaceEnseignant .row.collapsing {
+  margin-left: -200px;
+  left: -0.05%;
+  transition: all 0.15s linear;
+}
+
+@media (max-width: 960px) {
+  .row.collapse,
+  .row.collapsing {
+    margin-left: 0 !important;
+    left: 0 !important;
+    overflow: visible;
+  }
+
+  .EspaceEnseignant .row > .sidebar.collapse {
+    display: flex !important;
+    margin-left: -100% !important;
+    transition: all 0.25s linear;
+    position: fixed;
+    z-index: 1050;
+    max-width: 0;
+    min-width: 0;
+    flex-basis: auto;
+  }
+
+  .EspaceEnseignant .row > .sidebar.collapse.show {
+    margin-left: 0 !important;
+    width: 100%;
+    max-width: 100%;
+    min-width: initial;
+  }
+
+  .EspaceEnseignant .row > .sidebar.collapsing {
+    display: flex !important;
+    margin-left: -10% !important;
+    transition: all 0.2s linear !important;
+    position: fixed;
+    z-index: 1050;
+    min-width: initial;
+  }
+}
+.EspaceEnseignant .nav-links-color {
+  color: white;
+  font-size: large;
+  font-weight: 500;
+  font-family: sans-serif;
+}
+.EspaceEnseignant .nav-links-color:hover {
+  color: black;
+  background-color: white;
+  border-left: 10px solid #7f8388;
+}
+.EspaceEnseignant .show {
+  display: block;
+}
+.EspaceEnseignant .hide {
+  display: none;
+}
+.EspaceEnseignant .sub-menu {
+  background-color: #728191d2;
+}
+.EspaceEnseignant a.dropdown-toggle::after {
+  margin-left: 13px;
+}
+.EspaceEnseignant .activenav {
+  color: black;
+  background-color: white;
+  border-left: 10px solid #8ca2b6;
+}

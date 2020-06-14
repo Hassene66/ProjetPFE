@@ -25,8 +25,12 @@ const CreerCompte = ({ setAlert }) => {
     nomEléve: "",
     identifiantEléve: "",
     motDePasseEléve: "",
-    niveauEléve: "",
-    classeEléve: "",
+    niveau: "",
+    classe: "",
+    PrénomParent: "",
+    NomParent: "",
+    identifiantParent: "",
+    motDePasseParent: "",
   });
   const {
     motDePasseAdmin,
@@ -50,6 +54,10 @@ const CreerCompte = ({ setAlert }) => {
     motDePasseEléve,
     niveau,
     classe,
+    identifiantParent,
+    NomParent,
+    PrénomParent,
+    motDePasseParent,
   } = accountEléveData;
   const onchange1 = (e) => {
     setAccountAdminData({
@@ -140,6 +148,12 @@ const CreerCompte = ({ setAlert }) => {
       niveau,
       classe,
     };
+    const ProfileParent = {
+      PrénomParent,
+      NomParent,
+      identifiantParent,
+      motDePasseParent,
+    };
     const AccountEleve = {};
     AccountEleve.typeUtilisateur = "élève";
     AccountEleve.prénom = prénomEléve;
@@ -147,6 +161,7 @@ const CreerCompte = ({ setAlert }) => {
     AccountEleve.identifiant = identifiantEléve;
     AccountEleve.motDePasse = motDePasseEléve;
     AccountEleve.profileEleve = profileEleve;
+    AccountEleve.ProfileParent = ProfileParent;
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -157,12 +172,16 @@ const CreerCompte = ({ setAlert }) => {
       .post("/api/users/", body, config)
       .then(
         setAccountEléveData({
-          prénomEléve,
-          nomEléve,
-          identifiantEléve,
-          motDePasseEléve,
-          niveau,
-          classe,
+          prénomEléve: "",
+          nomEléve: "",
+          identifiantEléve: "",
+          motDePasseEléve: "",
+          niveau: "",
+          classe: "",
+          PrénomParent: "",
+          NomParent: "",
+          identifiantParent: "",
+          motDePasseParent: "",
         })
       )
       .then(setAlert("Compte a été créé avec succès", "success"));
@@ -439,13 +458,13 @@ const CreerCompte = ({ setAlert }) => {
                     <div className="row">
                       <div className="col ml-3 mt-3">
                         <div className="form-group">
-                          <label htmlFor="prénomEléve">Prénom</label>
+                          <label htmlFor="prénomEléve">Prénom Élève</label>
                           <input
                             type="text"
                             className="form-control w-75"
                             id="prénomEléve"
                             aria-describedby="prenomAdmin"
-                            placeholder="Prénom "
+                            placeholder="Prénom Éléve "
                             name="prénomEléve"
                             value={prénomEléve}
                             onChange={(e) => onchange3(e)}
@@ -454,12 +473,12 @@ const CreerCompte = ({ setAlert }) => {
                           />
                         </div>
                         <div className="form-group">
-                          <label htmlFor="nomEléve">Nom</label>
+                          <label htmlFor="nomEléve">Nom Élève</label>
                           <input
                             type="text"
                             className="form-control w-75"
                             id="nomEléve"
-                            placeholder="Nom"
+                            placeholder="nom Éléve"
                             name="nomEléve"
                             value={nomEléve}
                             onChange={(e) => onchange3(e)}
@@ -468,17 +487,50 @@ const CreerCompte = ({ setAlert }) => {
                           />
                         </div>
                         <div className="form-group">
-                          <label htmlFor="identifiantEléve">Identifiant</label>
+                          <label htmlFor="identifiantEléve">
+                            Identifiant Élève
+                          </label>
                           <input
                             type="text"
                             className="form-control w-75"
                             id="identifiantEléve"
-                            placeholder="identifiant"
+                            placeholder="identifiant Éléve"
                             name="identifiantEléve"
                             value={identifiantEléve}
                             onChange={(e) => onchange3(e)}
                             required
                             minlength="7"
+                          />
+                        </div>
+                        <div className="form-group">
+                          <label htmlFor="PrénomParent">Prénom Parent</label>
+                          <input
+                            type="text"
+                            className="form-control w-75"
+                            id="PrénomParent"
+                            placeholder="Prénom Parent"
+                            name="PrénomParent"
+                            value={PrénomParent}
+                            onChange={(e) => onchange3(e)}
+                            required
+                            minlength="2"
+                          />
+                        </div>
+
+                        <div className="form-group">
+                          <label htmlFor="identifiantParent">
+                            Identifiant Parent
+                          </label>
+                          <input
+                            type="text"
+                            className="form-control w-75"
+                            id="identifiantParent"
+                            placeholder="identifiant Parent"
+                            name="identifiantParent"
+                            value={identifiantParent}
+                            onChange={(e) => onchange3(e)}
+                            required
+                            minlength="2"
                           />
                         </div>
                       </div>
@@ -489,7 +541,7 @@ const CreerCompte = ({ setAlert }) => {
                             type="password"
                             className="form-control w-75"
                             id="motDePasseEléve"
-                            placeholder="mot de passe"
+                            placeholder="mot de passe Élève"
                             name="motDePasseEléve"
                             value={motDePasseEléve}
                             onChange={(e) => onchange3(e)}
@@ -498,7 +550,7 @@ const CreerCompte = ({ setAlert }) => {
                           />
                         </div>
                         <div className="form-group">
-                          <label htmlFor="NiveauEléve">Niveau</label>
+                          <label htmlFor="NiveauEléve">Niveau Élève</label>
                           <input
                             type="text"
                             className="form-control w-75"
@@ -522,6 +574,36 @@ const CreerCompte = ({ setAlert }) => {
                             value={classe}
                             onChange={(e) => onchange3(e)}
                             required
+                          />
+                        </div>
+                        <div className="form-group">
+                          <label htmlFor="NomParent">Nom Parent</label>
+                          <input
+                            type="text"
+                            className="form-control w-75"
+                            id="NomParent"
+                            placeholder="Nom Parent"
+                            name="NomParent"
+                            value={NomParent}
+                            onChange={(e) => onchange3(e)}
+                            required
+                            minlength="2"
+                          />
+                        </div>
+                        <div className="form-group">
+                          <label htmlFor="motDePasseParent">
+                            Mot De Passe Parent
+                          </label>
+                          <input
+                            type="password"
+                            className="form-control w-75"
+                            id="motDePasseParent"
+                            placeholder="Mot De Passe Parent"
+                            name="motDePasseParent"
+                            value={motDePasseParent}
+                            onChange={(e) => onchange3(e)}
+                            required
+                            minlength="6"
                           />
                         </div>
                       </div>

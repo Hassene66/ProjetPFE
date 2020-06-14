@@ -20,6 +20,17 @@ const enseignantSchema = new mongoose.Schema({
     type: String,
   },
 });
+const parentSchema = new mongoose.Schema({
+  identifiantÉlève: {
+    type: String,
+  },
+  prénomÉlève: {
+    type: String,
+  },
+  nomÉlève: {
+    type: String,
+  },
+});
 
 const UserSchema = new mongoose.Schema({
   prénom: {
@@ -50,6 +61,10 @@ const UserSchema = new mongoose.Schema({
   },
   profileEleve: {
     type: élèveSchema,
+    required: false,
+  },
+  profileParent: {
+    type: parentSchema,
     required: false,
   },
 });

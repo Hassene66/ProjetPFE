@@ -48,8 +48,17 @@ const LoginForm = ({
           isAuthenticated &&
           Role.typeUtilisateur === "enseignant" &&
           !Loading
-        )
+        ) {
           return <Redirect to="/PageAcceuilEnseignant" />;
+        } else {
+          if (
+            isAuthenticated &&
+            Role.typeUtilisateur === "parent" &&
+            !Loading
+          ) {
+            return <Redirect to="/PageAcceuilParent" />;
+          }
+        }
       }
     }
 

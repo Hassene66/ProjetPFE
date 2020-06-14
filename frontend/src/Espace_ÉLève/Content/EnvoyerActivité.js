@@ -81,7 +81,7 @@ const EnvoyerActivité = ({ setAlert, auth: { user } }) => {
     <div className="col p-3  ">
       <div className="fluid-container">
         <Alert />
-        <h1 className="mb-3">Publier Cours </h1>
+        <h1 className="mb-3">Publier Activité </h1>
         <form>
           <h5>Choisir un fichier</h5>
           <div className="input-group mb-3 w-75">
@@ -98,7 +98,7 @@ const EnvoyerActivité = ({ setAlert, auth: { user } }) => {
               </label>
             </div>
           </div>
-          <h5>Choisir Enseignant</h5>
+          <h5>Sélectionner Enseignant</h5>
           <select
             className="form-control w-25"
             id="exampleFormControlSelect1"

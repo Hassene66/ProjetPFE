@@ -57,6 +57,8 @@ const Navbar = ({
       return "/PageAcceuilEleve";
     } else if (user.typeUtilisateur === "enseignant") {
       return "/PageAcceuilEnseignant";
+    } else if (user.typeUtilisateur === "parent") {
+      return "/PageAcceuilParent";
     }
   }
 

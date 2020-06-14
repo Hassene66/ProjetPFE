@@ -31,5 +31,20 @@ router.post("/Get", async (req, res) => {
     res.status(500).send("Server Err");
   }
 });
+router.post("/GetListe", async (req, res) => {
+  try {
+    const ListeAbsence = await RegistreAppel.find({
+      "Absent.identifiant": req.body.identifiant,
+    });
+    if (ListeAbsence) {
+      return res.json(ListeAbsence);
+    } else {
+      return res.json("Aucun enregistrement ");
+    }
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Err");
+  }
+});
 
 module.exports = router;

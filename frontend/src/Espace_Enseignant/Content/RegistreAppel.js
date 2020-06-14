@@ -37,7 +37,7 @@ const RegistreAppel = ({ setAlert, auth: { user } }) => {
       selectedOption: oldSelectedOption,
     });
   };
-
+  console.log(listeDesEleves[0]);
   useEffect(() => {
     if (typeof listeDesEleves === "object") {
       setFormData({
@@ -68,13 +68,14 @@ const RegistreAppel = ({ setAlert, auth: { user } }) => {
     const Absent = [];
     for (let i = 0; i <= selectedOption.length; i++) {
       if (selectedOption[i] === "Present") {
-        Present.push(listeDesEleves[i].prénom + " " + listeDesEleves[i].nom);
+        Present.push(listeDesEleves[i]);
       } else {
         if (selectedOption[i] === "Absent") {
-          Absent.push(listeDesEleves[i].prénom + " " + listeDesEleves[i].nom);
+          Absent.push(listeDesEleves[i]);
         }
       }
     }
+    console.log(Present);
     var date = moment().tz("Africa/Tunis").format("L");
     var time = moment().tz("Africa/Tunis").format("LTS");
 

@@ -42,7 +42,9 @@ router.post(
       profileEnseignant,
       profileEleve,
       profileAdmin,
+      ProfileParent,
     } = req.body;
+    console.log(ProfileParent);
     try {
       //see if the user exists
       let user = await User.findOne({ identifiant });
@@ -67,8 +69,21 @@ router.post(
       if (profileAdmin) {
         userInfo.profileAdmin = profileAdmin;
       }
-
       user = new User(userInfo);
+      await user.save(); //save the new user in the db
+
+      const ParentInfo = {};
+      ParentInfo.prénom = ProfileParent.PrénomParent;
+      ParentInfo.nom = ProfileParent.NomParent;
+      ParentInfo.identifiant = ProfileParent.identifiantParent;
+      ParentInfo.motDePasse = ProfileParent.motDePasseParent;
+      ParentInfo.typeUtilisateur = "parent";
+      let profileParent = {};
+      profileParent.identifiantÉlève = identifiant;
+      profileParent.prénomÉlève = prénom;
+      profileParent.nomÉlève = nom;
+      ParentInfo.profileParent = profileParent;
+      user = new User(ParentInfo);
       await user.save(); //save the new user in the db
 
       const payload = {

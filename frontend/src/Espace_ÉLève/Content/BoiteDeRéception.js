@@ -60,7 +60,7 @@ const BoiteDeReception = ({ auth: { user } }) => {
       <div className="container-fluid">
         {loadingState &&
           (MessagesRecu.length === 0 ? (
-            <h2>Il n'y a pas des nouveaux messages reçu</h2>
+            <h2>Aucun nouveaux messages reçu</h2>
           ) : (
             <Fragment>
               <h1>Table des messages</h1>
