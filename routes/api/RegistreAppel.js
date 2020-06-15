@@ -37,6 +37,7 @@ router.post("/GetListe", async (req, res) => {
       "Absent.identifiant": req.body.identifiant,
     });
     if (ListeAbsence) {
+      ListeAbsence.sort((a, b) => (a._id > b._id ? -1 : 1));
       return res.json(ListeAbsence);
     } else {
       return res.json("Aucun enregistrement ");
