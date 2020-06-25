@@ -96,7 +96,7 @@ const ListeAbsence = ({ auth: { user } }) => {
         <Fragment>
           {ListeAbsence.map((elem, idx) => {
             return (
-              <table className="table container mt-5">
+              <table className="table container table-responsive  mt-5  w-100 d-block d-md-table">
                 <thead className="thead-dark ">
                   <tr>
                     <th scope="col">
@@ -130,7 +130,7 @@ const ListeAbsence = ({ auth: { user } }) => {
                       <tr key={i}>
                         <td>{el.prénom + " " + el.nom}</td>
                         <td>{elem.Classe}</td>
-                        <td>Present</td>
+                        <td>Présent</td>
                       </tr>
                     );
                   })}

@@ -37,7 +37,7 @@ const RegistreAppel = ({ setAlert, auth: { user } }) => {
       selectedOption: oldSelectedOption,
     });
   };
-  console.log(listeDesEleves[0]);
+
   useEffect(() => {
     if (typeof listeDesEleves === "object") {
       setFormData({
@@ -75,7 +75,7 @@ const RegistreAppel = ({ setAlert, auth: { user } }) => {
         }
       }
     }
-    console.log(Present);
+
     var date = moment().tz("Africa/Tunis").format("L");
     var time = moment().tz("Africa/Tunis").format("LTS");
 
@@ -106,7 +106,7 @@ const RegistreAppel = ({ setAlert, auth: { user } }) => {
     ) {
       return (
         <form onSubmit={(e) => onFormSubmit(e)}>
-          <table className="table container mt-5">
+          <table className="table table-responsive container mt-5  w-100 d-block d-md-table">
             <thead className="thead-dark">
               <tr>
                 <th scope="col">ID</th>

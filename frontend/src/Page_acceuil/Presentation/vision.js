@@ -8,21 +8,21 @@ import PropTypes from "prop-types";
 import { getCurrentProfile } from "../../actions/profileEcole";
 const Vision = ({
   getCurrentProfile,
-  profileEcole: { profile, loadingProfileEcole }
+  profileEcole: { profile, loadingProfileEcole },
 }) => {
   const [stateVision, setStateVision] = useState({
-    LesValeursDeNotreEcole: ""
+    LesValeursDeNotreEcole: "",
   });
 
   useEffect(() => {
     getCurrentProfile();
     if (profile === null) {
       setStateVision({
-        LesValeursDeNotreEcole: ""
+        LesValeursDeNotreEcole: "",
       });
     } else {
       setStateVision({
-        LesValeursDeNotreEcole: profile.LesValeursDeNotreEcole
+        LesValeursDeNotreEcole: profile.LesValeursDeNotreEcole,
       });
     }
   }, [loadingProfileEcole]);
@@ -66,9 +66,9 @@ const Vision = ({
 };
 Vision.prototype = {
   getCurrentProfile: PropTypes.func.isRequired,
-  profileEcole: PropTypes.object.isRequired
+  profileEcole: PropTypes.object.isRequired,
 };
-const mapStateToProps = state => ({
-  profileEcole: state.profileEcole
+const mapStateToProps = (state) => ({
+  profileEcole: state.profileEcole,
 });
 export default connect(mapStateToProps, { getCurrentProfile })(Vision);

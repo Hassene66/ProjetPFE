@@ -145,7 +145,7 @@ const ContenuPageParameterEcole = ({
   ) : (
     <div className="col p-3  parametrer-ecole">
       <form onSubmit={(e) => onSubmit(e)}>
-        <h1>Paramétrer Mon Ecole</h1>
+        <h1>Paramétrer Mon Collége</h1>
         <Alert />
         <div className="row">
           {/* //LOGO */}
@@ -183,7 +183,7 @@ const ContenuPageParameterEcole = ({
                       onChange={(e) => onChange(e)}
                       className="form-control mr-3"
                       type="text"
-                      placeholder="nom de l'ecole "
+                      placeholder="nom de l'école "
                       value={NomEcole}
                       name="NomEcole"
                     />

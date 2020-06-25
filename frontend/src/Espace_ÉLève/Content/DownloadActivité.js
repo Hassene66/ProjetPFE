@@ -62,11 +62,11 @@ const DownloadActivité = ({ setAlert, auth: { user } }) => {
       <div className="fluid-container">
         {loadingState &&
           (Activité.length === 0 ? (
-            <h1>Il n’y a pas encore des activités publiés</h1>
+            <h1>Aucun activités publiés</h1>
           ) : (
             <Fragment>
               <h1>Table des Activité</h1>
-              <table className="table  mt-5">
+              <table className="table  table-responsive container mt-5  w-100 d-block d-md-table">
                 <thead className="thead-dark">
                   <tr>
                     <th scope="col">Num</th>

@@ -64,7 +64,7 @@ const BoiteDeReception = ({ auth: { user } }) => {
           ) : (
             <Fragment>
               <h1>Table des messages</h1>
-              <table className="table container mt-5">
+              <table className="table table-responsive container mt-5  w-100 d-block d-md-table">
                 <thead className="thead-dark">
                   <tr>
                     <th scope="col">Num</th>
@@ -104,7 +104,7 @@ const BoiteDeReception = ({ auth: { user } }) => {
                             {elem.Message}
                           </p>
                         </td>
-                        <td>
+                        <td className="d-flex">
                           <Link
                             to={{
                               pathname: "/PageAcceuilEleve/VoirPlus",

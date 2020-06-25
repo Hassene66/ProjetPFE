@@ -51,8 +51,8 @@ const DeleteCours = ({ setAlert, auth: { user } }) => {
             <h1>Vous n'avez publié aucun cours</h1>
           ) : (
             <Fragment>
-              <h1>Table des Cours</h1>
-              <table className="table  mt-5">
+              <h1>Supprimer des Cours</h1>
+              <table className="table table-responsive container mt-5  w-100 d-block d-md-table">
                 <thead className="thead-dark">
                   <tr>
                     <th scope="col">Num</th>

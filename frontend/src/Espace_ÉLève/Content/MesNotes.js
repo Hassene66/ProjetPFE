@@ -42,14 +42,14 @@ const MesNotes = ({ auth: { user } }) => {
     <Spinner />
   ) : (
     <div className="col p-3  ">
-      <div classname="container">
+      <div className="container">
         {loadingState &&
           (MesNotes.length === 0 ? (
             <h1>Aucune note n'a encore été publiée</h1>
           ) : (
             <Fragment>
               <h1>Table des notes</h1>
-              <table className="table container mt-5">
+              <table className="table  table-responsive container mt-5 w-100 d-block d-md-table ">
                 <thead className="thead-dark">
                   <tr>
                     <th scope="col">Num</th>

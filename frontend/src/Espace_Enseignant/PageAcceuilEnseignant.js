@@ -27,7 +27,7 @@ const PageAcceuilEnseignant = () => {
                     className="nav-link active nav-links-color"
                     to="/"
                   >
-                    Retour a l'acceuil
+                    Retour à l'accueil
                   </NavLink>
                 </li>
                 <li className="nav-item">
@@ -59,7 +59,7 @@ const PageAcceuilEnseignant = () => {
                       className="nav-link nav-links-color"
                       to="/PageAcceuilEnseignant/Cours"
                     >
-                      Affichier mes cours
+                      Afficher mes cours
                     </NavLink>
                   </li>
                   <li className="nav-item sub-menu">
@@ -102,7 +102,7 @@ const PageAcceuilEnseignant = () => {
                       className="nav-link nav-links-color"
                       to="/PageAcceuilEnseignant/Activite"
                     >
-                      Affichier mes activités
+                      Afficher mes activités
                     </NavLink>
                   </li>
                   <li className="nav-item sub-menu">

@@ -110,9 +110,9 @@ const EnvoyerActivité = ({ setAlert, auth: { user } }) => {
               return (
                 <option
                   key={idx}
-                  value={idx + 1 + " ) " + Ens.prénom + " " + Ens.nom}
+                  value={idx + 1 + " - " + Ens.prénom + " " + Ens.nom}
                 >
-                  {idx + 1 + " ) " + Ens.prénom + " " + Ens.nom}
+                  {idx + 1 + " - " + Ens.prénom + " " + Ens.nom}
                 </option>
               );
             })}

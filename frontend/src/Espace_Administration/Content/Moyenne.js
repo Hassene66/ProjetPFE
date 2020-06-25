@@ -50,8 +50,7 @@ const MoyenneÉlève = ({ setAlert, auth: { user } }) => {
           setFormData1({
             ...formData1,
             listeDesEleves: res.data,
-            élèveSelectioné:
-              "1 ) " + res.data[0].prénom + " " + res.data[0].nom,
+            élèveSelectioné: "1- " + res.data[0].prénom + " " + res.data[0].nom,
           });
         } else {
           if (typeof res.data === "string") {
@@ -89,7 +88,7 @@ const MoyenneÉlève = ({ setAlert, auth: { user } }) => {
         setFormData1({
           ...formData1,
           listeDesEleves: res.data,
-          élèveSelectioné: "1 ) " + res.data[0].prénom + " " + res.data[0].nom,
+          élèveSelectioné: "1- " + res.data[0].prénom + " " + res.data[0].nom,
         });
       } else {
         if (typeof res.data === "string") {
@@ -184,7 +183,7 @@ const MoyenneÉlève = ({ setAlert, auth: { user } }) => {
     ) {
       return (
         <form onSubmit={(e) => onFormSubmit(e)}>
-          <table className="table container mt-5">
+          <table className="table container table-responsive mt-5  w-100 d-block d-md-table">
             <thead className="thead-dark">
               <tr>
                 <th scope="col">ID</th>
@@ -295,11 +294,11 @@ const MoyenneÉlève = ({ setAlert, auth: { user } }) => {
                     return (
                       <option
                         key={élève._id}
-                        value={`${index + 1} ) ${élève.prénom}  ${élève.nom}`}
+                        value={`${index + 1}- ${élève.prénom}  ${élève.nom}`}
                         onChange={(e) => onChange1(e)}
                         name="élèveSelectioné"
                       >
-                        {`${index + 1} ) ${élève.prénom}  ${élève.nom}`}
+                        {`${index + 1}- ${élève.prénom}  ${élève.nom}`}
                       </option>
                     );
                   })}

@@ -1,6 +1,6 @@
 .EspaceEleve .w-sidebar {
-  width: 200px;
-  max-width: 200px;
+  width: 250px;
+  max-width: 220px;
 }
 
 .EspaceEleve .row.collapse {
@@ -19,7 +19,7 @@
   transition: all 0.15s linear;
 }
 
-@media (max-width: 1029px) {
+@media (max-width: 1162px) {
   .EspaceEleve .row.collapse,
   .row.collapsing {
     margin-left: 0 !important;

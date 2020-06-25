@@ -32,7 +32,7 @@ const MesÉlèves = ({ auth: { user } }) => {
     if (typeof listeDesEleves === "object" && listeDesEleves.length > 0) {
       return (
         <div>
-          <table className="table container mt-5">
+          <table className="table table-responsive container mt-5  w-100 d-block d-md-table">
             <thead className="thead-dark">
               <tr>
                 <th scope="col">ID</th>

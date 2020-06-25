@@ -19,7 +19,7 @@
   transition: all 0.15s linear;
 }
 
-@media (max-width: 960px) {
+@media (max-width: 1162px) {
   .row.collapse,
   .row.collapsing {
     margin-left: 0 !important;

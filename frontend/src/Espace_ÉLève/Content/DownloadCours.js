@@ -59,14 +59,14 @@ const DownloadCours = ({ setAlert, auth: { user } }) => {
     <Spinner />
   ) : (
     <div className="col p-3  ">
-      <div className="fluid-container">
+      <div className="container-fluid">
         {loadingState &&
           (Cours.length === 0 ? (
-            <h1>Il n’y a pas encore des cours publiés</h1>
+            <h1>Aucun cours publiés</h1>
           ) : (
             <Fragment>
               <h1>Table des Cours</h1>
-              <table className="table  mt-5">
+              <table className="table  table-responsive mt-5 container w-100 d-block d-md-table">
                 <thead className="thead-dark">
                   <tr>
                     <th scope="col">Num</th>

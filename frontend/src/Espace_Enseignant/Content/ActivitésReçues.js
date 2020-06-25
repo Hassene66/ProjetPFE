@@ -94,7 +94,7 @@ const ActivitésReçues = ({ auth: { user } }) => {
       listeDesActivitésReçues.length > 0 &&
       submitted ? (
         <div>
-          <table className="table container mt-5">
+          <table className="table container table-responsive mt-5  w-100 d-block d-md-table">
             <thead className="thead-dark">
               <tr>
                 <th scope="col">Num</th>

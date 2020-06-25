@@ -1,22 +1,26 @@
 #premierLigne h2 {
-  color: purple;
+  color: #3461a5;
   font-weight: 350;
 }
 #dexiemeLigne h2 {
-  color: purple;
+  color: #247ba0;
   font-weight: 350;
 }
 #troisiemeligne h2 {
-  color: purple;
+  color: #fe4334;
   font-weight: 350;
 }
 #premierParagraphe {
   padding-left: 1.2em;
   font-weight: 500;
   font-size: 1em;
+  text-align: justify;
 }
 #dexiemeParagraphe {
   padding-right: 1.2em;
+  font-weight: 500;
+  font-size: 1em;
+  text-align: justify;
 }
 .imgs {
   border-radius: 5px;

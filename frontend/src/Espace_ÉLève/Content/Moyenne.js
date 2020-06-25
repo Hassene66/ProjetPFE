@@ -47,7 +47,7 @@ const MaMoyenne = ({ auth: { user } }) => {
         {loadingState && (
           <Fragment>
             <h1>Table des moyennes</h1>
-            <table className="table container mt-5">
+            <table className="table table-responsive container mt-5  w-100 d-block d-md-table">
               <thead className="thead-dark">
                 <tr>
                   <th scope="col">Prénom Et Nom</th>

@@ -26,7 +26,7 @@ const PageAcceuilEleve = () => {
                     className="nav-link active nav-links-color"
                     to="/"
                   >
-                    Retour a l'acceuil
+                    Retour à l'acceuil
                   </NavLink>
                 </li>
                 <li className="nav-item">
@@ -98,7 +98,7 @@ const PageAcceuilEleve = () => {
                     disabled
                     onClick={() => setShowSubMessages(!showSubMessages)}
                   >
-                    Contacter enseignant
+                    Contacter Enseignant
                   </NavLink>
                 </li>
                 <div className={showSubMessages ? "show" : "hide"}>
