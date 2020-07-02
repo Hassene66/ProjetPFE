@@ -56,6 +56,16 @@ const PageAcceuilParent = () => {
                     Moyenne
                   </NavLink>
                 </li>
+                <li className="nav-item">
+                  <NavLink
+                    exact
+                    activeClassName="activenav"
+                    className="nav-link active nav-links-color"
+                    to="/PageAcceuilParent/Message"
+                  >
+                    Messages
+                  </NavLink>
+                </li>
               </ul>
             </div>
           </div>

@@ -7,6 +7,15 @@ const élèveSchema = new mongoose.Schema({
   niveau: {
     type: String,
   },
+  PrénomParent: {
+    type: String,
+  },
+  NomParent: {
+    type: String,
+  },
+  identifiantParent: {
+    type: String,
+  },
 });
 
 const enseignantSchema = new mongoose.Schema({

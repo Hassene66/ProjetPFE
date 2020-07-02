@@ -147,6 +147,9 @@ const CreerCompte = ({ setAlert }) => {
     const profileEleve = {
       niveau,
       classe,
+      PrénomParent,
+      NomParent,
+      identifiantParent,
     };
     const ProfileParent = {
       PrénomParent,

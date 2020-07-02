@@ -6,6 +6,7 @@ import { NavLink } from "react-router-dom";
 const PageAcceuilEleve = () => {
   const [showSubÉlève, setShowSubÉlève] = useState(false);
   const [showSubEnseignant, setShowSubEnseignant] = useState(false);
+  const [showSubMsg, setShowSubMsg] = useState(false);
   const [showSubGalerie, setShowSubGalerie] = useState(false);
   return (
     <div style={{ paddingTop: "69px" }} className="EspaceAdmin">
@@ -138,6 +139,38 @@ const PageAcceuilEleve = () => {
                     Liste des messages
                   </NavLink>
                 </li>
+                <li className="nav-item  flex-row ">
+                  <NavLink
+                    className="nav-link nav-links-color dropdown-toggle "
+                    to="#"
+                    disabled
+                    onClick={() => setShowSubMsg(!showSubMsg)}
+                  >
+                    Contacter parent
+                  </NavLink>
+                </li>
+                <div className={showSubMsg ? "show" : "hide"}>
+                  <li className="nav-item sub-menu">
+                    <NavLink
+                      activeClassName="activenav"
+                      exact
+                      className="nav-link nav-links-color"
+                      to="/AccueilAdministration/BoiteDeReception"
+                    >
+                      Boîte de réception
+                    </NavLink>
+                  </li>
+                  <li className="nav-item sub-menu">
+                    <NavLink
+                      activeClassName="activenav"
+                      exact
+                      className="nav-link nav-links-color"
+                      to="/AccueilAdministration/EnvoyerMessage"
+                    >
+                      Envoyer message
+                    </NavLink>
+                  </li>
+                </div>
               </ul>
             </div>
           </div>

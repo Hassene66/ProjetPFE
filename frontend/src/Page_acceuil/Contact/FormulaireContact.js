@@ -7,14 +7,14 @@ class FormulaireContact extends Component {
     this.state = {
       email: "",
       nom: "",
-      msg: ""
+      msg: "",
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleChange(evt) {
     this.setState({
-      [evt.target.name]: evt.target.value
+      [evt.target.name]: evt.target.value,
     });
   }
   handleSubmit(evt) {
@@ -22,15 +22,15 @@ class FormulaireContact extends Component {
     const infocontact = {
       emailVisiteur: this.state.email,
       nomVisiteur: this.state.nom,
-      messageDuVisiteur: this.state.msg
+      messageDuVisiteur: this.state.msg,
     };
     axios
       .post("/ContacterNous", infocontact)
-      .then(res => console.log(res.data));
+      .then((res) => console.log(res.data));
     this.setState({
       email: "",
       nom: "",
-      msg: ""
+      msg: "",
     });
   }
   render() {

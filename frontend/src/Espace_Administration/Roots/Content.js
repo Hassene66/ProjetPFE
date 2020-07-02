@@ -7,6 +7,9 @@ import ContacterNous from "../Content/AfficherContacterNous";
 import MoyenneÉlève from "../Content/Moyenne";
 import CreerCompte from "../Content/CreerCompte";
 import WelcomeAdmin from "../Content/WelcomeAdmin";
+import EnvoyerMessage from "../Content/ContacterParent";
+import BoiteDeReception from "../Content/BoiteDeReception";
+import VoirPlus from "../Content/VoirPlus";
 import { Route, Switch } from "react-router-dom";
 import PrivateRoutesAdmin from "../../PrivateRoutes/PrivateRoutesAdmin";
 
@@ -52,6 +55,21 @@ const Content = () => {
         exact
         path="/AccueilAdministration/AttribuerMoyenne"
         component={MoyenneÉlève}
+      />
+      <PrivateRoutesAdmin
+        exact
+        path="/AccueilAdministration/EnvoyerMessage"
+        component={EnvoyerMessage}
+      />
+      <PrivateRoutesAdmin
+        exact
+        path="/AccueilAdministration/BoiteDeReception"
+        component={BoiteDeReception}
+      />
+      <PrivateRoutesAdmin
+        exact
+        path="/AccueilAdministration/VoirPlus"
+        component={VoirPlus}
       />
     </Switch>
   );
