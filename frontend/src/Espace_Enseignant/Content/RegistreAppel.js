@@ -13,6 +13,9 @@ const RegistreAppel = ({ setAlert, auth: { user } }) => {
     inputName: [],
     submitted: false,
   });
+  const [formData1, setFormData1] = useState({
+    PreviousTab: [],
+  });
   const {
     classe,
     listeDesEleves,
@@ -20,6 +23,7 @@ const RegistreAppel = ({ setAlert, auth: { user } }) => {
     submitted,
     inputName,
   } = formData;
+  const { PreviousTab } = formData1;
 
   const onChange = (e) => {
     setFormData({
@@ -61,7 +65,11 @@ const RegistreAppel = ({ setAlert, auth: { user } }) => {
       .then((res) =>
         setFormData({ ...formData, listeDesEleves: res.data, submitted: true })
       );
+    await axios
+      .post("/RegistreAppel/GetPrevious", body, config)
+      .then((res) => setFormData1({ ...formData1, PreviousTab: res.data }));
   };
+
   const onFormSubmit = async (e) => {
     e.preventDefault();
     const Present = [];
@@ -112,6 +120,7 @@ const RegistreAppel = ({ setAlert, auth: { user } }) => {
                 <th scope="col">ID</th>
                 <th scope="col">Prénom</th>
                 <th scope="col">Nom</th>
+                <th scope="col">État Précédent</th>
                 <th scope="col">État</th>
               </tr>
             </thead>
@@ -121,6 +130,23 @@ const RegistreAppel = ({ setAlert, auth: { user } }) => {
                   <td>{élève.identifiant}</td>
                   <td>{élève.prénom}</td>
                   <td>{élève.nom}</td>
+                  <td>
+                    {PreviousTab.length > 0 ? (
+                      PreviousTab[0].Present.some(
+                        (el) => el.identifiant === élève.identifiant
+                      ) ? (
+                        <span>
+                          <span style={{ color: "green" }}>✔</span> Présent
+                        </span>
+                      ) : (
+                        <span>
+                          <span style={{ color: "red" }}>✘</span> Absent
+                        </span>
+                      )
+                    ) : (
+                      <span>-</span>
+                    )}
+                  </td>
                   <td>
                     <label>
                       <input
