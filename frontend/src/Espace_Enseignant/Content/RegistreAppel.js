@@ -120,8 +120,8 @@ const RegistreAppel = ({ setAlert, auth: { user } }) => {
                 <th scope="col">ID</th>
                 <th scope="col">Prénom</th>
                 <th scope="col">Nom</th>
-                <th scope="col">État Précédent</th>
-                <th scope="col">État</th>
+                <th scope="col">Dernière Séance</th>
+                <th scope="col">État Actuel</th>
               </tr>
             </thead>
             {listeDesEleves.map((élève, idx) => {

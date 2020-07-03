@@ -5,7 +5,8 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout, login } from "../actions/auth";
 import { getCurrentProfile } from "../actions/profileEcole";
-
+import NotificationBadge from "react-notification-badge";
+import { Effect } from "react-notification-badge";
 import axios from "axios";
 import moment from "moment-timezone";
 const Navbar = ({
@@ -55,7 +56,7 @@ const Navbar = ({
 
     return <h5 className="mb-0 ">{date}</h5>;
   }
-  const { LogoEcole, NomEcole } = stateNav;
+  const { LogoEcole, NomEcole, nbMessage } = stateNav;
   return (
     <div className="Navbar-notification">
       <div className="container-fluid fixed-top bg-dark py-3 navbar-nav">
@@ -89,6 +90,12 @@ const Navbar = ({
             <ul className="navbar-nav ml-auto flex-row">
               <li className="nav-item mr-4 mr-sm-5 text-white d-flex align-items-center">
                 {getCurrentDate()}
+              </li>
+              <li className="nav-item d-flex align-items-center mr-5">
+                <Link className="nav-link py-0" to="/PageAcceuilParent/Message">
+                  <NotificationBadge count={nbMessage} effect={Effect.SCALE} />
+                  <i className="far fa-envelope text-white fa-2x "></i>
+                </Link>
               </li>
               <li className="nav-item d-flex align-items-center ">
                 <Link className="nav-link p-0 " onClick={logout} to="/">
