@@ -80,9 +80,7 @@ const Absence = ({ auth: { user } }) => {
           </Fragment>
         ) : (
           <Fragment>
-            <h3 className="mt-5 text-center">
-              Aucun enregistrement absent trouvé
-            </h3>
+            <h3 className="mt-5 text-center">Aucune absence trouvé</h3>
           </Fragment>
         )}
       </div>

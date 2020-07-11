@@ -38,7 +38,7 @@ const Content = ({
           <div className="row justify-content-center">
             <div className="col-9">
               <h2 className="display-5 pb-1">
-                Des clubs dans plusieurs domaine
+                Des clubs dans plusieurs domaines
               </h2>
               <p id="premierParagraphe">{NosActivités[0]}</p>
             </div>
@@ -55,7 +55,7 @@ const Content = ({
         <div id="dexiemeLigne" className="col-lg-6 text-center order-1 ">
           <div className="row justify-content-center">
             <div className="col-10">
-              <h2 className="display-5 pb-1">Plusieurs sorties scolaire</h2>
+              <h2 className="display-5 pb-1">Plusieurs sorties scolaires</h2>
               <p id="dexiemeParagraphe">{NosActivités[1]}</p>
             </div>
           </div>
@@ -68,7 +68,7 @@ const Content = ({
         >
           <div className="row justify-content-center">
             <div className="col-9">
-              <h2 className="display-5 pb-1">Plusieurs activité sportive</h2>
+              <h2 className="display-5 pb-1">Plusieurs activités sportives</h2>
               <p id="premierParagraphe">{NosActivités[2]}</p>
             </div>
           </div>
