@@ -38,7 +38,7 @@ const Article = ({
                 <img className="my-3" width={121} src={image4} alt="" />
               </div>
               <div className="info">
-                <h3>La meilleur méthode d'apprentissage</h3>
+                <h3>La meilleure méthode d'apprentissage</h3>
                 <p>{LesPlusDeNotreEcole[0]}</p>
               </div>
             </article>
@@ -49,7 +49,7 @@ const Article = ({
                 <img className="my-3" width={121} src={image33} alt="" />
               </div>
               <div className="info">
-                <h3>Résultat impressionnants de nos élèves</h3>
+                <h3>Résultat impressionnant de nos élèves</h3>
                 <p>{LesPlusDeNotreEcole[1]}</p>
               </div>
             </article>

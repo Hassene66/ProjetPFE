@@ -105,9 +105,9 @@ const Footer = ({
                     <div className="col-1">
                       <i className="fas fa-phone-volume" />
                     </div>
-                    <div className="col-10">
-                      <h6 className="font-weight-bold mb-0">Téléphone :</h6>
-                      <p className="footer-paragraph">{NumeroDeTel}</p>
+                    <div className="col-10 d-flex">
+                      <h6 className="font-weight-bold mb-0">Téléphone : </h6>
+                      <p className="footer-paragraph">&nbsp;{NumeroDeTel}</p>
                     </div>
                   </div>
                 </li>
@@ -123,7 +123,7 @@ const Footer = ({
                   <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d811.9952402796937!2d11.06490782920535!3d35.504748998764754!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzXCsDMwJzE3LjEiTiAxMcKwMDMnNTUuNiJF!5e0!3m2!1sen!2stn!4v1583764094683!5m2!1sen!2stn"
                     width="100%"
-                    height="200"
+                    height="180"
                     frameborder="0"
                     allowfullscreen=""
                     className="pr-5 "
@@ -133,9 +133,7 @@ const Footer = ({
             </div>
 
             <div className="col-lg-4 col-md-4 col-sm-6 mt-2 mb-4">
-              <h5 className="mb-4 font-weight-bold mr-5">
-                S'INSCRIRE AU NEWSLETTER
-              </h5>
+              <h5 className="mb-4 font-weight-bold mr-5">NEWSLETTER</h5>
               <div className="input-group">
                 <input
                   type="text"

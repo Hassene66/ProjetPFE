@@ -53,6 +53,10 @@
   margin-bottom: 20px;
 }
 
+.testemonial .same-h {
+  background-color: white;
+}
+
 @media screen and (max-width: 960px) {
   .col {
     flex: 100%;

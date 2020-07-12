@@ -32,7 +32,7 @@ class Slider extends React.Component {
                     textTransform: "uppercase",
                   }}
                 >
-                  la meilleur métodologie d'apprentisage
+                  La meilleure méthode d'apprentissage
                 </h1>
               </div>
             </div>
@@ -55,7 +55,7 @@ class Slider extends React.Component {
                     textTransform: "uppercase",
                   }}
                 >
-                  Découvrir nos gallerie d'images
+                  Découvrir notre galerie d'images
                 </h1>
 
                 <p>

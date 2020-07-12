@@ -52,7 +52,7 @@ const Content = ({
           <div className="row justify-content-center">
             <div className="col-10">
               <h2 className="display-5 pb-3">
-                Formation basée sur les projects et le pratique
+                Formation basée sur les projets et la pratique
               </h2>
               <p id="dexiemeParagraphe">{NosFormations[1]}</p>
             </div>

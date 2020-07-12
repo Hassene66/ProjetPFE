@@ -34,18 +34,18 @@ const Temoinage = ({
           <h1>Témoignage</h1>
           <div className="border"></div>
 
-          <div className="row">
-            <div className="col-lg">
-              <div className="testimonial">
+          <div className="row same-height">
+            <div className="col-lg same-h ">
+              <div className="testimonial   ">
                 <img src={person1} alt="" />
-                <div className="name">Marouene</div>
+                <div className="name">Hassene</div>
 
                 <p>{Témoinage[0]}</p>
               </div>
             </div>
 
-            <div className="col-lg mx-4">
-              <div className="testimonial">
+            <div className="col-lg same-h  mx-lg-4 my-3 my-lg-0">
+              <div className="testimonial  ">
                 <img src={person2} alt="" />
                 <div className="name">Aya</div>
 
@@ -53,8 +53,8 @@ const Temoinage = ({
               </div>
             </div>
 
-            <div className="col-lg">
-              <div className="testimonial">
+            <div className="col-lg  same-h ">
+              <div className="testimonial ">
                 <img src={person3} alt="" />
                 <div className="name">Yosra</div>
 
