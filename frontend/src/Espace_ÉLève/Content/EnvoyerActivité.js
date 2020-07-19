@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { connect } from "react-redux";
 import { setAlert } from "../../actions/alert";
 import Alert from "../../Components/alert";
@@ -53,25 +53,30 @@ const EnvoyerActivité = ({ setAlert, auth: { user } }) => {
       count: Number(e.target.value.charAt(0)) - 1,
     });
   };
+  const isFirstUpdate = React.useRef(true);
   useEffect(() => {
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-    const MonClasse = user.profileEleve.classe;
-    const body = JSON.stringify({ MonClasse });
+    if (isFirstUpdate.current) {
+      isFirstUpdate.current = false;
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      const MonClasse = user.profileEleve.classe;
+      const body = JSON.stringify({ MonClasse });
 
-    axios.post("/ListeEnseignant/", body, config).then((res) => {
-      setFormData1({
-        ...formData1,
-        ListeDesEnseignant: res.data,
-        EnseignantSelectionné:
-          "1 ) " + res.data[0].prénom + " " + res.data[0].nom,
+      axios.post("/ListeEnseignant/", body, config).then((res) => {
+        setFormData1({
+          ...formData1,
+          ListeDesEnseignant: res.data,
+          EnseignantSelectionné:
+            "1 - " + res.data[0].prénom + " " + res.data[0].nom,
+        });
       });
-    });
+      return;
+    }
     bsCustomFileInput.init();
-  }, []);
+  });
 
   const { promiseInProgress } = usePromiseTracker();
 
