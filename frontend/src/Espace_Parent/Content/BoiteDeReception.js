@@ -77,7 +77,7 @@ const BoiteDeReception = ({ auth: { user } }) => {
                     <tbody>
                       <tr>
                         <td>{idx + 1}</td>
-                        <td>{elem.prenomEmetteur + " " + elem.nomEmetteur}</td>
+                        <td>Administration</td>
                         <td>
                           <p
                             style={{

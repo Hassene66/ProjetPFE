@@ -62,21 +62,27 @@ const MaMoyenne = ({ auth: { user } }) => {
                     <td>{user.prénom + " " + user.nom}</td>
                     <td>
                       {MesMoyennes.MoyenneS1 === "" ||
-                      MesMoyennes.MoyenneS1 === undefined
-                        ? "N/A"
-                        : MesMoyennes.MoyenneS1}
+                      MesMoyennes.MoyenneS1 === undefined ? (
+                        <strong>-</strong>
+                      ) : (
+                        MesMoyennes.MoyenneS1
+                      )}
                     </td>
                     <td>
                       {MesMoyennes.MoyenneS2 === "" ||
-                      MesMoyennes.MoyenneS2 === undefined
-                        ? "N/A"
-                        : MesMoyennes.MoyenneS2}
+                      MesMoyennes.MoyenneS2 === undefined ? (
+                        <strong>-</strong>
+                      ) : (
+                        MesMoyennes.MoyenneS2
+                      )}
                     </td>
                     <td>
                       {MesMoyennes.MoyenneS3 === "" ||
-                      MesMoyennes.MoyenneS3 === undefined
-                        ? "N/A"
-                        : MesMoyennes.MoyenneS3}
+                      MesMoyennes.MoyenneS3 === undefined ? (
+                        <strong>-</strong>
+                      ) : (
+                        MesMoyennes.MoyenneS3
+                      )}
                     </td>
                   </tr>
                 </tbody>

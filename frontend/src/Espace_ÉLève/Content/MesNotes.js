@@ -71,34 +71,46 @@ const MesNotes = ({ auth: { user } }) => {
                         <td>{Note.PrénomEtNomEnseignant}</td>
                         <td>{Note.matièreEnseigné}</td>
                         <td>
-                          {Note.noteContrôle1 === undefined
-                            ? "N/A"
-                            : Note.noteContrôle1}
+                          {Note.noteContrôle1 === undefined ? (
+                            <strong>-</strong>
+                          ) : (
+                            Note.noteContrôle1
+                          )}
                         </td>
                         <td>
-                          {Note.noteSynthèse1 === undefined
-                            ? "N/A"
-                            : Note.noteSynthèse1}
+                          {Note.noteSynthèse1 === undefined ? (
+                            <strong>-</strong>
+                          ) : (
+                            Note.noteSynthèse1
+                          )}
                         </td>
                         <td>
-                          {Note.noteContrôle2 === undefined
-                            ? "N/A"
-                            : Note.noteContrôle2}
+                          {Note.noteContrôle2 === undefined ? (
+                            <strong>-</strong>
+                          ) : (
+                            Note.noteContrôle2
+                          )}
                         </td>
                         <td>
-                          {Note.noteSynthèse2 === undefined
-                            ? "N/A"
-                            : Note.noteSynthèse2}
+                          {Note.noteSynthèse2 === undefined ? (
+                            <strong>-</strong>
+                          ) : (
+                            Note.noteSynthèse2
+                          )}
                         </td>
                         <td>
-                          {Note.noteContrôle3 === undefined
-                            ? "N/A"
-                            : Note.noteContrôle3}
+                          {Note.noteContrôle3 === undefined ? (
+                            <strong>-</strong>
+                          ) : (
+                            Note.noteContrôle3
+                          )}
                         </td>
                         <td>
-                          {Note.noteSynthèse3 === undefined
-                            ? "N/A"
-                            : Note.noteSynthèse3}
+                          {Note.noteSynthèse3 === undefined ? (
+                            <strong>-</strong>
+                          ) : (
+                            Note.noteSynthèse3
+                          )}
                         </td>
                       </tr>
                     </tbody>
