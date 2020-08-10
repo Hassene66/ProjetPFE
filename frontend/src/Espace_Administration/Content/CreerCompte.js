@@ -77,7 +77,7 @@ const CreerCompte = ({ setAlert }) => {
       [e.target.name]: e.target.value,
     });
   };
-  const onSubmit1 = (e) => {
+  const onSubmit1 = async (e) => {
     e.preventDefault();
     const profileAdmin = {};
     profileAdmin.typeUtilisateur = "admin";
@@ -91,19 +91,27 @@ const CreerCompte = ({ setAlert }) => {
       },
     };
     const body = JSON.stringify(profileAdmin);
-    axios
-      .post("/api/users/", body, config)
-      .then(
-        setAccountAdminData({
-          prénomAdmin: "",
-          nomAdmin: "",
-          identifiantAdmin: "",
-          motDePasseAdmin: "",
-        })
-      )
-      .then(setAlert("Compte a été créé avec succès", "success"));
+    try {
+      await axios.post("/api/users/", body, config);
+      setAlert("Compte a été créé avec succès", "success");
+
+      setAccountAdminData({
+        prénomAdmin: "",
+        nomAdmin: "",
+        identifiantAdmin: "",
+        motDePasseAdmin: "",
+      });
+    } catch (err) {
+      var errs = err.response.data.errors;
+      if (errs) {
+        errs.forEach((err) => {
+          setAlert(err.msg, "danger");
+        });
+      }
+    }
   };
-  const onSubmit2 = (e) => {
+
+  const onSubmit2 = async (e) => {
     e.preventDefault();
     const classeEnseigné = classeEnseigné1.split(",");
     const niveauEnseigné = niveauEnseigné1.split(",");
@@ -125,23 +133,29 @@ const CreerCompte = ({ setAlert }) => {
       },
     };
     const body = JSON.stringify(AccountEnseignant);
-    axios
-      .post("/api/users/", body, config)
-      .then(
-        setAccountEnseignantData({
-          prenomEnseignant: "",
-          nomEnseignant: "",
-          identifiantEnseignant: "",
-          motDePasseEnseignant: "",
-          niveauEnseigné1: "",
-          classeEnseigné1: "",
-          matiéreEnseigné: "",
-        })
-      )
-      .then(setAlert("Compte a été créé avec succès", "success"));
+    try {
+      await axios.post("/api/users/", body, config);
+      setAlert("Compte a été créé avec succès", "success");
+      setAccountEnseignantData({
+        prenomEnseignant: "",
+        nomEnseignant: "",
+        identifiantEnseignant: "",
+        motDePasseEnseignant: "",
+        niveauEnseigné1: "",
+        classeEnseigné1: "",
+        matiéreEnseigné: "",
+      });
+    } catch (err) {
+      var errs = err.response.data.errors;
+      if (errs) {
+        errs.forEach((err) => {
+          setAlert(err.msg, "danger");
+        });
+      }
+    }
   };
 
-  const onSubmit3 = (e) => {
+  const onSubmit3 = async (e) => {
     e.preventDefault();
 
     const profileEleve = {
@@ -171,23 +185,29 @@ const CreerCompte = ({ setAlert }) => {
       },
     };
     const body = JSON.stringify(AccountEleve);
-    axios
-      .post("/api/users/", body, config)
-      .then(
-        setAccountEléveData({
-          prénomEléve: "",
-          nomEléve: "",
-          identifiantEléve: "",
-          motDePasseEléve: "",
-          niveau: "",
-          classe: "",
-          PrénomParent: "",
-          NomParent: "",
-          identifiantParent: "",
-          motDePasseParent: "",
-        })
-      )
-      .then(setAlert("Compte a été créé avec succès", "success"));
+    try {
+      await axios.post("/api/users/", body, config);
+      setAlert("Compte a été créé avec succès", "success");
+      setAccountEléveData({
+        prénomEléve: "",
+        nomEléve: "",
+        identifiantEléve: "",
+        motDePasseEléve: "",
+        niveau: "",
+        classe: "",
+        PrénomParent: "",
+        NomParent: "",
+        identifiantParent: "",
+        motDePasseParent: "",
+      });
+    } catch (err) {
+      var errs = err.response.data.errors;
+      if (errs) {
+        errs.forEach((err) => {
+          setAlert(err.msg, "danger");
+        });
+      }
+    }
   };
 
   return (
