@@ -6,7 +6,7 @@
 <div align="center">
 
 
-![Python](https://img.shields.io/badge/React--native-0.69.2-orange)
+![Python](https://img.shields.io/badge/React-16.12.0-orange)
 ![Current Version](https://img.shields.io/badge/version-v1.0-blue)
 ![GitHub contributors](https://img.shields.io/github/contributors/Hassene66/IsammLabs)
 ![Dependencies](https://img.shields.io/badge/dependencies-up%20to%20date-brightgreen.svg)
