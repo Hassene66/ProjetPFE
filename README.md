@@ -1,6 +1,6 @@
 <h1 align="center">
   <br/>
-  <img src="./schoolV4.png" alt="School management system" width="200"/>
+  <img src="./school-logo.png" alt="School management system" width="300"/>
   <h4 align="center">A School managment system built with the MERN stack</h4>
 </h1>
 <div align="center">
@@ -24,7 +24,7 @@
 </p>
 
 ## Basic overview
-Scholl is a school managment system built with the MERN stack that offers a variety of services to each of the four type of users (Administrators, teachers, students and guardians)
+SMS is a school managment web application built with the MERN stack that offers a variety of services to each of the four type of users (Administrators, teachers, students and guardians)
 
 ## Key features
 * Daily student attendence.
@@ -74,4 +74,4 @@ $ npm run dev
 ## You may also like
 
 - [HiCoach](https://github.com/salimkazdaghli/Hicotech-Frontend) - A coaching web app.
-- [School MS](https://github.com/amitmerchant1990/correo) - A school managment system web app.
+- [IsammLabs](https://github.com/Hassene66/IsammLabs) - A university's labs management mobile app.
