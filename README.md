@@ -1,8 +1,7 @@
 <h1 align="center">
   <br/>
-  <img src="./school.svg" alt="School management system" width="200"/></a>
+  <img src="./schoolV3.png" alt="School management system" width="200"/>
   <h4 align="center">A School managment system built with the MERN stack</h4>
-  <br/>
 </h1>
 <div align="center">
 
@@ -25,45 +24,40 @@
 </p>
 
 ## Basic overview
-IsammLabs is a cross-platform mobile application built with React native and Node.js that aims to automate the whole process of passing claims between professors and technicians in the ISAMM's laboratories.
+Scholl is a school managment system built with the MERN stack that offers a variety of services to each of the four type of users (Administrators, teachers, students and guardians)
 
 ## Key features
-* Pass a claim for a specific computer and a specific technician.
-* Receive a real time push notification for both technicians and professors for receiving a new claim.
-* Receive an alert notification if the first deadline (2 days) is exceeded without handling the claim.
-* Receive an averstisment notification if the second deadline (one week) is exceeded without repairing the problem.
-* Send a detailed Email to the administration in case of not repairing the problem after the third deadline exeeding (11 days).
-* Check out the software installed on various computers and their characteristics.
+* Daily student attendence.
+* Parent monitoring feature.
+* Homework and Activity Documents deployment.
+* Exam marks and Result Deployment.
+* Internal messaging system between students and their teachers.
 
 ## Technology used
 
 <p align="left">
-  <img src="https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" />
+  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" />
       <img src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E" />
     <img src="https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white" />
     <img src="https://img.shields.io/badge/express-%23000.svg?style=for-the-badge&logo=express&logoColor=white" />
     <img src="https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white" />
-    <img src="https://img.shields.io/badge/firebase cloud messaging-%23ED8B00.svg?style=for-the-badge&logo=firebase&logoColor=white" />
 </p>
 
 ## How to use
-To clone and run this application, you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer and [Setting the development environment](https://reactnative.dev/docs/environment-setup).
+To clone and run this application, you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) and [React Cli](https://reactjs.org/docs/create-a-new-react-app.html) installed on your computer.
 From your command line:
 ```bash
 # Clone this repository
-$ git clone https://github.com/Hassene66/IsammLabs
+$ git clone https://github.com/Hassene66/ProjetPFE
 
 # Go into the repository
-$ cd IsammLabs
+$ cd ProjetPFE
 
 # Install dependencies
 $ npm install
 
-# Run the app on Android simulator
-$ npm run android
-or
-# Run the app on IOS simulator (for mac users only)
-$ npm run ios
+# Run the app 
+$ npm run dev
 ```
 
 
