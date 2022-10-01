@@ -1,6 +1,6 @@
 <h1 align="center">
   <br/>
-  <img src="./schoolV3.png" alt="School management system" width="200"/>
+  <img src="./schoolV4.png" alt="School management system" width="200"/>
   <h4 align="center">A School managment system built with the MERN stack</h4>
 </h1>
 <div align="center">
