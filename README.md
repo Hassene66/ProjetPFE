@@ -16,10 +16,10 @@
 <p align="center">
   <a href="#key-features">Basic overview</a> •
   <a href="#how-to-use">Key features</a> •
-  <a href="#Technology-used">Technology used</a> •
-  <a href="#How-to-use">How to use</a> •
-  <a href="#Project-screenshots">Project screenshots</a> •
-  <a href="#You-may-also-like">You may also like</a>
+  <a href="#technology-used">Technology used</a> •
+  <a href="#how-to-use">How to use</a> •
+  <a href="#some-project-screenshots">Some Project screenshots</a> •
+  <a href="#you-may-also-like">You may also like</a>
   
 </p>
 
@@ -63,13 +63,15 @@ $ npm run dev
 
 
 
-## Project screenshots
+## Some project screenshots
 
 
-| | | | |
-|:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:|
-|<img width="200" alt="splashscreen" src="./screenshots/image4.png"> |  <img width="200" alt="login screen" src="./screenshots/image5.png">|<img width="200" alt="unprocessed claims screen" src="./screenshots/image17.png">|<img width="200" alt="add claim form (first step)" src="./screenshots/image8.png">  |  <img width="200" alt="add claim form (second step)" src="./screenshots/image7.png">|<img width="200" alt="all ISAMM blocs screen" src="./screenshots/image9.png">|
-|<img width="200" alt="show computers stats" src="./screenshots/image18.png">  |  <img width="200" alt="add computer form" src="./screenshots/image29.png">
+| | | 
+|:-------------------------:|:-------------------------:|
+|<img width="500"  src="./screenshots/image4.png"> |  <img width="500"  src="./screenshots/image5.png">|
+<img width="500"  src="./screenshots/image17.png">|<img width="500"  src="./screenshots/image8.png">  |
+<img width="500"  src="./screenshots/image7.png">|<img width="500"  src="./screenshots/image9.png">|
+|<img width="500"  src="./screenshots/image18.png">  |  <img width="500"  src="./screenshots/image29.png">
 
 ## You may also like
 
